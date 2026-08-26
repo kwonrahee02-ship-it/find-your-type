@@ -1124,11 +1124,11 @@ const CHARACTERS = {
 /* ================= STATE ================= */
 let current = 0;
 let scores = {};
-let history = [];
+let answerHistory = [];
 
 function resetState(){
   current = 0;
-  history = [];
+  answerHistory = [];
   scores = {};
   Object.keys(CHARACTERS).forEach(id => scores[id] = 0);
 }
@@ -1162,7 +1162,7 @@ document.getElementById('btn-start').addEventListener('click', () => {
 document.getElementById('btn-back').addEventListener('click', () => {
   if(current > 0){
     current -= 1;
-    const last = history.pop();
+    const last = answerHistory.pop();
     if(last){
       scores[last] -= 1;
     }
@@ -1200,7 +1200,7 @@ function renderQuestion(){
 }
 
 function selectOption(charId){
-  history.push(charId);
+  answerHistory.push(charId);
   scores[charId] = (scores[charId] || 0) + 1;
   current += 1;
   if(current >= QUESTIONS.length){
