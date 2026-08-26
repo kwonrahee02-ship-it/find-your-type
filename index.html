@@ -582,7 +582,7 @@
       </div>
       <div class="eyebrow">직장인 캐릭터 테스트</div>
       <h1 class="hero-title display">나는 회사에서<br>어떤 사람일까?</h1>
-      <p class="hero-sub">실제 직장생활에서 벌어지는 상황을 바탕으로<br>당신의 숨겨진 회사생활 본캐를 찾아드립니다.</p>
+      <p class="hero-sub">동료들은 이미 눈치채고 있었을지도 모릅니다.<br>3분이면 당신의 숨겨진 회사생활 본캐가 나옵니다.</p>
       <div class="preview-strip" id="preview-strip"></div>
       <div class="start-meta">
         <span><b>12</b>문항</span>
@@ -709,6 +709,7 @@
           <button class="share-btn facebook" title="페이스북 공유" onclick="shareFacebook()">f</button>
           <button class="share-btn" title="링크 복사" onclick="copyLink()">🔗</button>
         </div>
+        <button class="btn-secondary" id="btn-save-card" onclick="saveCard()">🖼️ 결과 카드 이미지로 저장</button>
         <button class="btn-secondary" id="btn-retry">🔄 다시 하기</button>
       </div>
 
@@ -1444,8 +1445,8 @@ function shareKakao(){
   Kakao.Share.sendDefault({
     objectType: 'feed',
     content: {
-      title: c.emoji + ' 나는 "' + c.name + '"',
-      description: c.tagline + ' 너는 회사에서 어떤 사람인지 확인해봐!',
+      title: c.emoji + ' 나 회사에서 "' + c.name + '"래',
+      description: '인정하기 싫은데 너무 정확함... 너는 회사에서 어떤 사람인지 3분만에 확인해봐 👀',
       imageUrl: imageUrl,
       imageWidth: 400,
       imageHeight: 400,
@@ -1459,13 +1460,13 @@ function shareKakao(){
 
 function shareTwitter(){
   const c = CHARACTERS[currentResultId];
-  const text = c.emoji + ' 나는 직장인 테스트에서 "' + c.name + '"이(가) 나왔습니다. 너는 회사에서 어떤 사람인지 확인해봐';
+  const text = c.emoji + ' 나 회사에서 "' + c.name + '"래... 인정하기 싫은데 너무 정확함 👀 너는 회사에서 어떤 사람이야?';
   window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(getResultUrl()), '_blank');
 }
 
 function shareNaver(){
   const c = CHARACTERS[currentResultId];
-  const title = '나는 "' + c.name + '"이(가) 나왔습니다 — 직장인 캐릭터 테스트';
+  const title = c.emoji + ' 나 회사에서 "' + c.name + '"래... 너는 어떤 사람인지 확인해봐';
   window.open('https://share.naver.com/web/shareView?url=' + encodeURIComponent(getResultUrl()) + '&title=' + encodeURIComponent(title), '_blank');
 }
 
@@ -1479,6 +1480,160 @@ function copyLink(){
   }).catch(() => {
     showToast('복사에 실패했습니다');
   });
+}
+
+/* ================= SHARE CARD (canvas) ================= */
+function roundRectPath(ctx, x, y, w, h, r){
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+
+function loadImageEl(src){
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = src;
+  });
+}
+
+function wrapLines(ctx, text, maxWidth){
+  const words = text.split(' ');
+  let line = '';
+  const lines = [];
+  words.forEach(w => {
+    const test = line ? line + ' ' + w : w;
+    if(ctx.measureText(test).width > maxWidth && line){
+      lines.push(line);
+      line = w;
+    } else {
+      line = test;
+    }
+  });
+  if(line) lines.push(line);
+  return lines;
+}
+
+function drawWrapped(ctx, text, x, y, maxWidth, lineHeight){
+  const lines = wrapLines(ctx, text, maxWidth);
+  lines.forEach((l, i) => ctx.fillText(l, x, y + i * lineHeight));
+  return lines.length;
+}
+
+async function generateCard(){
+  const c = CHARACTERS[currentResultId];
+  const W = 1080, H = 1350;
+  const canvas = document.createElement('canvas');
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext('2d');
+
+  const bgGrad = ctx.createLinearGradient(0, 0, W, H);
+  bgGrad.addColorStop(0, '#7C5CFC');
+  bgGrad.addColorStop(1, '#FF6F91');
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, W, H);
+
+  ctx.globalAlpha = 0.14;
+  ctx.fillStyle = '#FFFFFF';
+  ctx.beginPath(); ctx.arc(110, 110, 170, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.arc(W - 90, H - 150, 210, 0, Math.PI * 2); ctx.fill();
+  ctx.globalAlpha = 1;
+
+  const pad = 56, cardY = 140;
+  const cardX = pad, cardW = W - pad * 2, cardH = H - cardY - pad;
+  ctx.fillStyle = '#FFFFFF';
+  roundRectPath(ctx, cardX, cardY, cardW, cardH, 40);
+  ctx.fill();
+
+  ctx.fillStyle = '#9C93B5';
+  ctx.font = '600 26px "IBM Plex Sans KR"';
+  ctx.textAlign = 'center';
+  ctx.fillText('직장인 캐릭터 테스트', W / 2, cardY + 66);
+
+  try{
+    const img = await loadImageEl('workplace-images/' + currentResultId + '.webp');
+    const imgSize = 300, imgY = cardY + 96;
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(W / 2, imgY + imgSize / 2, imgSize / 2, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.clip();
+    ctx.drawImage(img, W / 2 - imgSize / 2, imgY, imgSize, imgSize);
+    ctx.restore();
+    ctx.strokeStyle = '#F5F2FE';
+    ctx.lineWidth = 8;
+    ctx.beginPath();
+    ctx.arc(W / 2, imgY + imgSize / 2, imgSize / 2, 0, Math.PI * 2);
+    ctx.stroke();
+  }catch(e){ /* image unavailable, continue without it */ }
+
+  let cursorY = cardY + 96 + 300 + 78;
+  ctx.fillStyle = '#221C3B';
+  ctx.font = '400 50px "Black Han Sans"';
+  const nameLines = drawWrapped(ctx, c.name, W / 2, cursorY, cardW - 100, 58);
+  cursorY += nameLines * 58 + 18;
+
+  ctx.fillStyle = '#6B6285';
+  ctx.font = '400 28px "IBM Plex Sans KR"';
+  drawWrapped(ctx, c.tagline, W / 2, cursorY, cardW - 160, 38);
+
+  const boxH = 168;
+  const boxY = cardY + cardH - boxH - 44;
+  const boxGrad = ctx.createLinearGradient(cardX + 40, boxY, cardX + cardW - 40, boxY);
+  boxGrad.addColorStop(0, '#7C5CFC');
+  boxGrad.addColorStop(1, '#FF6F91');
+  ctx.fillStyle = boxGrad;
+  roundRectPath(ctx, cardX + 40, boxY, cardW - 80, boxH, 24);
+  ctx.fill();
+
+  ctx.fillStyle = '#FFFFFF';
+  ctx.font = '600 20px "IBM Plex Mono"';
+  ctx.fillText('한마디', W / 2, boxY + 42);
+  ctx.font = '400 30px "Black Han Sans"';
+  drawWrapped(ctx, c.punch, W / 2, boxY + 90, cardW - 160, 38);
+
+  ctx.fillStyle = '#9C93B5';
+  ctx.font = '500 22px "IBM Plex Mono"';
+  ctx.fillText(location.host, W / 2, cardY + cardH - 26);
+
+  return canvas;
+}
+
+async function saveCard(){
+  if(!currentResultId){ return; }
+  showToast('카드 생성 중...');
+  try{
+    if(document.fonts && document.fonts.ready){ await document.fonts.ready; }
+    const canvas = await generateCard();
+    canvas.toBlob(async (blob) => {
+      if(!blob){ showToast('카드 생성에 실패했습니다'); return; }
+      const file = new File([blob], 'workplace-type-result.png', { type: 'image/png' });
+      if(navigator.canShare && navigator.canShare({ files: [file] })){
+        try{
+          await navigator.share({ files: [file], title: '나는 회사에서 어떤 사람일까?' });
+          return;
+        }catch(e){ /* fall through to download */ }
+      }
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'workplace-type-result.png';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 4000);
+      showToast('카드 이미지가 저장되었습니다');
+    }, 'image/png');
+  }catch(e){
+    showToast('카드 생성에 실패했습니다');
+  }
 }
 
 /* ================= DEEP LINK ================= */
