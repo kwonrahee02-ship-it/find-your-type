@@ -1299,6 +1299,16 @@ function pickCharacter(){
   return bestId;
 }
 
+function rarityTag(str){
+  if(str.indexOf('상위') === 0) return '희귀 유형';
+  const m = str.match(/(\d+)명 중 1명/);
+  if(m){
+    const pct = Math.round(100 / parseInt(m[1], 10));
+    return pct >= 17 ? '흔한 유형' : '드문 유형';
+  }
+  return '';
+}
+
 function renderRadar(containerId, metrics){
   const size = 320, center = size / 2, maxR = 88;
   const n = metrics.length;
@@ -1362,7 +1372,7 @@ function renderResult(forcedId){
   currentResultId = id;
   const c = CHARACTERS[id];
 
-  document.getElementById('r-rarity').textContent = '출현 빈도 ' + c.rarity;
+  document.getElementById('r-rarity').textContent = rarityTag(c.rarity) + ' · ' + c.rarity;
   document.getElementById('r-emoji').textContent = c.emoji;
   const img = document.getElementById('r-image');
   img.src = 'workplace-images/' + id + '.webp';
