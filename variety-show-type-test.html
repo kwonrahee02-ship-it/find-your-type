@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover">
+<title>나는 국민 예능 속 어떤 멤버st일까? | 예능 캐릭터 진단 테스트</title>
+<meta name="description" content="나는 국민 예능 속 어떤 멤버st일까? 예능 현장 상황 10문항으로 진단하는 나의 예능 캐릭터 유형. 리더st부터 폭탄st까지, 나만 모르는 나의 예능감을 확인해보세요.">
+<meta name="keywords" content="예능 멤버 테스트,예능 캐릭터 테스트,국민 예능 테스트,예능감 테스트,리얼 버라이어티 성격 테스트,나는 어떤 예능 멤버,예능 유형 테스트,케미 테스트,성격 유형 테스트,밈 테스트">
+<meta property="og:title" content="나는 국민 예능 속 어떤 멤버st일까?">
+<meta property="og:description" content="당신도 모르는 당신의 예능 본캐를 진단해드립니다.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23141311'/%3E%3Ctext x='50' y='68' font-size='56' text-anchor='middle'%3E%F0%9F%8E%AC%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#141311">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js" defer></script>
+<style>
+  :root{
+    --paper:#FFFBF0;
+    --card:#FFFFFF;
+    --card-raise:#FFFDF5;
+    --ink:#1A1512;
+    --ink-soft:#5C5347;
+    --ink-faint:#A79C87;
+    --line:#F0E6C8;
+    --line-strong:#E3D29A;
+    --accent:#FFD400;
+    --accent-ink:#141311;
+    --accent2:#E8362B;
+    --stamp:#E8362B;
+    --good:#1FAE6E;
+    --bad:#E8362B;
+    --bar-track:#F3ECD2;
+    --shadow: 0 1px 0 rgba(20,19,17,.06), 0 10px 24px -14px rgba(20,19,17,.35);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#131110;
+      --card:#1D1A17;
+      --card-raise:#242019;
+      --ink:#FBF3DE;
+      --ink-soft:#C9BC9A;
+      --ink-faint:#83775E;
+      --line:#332C22;
+      --line-strong:#4A3F2C;
+      --accent:#FFD400;
+      --accent-ink:#141311;
+      --accent2:#FF5C4D;
+      --stamp:#FFD400;
+      --good:#3FDB9B;
+      --bad:#FF6B5C;
+      --bar-track:#332C22;
+      --shadow: 0 1px 0 rgba(0,0,0,.3), 0 10px 24px -14px rgba(0,0,0,.7);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#131110;
+    --card:#1D1A17;
+    --card-raise:#242019;
+    --ink:#FBF3DE;
+    --ink-soft:#C9BC9A;
+    --ink-faint:#83775E;
+    --line:#332C22;
+    --line-strong:#4A3F2C;
+    --accent:#FFD400;
+    --accent-ink:#141311;
+    --accent2:#FF5C4D;
+    --stamp:#FFD400;
+    --good:#3FDB9B;
+    --bad:#FF6B5C;
+    --bar-track:#332C22;
+    --shadow: 0 1px 0 rgba(0,0,0,.3), 0 10px 24px -14px rgba(0,0,0,.7);
+    color-scheme: dark;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+    min-height:100vh;
+    overflow-x:hidden;
+    word-break:keep-all;
+    overflow-wrap:break-word;
+  }
+  .mono{font-family:'IBM Plex Mono','IBM Plex Sans KR',monospace; font-variant-numeric:tabular-nums;}
+  .display{font-family:'Jua','IBM Plex Sans KR',sans-serif; font-weight:400; letter-spacing:.01em;}
+  h1,h2,h3,p{margin:0;}
+  img,svg{display:block; max-width:100%;}
+  button{font-family:inherit;}
+
+  #app{
+    max-width:560px;
+    margin:0 auto;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    padding:0 0 40px;
+  }
+
+  @media (min-width:680px){
+    body{
+      background:
+        radial-gradient(circle, color-mix(in srgb, var(--ink) 8%, transparent) 1.5px, transparent 1.5px) 0 0/22px 22px,
+        radial-gradient(900px circle at 10% 4%, color-mix(in srgb, var(--accent) 26%, transparent), transparent 58%),
+        radial-gradient(900px circle at 90% 96%, color-mix(in srgb, var(--accent2) 16%, transparent), transparent 58%),
+        var(--paper);
+      padding:56px 24px;
+    }
+    #app{
+      min-height:auto;
+      border-radius:28px;
+      box-shadow:0 40px 100px -40px rgba(34,28,59,.45), var(--shadow);
+      overflow:hidden;
+    }
+  }
+  .screen{display:none;}
+  .screen.active{display:flex; flex-direction:column;}
+
+  /* ---------- topbar ---------- */
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 20px;
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-badge{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono'; font-size:12px; letter-spacing:.08em;
+    color:var(--ink-soft); text-transform:uppercase;
+  }
+  .topbar-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--stamp);}
+
+  /* ---------- start screen ---------- */
+  .start-wrap{
+    flex:1; display:flex; flex-direction:column;
+    padding:48px 24px 24px;
+    text-align:center;
+  }
+  .hero-stage{
+    position:relative;
+    width:220px; height:190px;
+    margin:0 auto 12px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .hero-glow{
+    position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 32% 30%, color-mix(in srgb, var(--accent) 60%, transparent), transparent 62%),
+      radial-gradient(circle at 72% 68%, color-mix(in srgb, var(--accent2) 50%, transparent), transparent 65%);
+    filter: blur(22px);
+    opacity:.6;
+  }
+  .hero-icon{
+    position:absolute;
+    width:30px; height:30px;
+    color:var(--ink-soft);
+    opacity:.6;
+    animation: heroFloat 5s ease-in-out infinite;
+  }
+  .hero-icon.cup{ top:6px; left:14px; animation-delay:.2s; }
+  .hero-icon.note{ top:0; right:10px; animation-delay:1.1s; }
+  .hero-icon.clip{ bottom:14px; left:2px; animation-delay:.6s; }
+  .hero-icon.chart{ bottom:6px; right:0; animation-delay:1.6s; }
+  @keyframes heroFloat{
+    0%, 100%{ transform: translateY(0) rotate(var(--r,0deg)); }
+    50%{ transform: translateY(-7px) rotate(var(--r,0deg)); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero-icon{ animation:none; }
+  }
+  .badge-stamp{
+    width:88px; height:88px;
+    border:3px solid var(--stamp);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:38px;
+    color:var(--stamp);
+    transform:rotate(-8deg);
+    position:relative;
+    background:var(--card);
+    box-shadow:var(--shadow);
+  }
+  .badge-stamp::after{
+    content:'';
+    position:absolute; inset:6px;
+    border:1px dashed var(--stamp);
+    border-radius:50%;
+    opacity:.5;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono'; font-size:13px; letter-spacing:.14em;
+    color:var(--ink-faint); text-transform:uppercase; margin-bottom:14px;
+  }
+  .hero-title{
+    font-size:38px; line-height:1.28;
+    text-wrap:balance;
+    margin-bottom:18px;
+  }
+  .hero-sub{
+    font-size:16px; color:var(--ink-soft);
+    max-width:38ch; margin:0 auto 32px;
+  }
+  .start-meta{
+    display:flex; justify-content:center; gap:22px;
+    margin-bottom:36px;
+    font-family:'IBM Plex Mono'; font-size:12px; color:var(--ink-faint);
+  }
+  .start-meta b{color:var(--ink-soft); font-weight:600;}
+  .preview-strip{
+    display:flex; justify-content:center; gap:10px;
+    margin-bottom:28px;
+  }
+  .preview-thumb{
+    width:52px; height:52px; border-radius:50%;
+    overflow:hidden;
+    border:2px solid var(--line);
+    box-shadow:var(--shadow);
+    flex:0 0 auto;
+  }
+  .preview-thumb img{width:100%; height:100%; object-fit:cover; display:block;}
+
+  .btn-primary{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    background:var(--accent); color:var(--accent-ink);
+    border:none; border-radius:8px;
+    padding:18px 28px;
+    font-size:17px; font-weight:700;
+    cursor:pointer;
+    box-shadow:var(--shadow);
+    transition:transform .12s ease;
+    width:100%;
+  }
+  .btn-primary:active{transform:scale(.98);}
+  .btn-secondary{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    background:transparent; color:var(--ink);
+    border:1.5px solid var(--line-strong); border-radius:8px;
+    padding:16px 24px;
+    font-size:15px; font-weight:600;
+    cursor:pointer;
+    width:100%;
+  }
+  .btn-secondary:active{transform:scale(.98);}
+
+  .disclaimer{
+    margin-top:28px;
+    font-size:12px; color:var(--ink-faint);
+    max-width:40ch; margin-left:auto; margin-right:auto;
+  }
+
+  /* ---------- quiz screen ---------- */
+  .progress-wrap{
+    padding:18px 20px 0;
+  }
+  .progress-row{
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin-bottom:8px;
+    font-family:'IBM Plex Mono'; font-size:12px; color:var(--ink-faint);
+  }
+  .progress-row .cur{color:var(--ink); font-weight:600; font-size:13px;}
+  .progress-track{
+    height:6px; background:var(--bar-track); border-radius:3px; overflow:hidden;
+  }
+  .progress-fill{
+    height:100%; background:var(--stamp); border-radius:3px;
+    transition:width .35s cubic-bezier(.4,0,.2,1);
+  }
+  .progress-caption{
+    margin-top:8px; font-size:12px; color:var(--ink-faint);
+    font-family:'IBM Plex Mono'; letter-spacing:-.01em;
+  }
+
+  .analyzing-wrap{
+    flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:18px; padding:20px;
+  }
+  .analyzing-spinner{
+    width:40px; height:40px; border-radius:50%;
+    border:3px solid var(--bar-track); border-top-color:var(--stamp);
+    animation:spin .8s linear infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .analyzing-text{
+    font-size:15px; font-weight:600; color:var(--ink-soft);
+    font-family:'IBM Plex Mono';
+  }
+
+  .quiz-body{
+    flex:1; display:flex; flex-direction:column;
+    padding:32px 20px 20px;
+  }
+  .quiz-topic{
+    font-family:'IBM Plex Mono'; font-size:12px; letter-spacing:.1em;
+    color:var(--stamp); text-transform:uppercase; margin-bottom:14px;
+  }
+  .quiz-q{
+    font-size:23px; line-height:1.42; font-weight:700;
+    margin-bottom:28px;
+  }
+  .options{
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .option-btn{
+    display:flex; align-items:center; gap:14px;
+    text-align:left;
+    background:var(--card);
+    border:1.5px solid var(--line);
+    border-radius:10px;
+    padding:15px 16px;
+    font-size:15px; color:var(--ink);
+    cursor:pointer;
+    transition:border-color .12s ease, background .12s ease;
+  }
+  .option-btn:hover{border-color:var(--line-strong);}
+  .option-btn:active{background:var(--card-raise); transform:scale(.995);}
+  .option-idx{
+    flex:0 0 auto;
+    width:26px; height:26px; border-radius:6px;
+    border:1px solid var(--line-strong);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono'; font-size:12px; font-weight:600; color:var(--ink-soft);
+  }
+  .quiz-nav{
+    margin-top:20px;
+  }
+  .btn-back{
+    background:none; border:none; color:var(--ink-faint);
+    font-size:13px; cursor:pointer; padding:8px 0;
+  }
+
+  .ad-slot{
+    margin:20px 0;
+    border:1px dashed var(--line-strong);
+    border-radius:8px;
+    padding:14px;
+    text-align:center;
+    font-family:'IBM Plex Mono'; font-size:11px; letter-spacing:.08em;
+    color:var(--ink-faint); text-transform:uppercase;
+  }
+
+  /* ---------- result screen ---------- */
+  .doc-header{
+    padding:20px 20px 16px;
+    border-bottom:1px solid var(--line);
+  }
+  .doc-meta{
+    display:flex; justify-content:space-between;
+    font-family:'IBM Plex Mono'; font-size:11px; color:var(--ink-faint);
+    margin-bottom:6px;
+  }
+  .doc-stamp-line{
+    display:flex; align-items:center; gap:6px;
+    font-family:'IBM Plex Mono'; font-size:11px; color:var(--good); font-weight:600;
+  }
+  .doc-stamp-line .sq{width:8px;height:8px;border:1.5px solid var(--good); transform:rotate(45deg);}
+
+  .result-body{padding:28px 20px 12px;}
+
+  .result-rarity{
+    display:inline-block;
+    font-family:'IBM Plex Mono'; font-size:11px; letter-spacing:.06em;
+    color:var(--stamp); border:1px solid var(--stamp); border-radius:20px;
+    padding:4px 12px; margin-bottom:18px;
+  }
+  .result-emoji{font-size:56px; margin-bottom:12px;}
+  .id-photo{
+    width:172px; height:172px; margin:0 auto 20px;
+    border-radius:16px; overflow:hidden;
+    border:2px solid var(--line-strong);
+    box-shadow:var(--shadow);
+    position:relative;
+    background:var(--card);
+  }
+  .id-photo img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    animation: idPhotoBob 3.4s ease-in-out infinite;
+    transform-origin:50% 85%;
+  }
+  @keyframes idPhotoBob{
+    0%, 100%{ transform: translateY(0) rotate(0deg); }
+    50%{ transform: translateY(-5px) rotate(-1.5deg); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .id-photo img{ animation:none; }
+  }
+  .id-photo-emoji{
+    position:absolute; bottom:-6px; right:-6px;
+    width:38px; height:38px; border-radius:50%;
+    background:var(--card-raise);
+    border:2px solid var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    font-size:19px;
+    box-shadow:var(--shadow);
+  }
+  .result-verdict-label{
+    font-family:'IBM Plex Mono'; font-size:12px; letter-spacing:.08em;
+    color:var(--ink-faint); text-transform:uppercase;
+    margin-bottom:6px;
+  }
+  .result-name{
+    font-size:30px; line-height:1.32;
+    margin-bottom:14px;
+  }
+  .result-tagline{
+    font-size:16px; color:var(--ink-soft);
+    padding-left:14px; border-left:3px solid var(--accent);
+    margin-bottom:28px;
+  }
+
+  .section{
+    margin-bottom:28px;
+  }
+  .section-label{
+    font-family:'IBM Plex Mono'; font-size:11px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink-faint);
+    margin-bottom:10px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .section-label::after{content:''; flex:1; height:1px; background:var(--line);}
+
+  .desc-card{
+    background:var(--card); border:1px solid var(--line); border-radius:10px;
+    padding:18px 18px;
+    display:flex; flex-direction:column; gap:12px;
+  }
+  .desc-card p{font-size:14.5px; color:var(--ink);}
+
+  .quote-card{
+    background:var(--card); border:1px dashed var(--line-strong); border-radius:10px;
+    padding:18px;
+    font-size:15px; font-style:normal;
+    position:relative;
+  }
+  .quote-card::before{
+    content:'"'; font-family:'Jua'; font-size:34px; color:var(--accent2);
+    position:absolute; top:2px; left:14px; line-height:1;
+  }
+  .quote-card span{
+    display:block; padding-left:22px; color:var(--ink);
+  }
+  .quote-label{font-size:11px; color:var(--ink-faint); margin-top:10px; padding-left:22px;}
+
+  .radar-wrap{
+    display:flex; justify-content:center;
+  }
+  .radar-wrap svg{
+    width:100%; max-width:320px; height:auto;
+    transform: scale(.3);
+    opacity:0;
+    transition: transform .5s cubic-bezier(.34,1.56,.64,1), opacity .4s ease;
+  }
+  .radar-wrap svg.in{
+    transform: scale(1);
+    opacity:1;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .radar-wrap svg{ transition:none; transform:scale(1); opacity:1; }
+  }
+  .radar-label{
+    font-size:10.5px; fill:var(--ink-soft); font-family:'IBM Plex Sans KR';
+  }
+  .radar-value{
+    font-family:'IBM Plex Mono'; font-size:10px; font-weight:600; fill:var(--stamp);
+  }
+
+  .punch-card{
+    background:#141311;
+    border-radius:10px;
+    border:3px solid var(--accent);
+    padding:26px 22px;
+    color:var(--accent);
+    text-align:center;
+    box-shadow:var(--shadow);
+    transform:rotate(-1deg);
+  }
+  .punch-label{
+    font-family:'IBM Plex Mono'; font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+    color:#fff; opacity:.6; margin-bottom:10px;
+  }
+  .punch-card p{
+    font-family:'Jua'; font-size:23px; line-height:1.55; margin:0;
+    text-shadow:2px 2px 0 rgba(0,0,0,.4);
+  }
+
+  .metric-row{
+    display:flex; align-items:center; gap:12px;
+    margin-bottom:14px;
+  }
+  .metric-row:last-child{margin-bottom:0;}
+  .metric-label{
+    flex:0 0 128px; font-size:13px; color:var(--ink-soft);
+  }
+  .metric-bar{
+    flex:1; height:8px; background:var(--bar-track); border-radius:4px; overflow:hidden;
+  }
+  .metric-fill{
+    height:100%; background:var(--stamp); border-radius:4px;
+  }
+  .metric-val{
+    flex:0 0 38px; text-align:right;
+    font-family:'IBM Plex Mono'; font-size:13px; font-weight:600; color:var(--ink);
+  }
+
+  .pc-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:12px;
+  }
+  .pc-box{
+    border-radius:10px; padding:14px;
+    font-size:13px;
+  }
+  .pc-box.pro{background:color-mix(in srgb, var(--good) 10%, var(--card)); border:1px solid color-mix(in srgb, var(--good) 30%, var(--line));}
+  .pc-box.con{background:color-mix(in srgb, var(--bad) 10%, var(--card)); border:1px solid color-mix(in srgb, var(--bad) 30%, var(--line));}
+  .pc-title{font-weight:700; margin-bottom:8px; font-size:12px; letter-spacing:.04em;}
+  .pc-box.pro .pc-title{color:var(--good);}
+  .pc-box.con .pc-title{color:var(--bad);}
+  .pc-box ul{margin:0; padding-left:16px;}
+  .pc-box li{margin-bottom:4px; color:var(--ink-soft);}
+
+  .improve-card{
+    background:var(--card); border:1px solid var(--line); border-radius:10px; padding:18px;
+  }
+  .improve-top{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px;}
+  .improve-top .val{font-family:'IBM Plex Mono'; font-size:22px; font-weight:700; color:var(--stamp);}
+  .improve-track{height:8px; background:var(--bar-track); border-radius:4px; overflow:hidden; margin-bottom:12px;}
+  .improve-fill{height:100%; background:var(--accent); border-radius:4px;}
+  .improve-card p{font-size:14px; color:var(--ink-soft);}
+
+  .match-grid{display:flex; flex-direction:column; gap:10px;}
+  .match-item{
+    display:flex; gap:12px; align-items:flex-start;
+    border:1px solid var(--line); border-radius:10px; padding:12px 14px;
+    background:var(--card);
+  }
+  .match-tag{
+    flex:0 0 auto; font-family:'IBM Plex Mono'; font-size:10px; font-weight:700;
+    padding:3px 8px; border-radius:5px; letter-spacing:.04em; margin-top:1px;
+  }
+  .match-item.good .match-tag{background:color-mix(in srgb, var(--good) 20%, transparent); color:var(--good);}
+  .match-item.bad .match-tag{background:color-mix(in srgb, var(--bad) 20%, transparent); color:var(--bad);}
+  .match-item p{font-size:13.5px; color:var(--ink-soft);}
+
+  .share-block{
+    margin-top:8px; margin-bottom:28px;
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .share-hook{
+    font-size:14.5px; color:var(--ink-soft); text-align:center;
+    line-height:1.55; margin-bottom:16px; font-weight:600;
+  }
+  .share-title{
+    font-size:12.5px; color:var(--ink-faint); text-align:center;
+    margin-bottom:4px; letter-spacing:.03em;
+  }
+  .share-row{
+    display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
+    margin-bottom:6px;
+  }
+  .share-btn{
+    width:48px; height:48px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:19px; font-weight:700;
+    border:1px solid var(--line);
+    background:var(--card);
+    color:var(--ink);
+    cursor:pointer;
+    transition:transform .12s ease;
+  }
+  .share-btn:active{transform:scale(.94);}
+  .share-btn.kakao{background:#FEE500; color:#3A1D1D; border-color:#FEE500;}
+  .share-btn.twitter{background:#111111; color:#fff; border-color:#111111;}
+  .share-btn.naver{background:#03C75A; color:#fff; border-color:#03C75A;}
+  .share-btn.facebook{background:#1877F2; color:#fff; border-color:#1877F2;}
+
+  .related-strip{
+    display:flex; gap:8px; overflow-x:auto; padding-bottom:4px;
+    -webkit-overflow-scrolling:touch;
+  }
+  .related-chip{
+    flex:0 0 auto;
+    font-size:12.5px; color:var(--ink-soft);
+    border:1px solid var(--line); border-radius:20px;
+    padding:8px 14px; white-space:nowrap;
+    background:var(--card);
+    text-decoration:none; display:inline-block;
+  }
+
+  .footer-note{
+    font-size:11.5px; color:var(--ink-faint); text-align:center;
+    padding:20px; line-height:1.7;
+  }
+
+  .toast{
+    position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--ink); color:var(--paper);
+    padding:12px 20px; border-radius:8px; font-size:13.5px;
+    opacity:0; pointer-events:none; transition:opacity .2s ease, transform .2s ease;
+    z-index:50; white-space:nowrap;
+  }
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <div class="topbar">
+    <span class="topbar-badge"><span class="dot"></span>예능 케미 분석소</span>
+    <span class="topbar-badge">🎬</span>
+  </div>
+
+  <!-- START -->
+  <section class="screen active" id="screen-start">
+    <div class="start-wrap">
+      <div class="hero-stage" aria-hidden="true">
+        <div class="hero-glow"></div>
+        <svg class="hero-icon cup" style="--r:-12deg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v3l-6 6v5l-4 2v-7L4 7Z"/></svg>
+        <svg class="hero-icon note" style="--r:9deg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 12 4l9 4.5-9 4.5-9-4.5Z"/><path d="M7 10.5V16c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5v-5.5"/></svg>
+        <svg class="hero-icon clip" style="--r:-8deg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6.2"/><circle cx="9.6" cy="7.4" r=".9" fill="currentColor" stroke="none"/><circle cx="14.4" cy="7.4" r=".9" fill="currentColor" stroke="none"/><path d="M9 11.5c1 1 4 1 5 0"/><path d="M8.2 20.5 12 15l3.8 5.5"/></svg>
+        <svg class="hero-icon chart" style="--r:11deg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4"/><circle cx="12" cy="12" r="3.4"/></svg>
+        <div class="badge-stamp">🎬</div>
+      </div>
+      <div class="eyebrow">예능 캐릭터 진단 테스트</div>
+      <h1 class="hero-title display">나는 국민 예능 속<br>어떤 멤버st일까?</h1>
+      <p class="hero-sub">그 시절 다 같이 봤던 그 예능, 그 안에 있었다면 당신은?<br>3분이면 당신의 예능 멤버st가 나옵니다.</p>
+      <div class="preview-strip" id="preview-strip"></div>
+      <div class="start-meta">
+        <span><b>10</b>문항</span>
+        <span><b>10</b>가지 유형</span>
+        <span>약 <b>1</b>분</span>
+      </div>
+      <button class="btn-primary" id="btn-start">내 예능 멤버st 확인하기</button>
+      <p class="disclaimer">※ 본 테스트는 재미를 위한 엔터테인먼트 콘텐츠이며, 특정 방송·인물과 무관한 가상의 캐릭터 유형입니다.</p>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="screen" id="screen-quiz">
+    <div class="progress-wrap">
+      <div class="progress-row">
+        <span class="cur" id="q-current">Q1</span>
+        <span id="q-total">/ 20</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:5%"></div></div>
+      <div class="progress-caption" id="progress-caption">출연진 데이터를 모으고 있습니다.</div>
+    </div>
+    <div class="quiz-body">
+      <div class="quiz-topic" id="q-topic">SITUATION</div>
+      <h2 class="quiz-q" id="q-text">질문</h2>
+      <div class="options" id="q-options"></div>
+      <div class="quiz-nav">
+        <button class="btn-back" id="btn-back">← 이전 질문</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANALYZING -->
+  <section class="screen" id="screen-analyzing">
+    <div class="analyzing-wrap">
+      <div class="analyzing-spinner" aria-hidden="true"></div>
+      <div class="analyzing-text" id="analyzing-text">분석 중...</div>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section class="screen" id="screen-result">
+    <div class="doc-header">
+      <div class="doc-meta">
+        <span class="mono" id="doc-number">문서번호 —</span>
+        <span class="mono" id="doc-date">분석일자 —</span>
+      </div>
+      <div class="doc-stamp-line"><span class="sq"></span>분석 완료</div>
+    </div>
+
+    <div class="result-body">
+      <span class="result-rarity" id="r-rarity">출현 빈도</span>
+      <div class="id-photo">
+        <img id="r-image" src="" alt="" width="400" height="400" decoding="async">
+        <span class="id-photo-emoji" id="r-emoji">🐣</span>
+      </div>
+      <p class="result-verdict-label">당신의 판정</p>
+      <h1 class="result-name display" id="r-name">결과 이름</h1>
+      <p class="result-tagline" id="r-tagline">한 줄 분석</p>
+
+      <div class="section">
+        <div class="section-label">당신은 이런 사람입니다</div>
+        <div class="desc-card" id="r-paragraphs"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">장점과 단점</div>
+        <div class="pc-grid">
+          <div class="pc-box pro">
+            <div class="pc-title">장점</div>
+            <ul id="r-pros"></ul>
+          </div>
+          <div class="pc-box con">
+            <div class="pc-title">단점</div>
+            <ul id="r-cons"></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">당신의 예능 캐릭터 지표</div>
+        <div class="radar-wrap" id="r-radar-wrap">
+          <div id="r-radar"></div>
+        </div>
+        <p style="font-size:11px; color:var(--ink-faint); margin-top:8px; text-align:center;">※ 위 수치는 과학적 근거가 없는 엔터테인먼트용 결과입니다.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-label">동료들의 속마음</div>
+        <div class="quote-card">
+          <span id="r-quote">속마음</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="punch-card">
+          <div class="punch-label">한마디</div>
+          <p id="r-punch"></p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">현장 케미 지수</div>
+        <div class="improve-card">
+          <div class="improve-top">
+            <span style="font-size:13px; color:var(--ink-soft);">현장 케미 지수</span>
+            <span class="val" id="r-improve-val">0%</span>
+          </div>
+          <div class="improve-track"><div class="improve-fill" id="r-improve-fill" style="width:0%"></div></div>
+          <p id="r-improve-text"></p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">이런 멤버와는?</div>
+        <div class="match-grid">
+          <div class="match-item good"><span class="match-tag">잘 맞음</span><p id="r-match-good"></p></div>
+          <div class="match-item bad"><span class="match-tag">삐걱댐</span><p id="r-match-bad"></p></div>
+        </div>
+      </div>
+
+      <div class="share-block">
+        <p class="share-hook">이 결과, 같이 다니는 그 친구가 먼저 알아볼 수도 있습니다.<br>단톡방에 뿌리거나, 팀 사람들한테 보내보세요.</p>
+        <p class="share-title">이 결과 공유하기</p>
+        <div class="share-row">
+          <button class="share-btn kakao" title="카카오톡 공유" onclick="shareKakao()">💬</button>
+          <button class="share-btn twitter" title="트위터 공유" onclick="shareTwitter()">𝕏</button>
+          <button class="share-btn naver" title="네이버 공유" onclick="shareNaver()">N</button>
+          <button class="share-btn facebook" title="페이스북 공유" onclick="shareFacebook()">f</button>
+          <button class="share-btn" title="링크 복사" onclick="copyLink()">🔗</button>
+        </div>
+        <button class="btn-secondary" id="btn-save-card" onclick="saveCard()">🖼️ 결과 카드 이미지로 저장</button>
+        <button class="btn-secondary" id="btn-retry">🔄 다시 하기</button>
+      </div>
+
+      <div class="section">
+        <div class="section-label">다른 테스트</div>
+        <div class="related-strip">
+          <a class="related-chip" href="/">💼 나는 회사에서 어떤 사람일까?</a>
+          <a class="related-chip" href="/dating-popularity-test">💘 나는 이성에게 인기 많은 스타일일까?</a>
+          <span class="related-chip">👑 나의 꼰대력은? (준비중)</span>
+          <span class="related-chip">🗣️ 나의 오지랖 지수는? (준비중)</span>
+        </div>
+      </div>
+
+      <p class="footer-note">본 테스트는 재미를 위한 엔터테인먼트 콘텐츠이며 전문적인 심리검사가 아닙니다.<br>등장하는 캐릭터는 특정 방송이나 실존 인물과 무관한 가상의 유형이며, 결과는 저장되지 않습니다.</p>
+    </div>
+  </section>
+
+</div>
+
+<div class="toast" id="toast">링크가 복사되었습니다</div>
+
+<script>
+/* ================= DATA ================= */
+
+const QUESTIONS = [
+  { topic:"출연 제안", tier:0, q:"예능 프로그램 출연 제안이 왔다. 당신의 첫 반응은?", options:[
+    {t:"일단 대본이랑 규칙부터 꼼꼼히 확인한다", p:{leaderMc:2, sharpEye:1}},
+    {t:"출연료부터 세게 물어본다", p:{sharpTongue:2, bigEatLoyal:1}},
+    {t:"밥은 잘 챙겨주냐고부터 물어본다", p:{bigEatLoyal:2, hypeMaker:1}},
+    {t:"왜 하필 나냐면서도 결국 한다", p:{coolDeadpan:2, weirdArtist:1}},
+    {t:"일단 하겠다고 하고 뒷일은 생각 안 한다", p:{chaosBomb:2, hypeMaker:1}},
+  ]},
+  { topic:"게임 시작 전", tier:0, q:"팀 게임을 시작하기 전, 당신은?", options:[
+    {t:"분위기부터 띄우면서 텐션을 올린다", p:{hypeMaker:2, bodyGag:1}},
+    {t:"갑자기 엉뚱한 필승 전략을 제안한다", p:{weirdArtist:2, chaosBomb:1}},
+    {t:"팀원 역할부터 눈치껏 배분한다", p:{sharpEye:2, leaderMc:1}},
+    {t:"일단 몸부터 움직이며 감으로 부딪힌다", p:{bodyGag:2, chaosBomb:1}},
+    {t:"이길 수 있는 규칙의 허점부터 찾는다", p:{leaderMc:2, sharpEye:1}},
+  ]},
+  { topic:"촬영 중 허기", tier:1, q:"촬영 중간에 배가 고파졌다. 당신은?", options:[
+    {t:"밥 언제 주냐고 제작진한테 계속 따진다", p:{sharpTongue:2, bigEatLoyal:1}},
+    {t:"옆 사람 간식을 은근슬쩍 나눠 먹자고 한다", p:{bigEatLoyal:2, hypeMaker:1}},
+    {t:"배고픈 티 없이 묵묵히 촬영에 집중한다", p:{coolDeadpan:2, leaderMc:1}},
+    {t:"갑자기 먹는 이야기로 삼천포로 빠진다", p:{chaosBomb:2, weirdArtist:1}},
+    {t:"배고픈 것도 텐션으로 승화시켜 웃긴다", p:{hypeMaker:2, bodyGag:1}},
+  ]},
+  { topic:"팀원의 실수", tier:1, q:"팀원이 게임에서 결정적인 실수를 했다. 당신은?", options:[
+    {t:"그 실수가 왜 웃긴지 엉뚱하게 분석한다", p:{weirdArtist:2, chaosBomb:1}},
+    {t:"바로 다음 전략부터 눈치껏 다시 짠다", p:{sharpEye:2, leaderMc:1}},
+    {t:"몸으로 오버해서 리액션하며 웃긴다", p:{bodyGag:2, chaosBomb:1}},
+    {t:"괜찮다고 다독이며 팀 분위기부터 챙긴다", p:{leaderMc:2, bigEatLoyal:1}},
+    {t:"“아 진짜!” 소리부터 지르지만 뒤끝은 없다", p:{sharpTongue:2, bigEatLoyal:1}},
+  ]},
+  { topic:"벌칙 정하기", tier:1, q:"벌칙을 정하는 순간이 왔다. 당신은?", options:[
+    {t:"걸려도 다 같이 먹으면 된다며 여유 부린다", p:{bigEatLoyal:2, hypeMaker:1}},
+    {t:"걸려도 상관없다는 쿨한 표정을 짓는다", p:{coolDeadpan:2, leaderMc:1}},
+    {t:"가위바위보 도중 갑자기 딴짓을 한다", p:{chaosBomb:2, weirdArtist:1}},
+    {t:"무조건 나 걸릴 것 같다며 미리 엄살부터 부린다", p:{hypeMaker:2, bodyGag:1}},
+    {t:"벌칙보다 그 순간 표정 관리가 더 안 된다", p:{weirdArtist:2, chaosBomb:1}},
+  ]},
+  { topic:"클로즈업", tier:2, q:"카메라가 갑자기 나를 클로즈업했다. 당신은?", options:[
+    {t:"당황하지 않고 자연스럽게 화제를 돌린다", p:{sharpEye:2, leaderMc:1}},
+    {t:"바로 몸개그로 상황을 넘긴다", p:{bodyGag:2, chaosBomb:1}},
+    {t:"당황하지 않고 바로 정리된 멘트를 던진다", p:{leaderMc:2, hypeMaker:1}},
+    {t:"옆 사람한테 카메라를 떠넘기며 툴툴댄다", p:{sharpTongue:2, sharpEye:1}},
+    {t:"순간 얼음이 됐다가 배시시 웃는다", p:{bigEatLoyal:2, hypeMaker:1}},
+  ]},
+  { topic:"싸해진 분위기", tier:2, q:"팀 분위기가 갑자기 싸해졌다. 당신은?", options:[
+    {t:"그냥 못 본 척 자연스럽게 넘어간다", p:{coolDeadpan:2, bigEatLoyal:1}},
+    {t:"예상 못한 돌발행동으로 분위기를 깬다", p:{chaosBomb:2, bodyGag:1}},
+    {t:"재빨리 아무 농담이나 던져서 풀어본다", p:{hypeMaker:2, bodyGag:1}},
+    {t:"뜬금없는 이야기를 꺼내서 오히려 더 싸해진다", p:{weirdArtist:2, coolDeadpan:1}},
+    {t:"눈치껏 다음 순서로 화제를 자연스레 넘긴다", p:{sharpEye:2, leaderMc:1}},
+  ]},
+  { topic:"촬영 끝나고 혼자", tier:2, q:"촬영이 끝나고 아무도 안 볼 때, 사실 당신은?", options:[
+    {t:"다음엔 뭘로 웃길지 벌써 고민한다", p:{bodyGag:2, chaosBomb:1}},
+    {t:"오늘 진행에서 아쉬웠던 부분을 복기한다", p:{leaderMc:2, sharpEye:1}},
+    {t:"누구보다 편집 분량을 신경 쓴다", p:{sharpTongue:2, hypeMaker:1}},
+    {t:"다들 밥은 챙겨 먹었는지부터 확인한다", p:{bigEatLoyal:2, hypeMaker:1}},
+    {t:"혼자 오늘 실수한 장면만 계속 곱씹는다", p:{coolDeadpan:2, weirdArtist:1}},
+  ]},
+  { topic:"진짜 역할", tier:3, q:"솔직히, 이 프로그램에서 당신의 진짜 역할은?", options:[
+    {t:"예측 불가능한 재미를 던지는 사람", p:{chaosBomb:2, weirdArtist:1}},
+    {t:"분위기를 계속 띄우는 사람", p:{hypeMaker:2, bodyGag:1}},
+    {t:"있는 듯 없는 듯하다가 뜬금없이 터지는 사람", p:{weirdArtist:2, coolDeadpan:1}},
+    {t:"다 같이 잘 굴러가게 조율하는 사람", p:{sharpEye:2, leaderMc:1}},
+    {t:"몸으로라도 웃음을 만들어내는 사람", p:{bodyGag:2, chaosBomb:1}},
+  ]},
+  { topic:"이 예능이 계속된다면", tier:4, q:"이 예능이 몇 년째 이어진다면, 당신은 어떤 존재이고 싶나?", options:[
+    {t:"없으면 진행이 안 되는 중심 축이고 싶다", p:{leaderMc:2, sharpEye:1}},
+    {t:"다들 은근히 의지하는 든든한 사람이고 싶다", p:{coolDeadpan:2, bigEatLoyal:1}},
+    {t:"매번 분위기를 살리는 흥 부자이고 싶다", p:{hypeMaker:2, bodyGag:1}},
+    {t:"짧아도 강렬하게 기억되는 반전 캐릭터이고 싶다", p:{darkHorse:2, weirdArtist:1}},
+    {t:"아무도 예상 못한 순간에 제일 웃긴 사람이고 싶다", p:{darkHorse:2, chaosBomb:1}},
+  ]},
+];
+
+const PROGRESS_CAPTIONS = [
+  { upto:1, text:"출연진 데이터를 모으고 있습니다." },
+  { upto:5, text:"슬슬 예능감이 드러나고 있습니다." },
+  { upto:7, text:"조금 찔리는 질문이 나옵니다." },
+  { upto:8, text:"거의 다 왔습니다. 카메라 계속 돌아갑니다." },
+  { upto:9, text:"마지막 질문입니다. 솔직하게 답하세요." },
+];
+function progressCaption(idx){
+  for (const c of PROGRESS_CAPTIONS) if (idx <= c.upto) return c.text;
+  return PROGRESS_CAPTIONS[PROGRESS_CAPTIONS.length-1].text;
+}
+
+const ANALYZING_MESSAGES = [
+  "현장 케미 분석 중...",
+  "텐션 패턴 계산 중...",
+  "당신의 예능 멤버st를 찾는 중...",
+  "분석 완료!",
+];
+
+const CHARACTERS = {
+  leaderMc:{ emoji:"🎙️", name:"게임 시작하자마자 규칙부터 정리하는 사람", tagline:"누가 안 시켜도 어느새 진행을 맡고 있습니다.", rarity:"출연진 10명 중 1명",
+    paragraphs:[
+      "다 같이 우왕좌왕하는 사이 이 사람은 이미 규칙을 정리하고 역할을 나누고 있습니다. 본인은 그냥 답답해서 나선 것뿐이라고 합니다.",
+      "리더 자리를 원해서 맡는 게 아니라, 아무도 안 하면 결국 자기가 하게 되는 타입입니다. 책임감이 은근히 무겁습니다.",
+      "덕분에 팀은 편하지만, 정작 본인은 마지막까지 정신없이 뛰어다니다 끝납니다.",
+    ],
+    quote:"저 사람 없으면 진짜 아무것도 안 굴러가요. 근데 본인은 그거 모르는 것 같아요.",
+    punch:"정리는 잘하는데, 정작 본인 몫은 못 챙기고 끝나는 타입입니다.",
+    metrics:[["텐션 지수",64],["돌발력",22],["눈치력",91],["의리력",78],["웃음 유발력",55]],
+    pros:["팀을 자연스럽게 이끈다","위기 상황에서 침착하다"],
+    cons:["혼자 다 짊어지려는 경향이 있다","가끔 너무 진지해서 텐션이 처진다"],
+    improve:[82,"이 사람이 있으면 팀 전체가 훨씬 편해지는데, 정작 본인은 잘 못 느낍니다."],
+    matchGood:"말 안 해도 눈치껏 다 챙기는 사람 — 척하면 척, 굳이 말 안 해도 손발이 맞습니다.",
+    matchBad:"무슨 짓을 할지 아무도 예측 못 하는 사람 — 계획을 다 세워놔도 매번 무너집니다.",
+  },
+  sharpTongue:{ emoji:"😤", name:"버럭 화내지만 결국 다 챙겨주는 사람", tagline:"화내는 것 같은데 끝에는 항상 다 챙겨줍니다.", rarity:"출연진 10명 중 2명",
+    paragraphs:[
+      "누가 실수하면 제일 먼저 소리부터 지릅니다. 근데 이상하게 그 다음 행동은 항상 그 사람 챙기는 쪽입니다.",
+      "말이 세서 오해를 사기 쉽지만, 알고 보면 팀에서 제일 정 많은 축에 속합니다.",
+      "츤데레라는 말이 제일 잘 어울리는데, 본인은 그냥 할 말 하는 것뿐이라고 우깁니다.",
+    ],
+    quote:"무섭게 말해도 뒤끝은 진짜 없어요. 오히려 젤 잘 챙겨줘요.",
+    punch:"화내는 게 아니라 그게 그 사람 나름의 애정 표현입니다.",
+    metrics:[["텐션 지수",71],["돌발력",48],["눈치력",66],["의리력",88],["웃음 유발력",74]],
+    pros:["할 말은 확실하게 한다","의리 하나는 확실하다"],
+    cons:["첫인상이 세 보일 수 있다","가끔 진짜 화난 줄 착각하게 만든다"],
+    improve:[76,"세게 말해도 결국 다 챙겨줘서, 알고 나면 다들 더 좋아하게 됩니다."],
+    matchGood:"몸집은 크고 정은 더 많은 의리파 — 서로 티격태격해도 의리로 다 커버됩니다.",
+    matchBad:"본인만 이해하는 드립을 진지하게 치는 사람 — 팩폭이 안 먹혀서 계속 헛도는 대화가 이어집니다.",
+  },
+  bigEatLoyal:{ emoji:"🍚", name:"몸집은 크고 정은 더 많은 의리파", tagline:"체격도 크고 정도 큰데, 제일 큰 건 의리입니다.", rarity:"출연진 10명 중 2명",
+    paragraphs:[
+      "촬영 중에도 밥 얘기가 제일 먼저 나오고, 먹는 것만큼 사람도 잘 챙깁니다.",
+      "덩치 때문에 몸개그 담당으로 오해받지만, 사실 팀에서 제일 마음이 여린 편입니다.",
+      "누가 힘들어 보이면 말없이 먼저 옆에 와 있는 타입. 표현이 서툴러서 다들 뒤늦게 눈치챕니다.",
+    ],
+    quote:"덩치는 커도 마음은 제일 여려요. 몰래 다 챙기고 있더라고요.",
+    punch:"먹는 것도 정도 큰 사람, 곁에 있으면 든든합니다.",
+    metrics:[["텐션 지수",58],["돌발력",34],["눈치력",70],["의리력",95],["웃음 유발력",62]],
+    pros:["정이 많고 사람을 잘 챙긴다","같이 있으면 편안하다"],
+    cons:["표현이 서툴러 오해를 사기도 한다","가끔 너무 느긋해서 답답해 보인다"],
+    improve:[80,"티는 안 나지만, 이 사람 덕분에 팀 분위기가 은근히 따뜻해집니다."],
+    matchGood:"게임 시작하자마자 규칙부터 정리하는 사람 — 리더가 방향 잡으면 묵묵히 잘 따라줍니다.",
+    matchBad:"무슨 짓을 할지 아무도 예측 못 하는 사람 — 계획대로 안 흘러가면 같이 우왕좌왕합니다.",
+  },
+  coolDeadpan:{ emoji:"😐", name:"텐션 낮아 보이는데 결정적일 때 다 웃기는 사람", tagline:"텐션은 낮은데 웃긴 타이밍은 항상 딱 맞습니다.", rarity:"출연진 10명 중 2명",
+    paragraphs:[
+      "리액션이 크지 않아서 처음엔 텐션 낮아 보이지만, 결정적인 순간에 던지는 한마디가 제일 웃깁니다.",
+      "당황스러운 상황에서도 표정 변화가 거의 없어서, 오히려 그 무표정 자체가 웃음 포인트가 됩니다.",
+      "잘 나서지 않지만 없으면 은근히 티가 나는, 팀의 숨은 안정감 담당입니다.",
+    ],
+    quote:"처음엔 재미없는 줄 알았는데, 나중에 젤 웃긴 사람이 저 사람이에요.",
+    punch:"텐션 낮다고 재미없는 거 아닙니다. 그냥 조용히 다 씹어먹습니다.",
+    metrics:[["텐션 지수",31],["돌발력",29],["눈치력",74],["의리력",68],["웃음 유발력",81]],
+    pros:["당황하지 않고 안정적이다","의외의 순간에 큰 웃음을 준다"],
+    cons:["처음 보면 무관심해 보일 수 있다","텐션 맞추기가 어려울 때가 있다"],
+    improve:[70,"조용히 있는 것 같아도, 이 사람이 없으면 분위기가 확실히 밋밋해집니다."],
+    matchGood:"본인만 이해하는 드립을 진지하게 치는 사람 — 텐션 낮은 리액션이 오히려 그 드립을 살려줍니다.",
+    matchBad:"가만히 있어도 분위기가 저절로 올라가는 사람 — 텐션 차이가 너무 커서 서로 안 맞을 때가 있습니다.",
+  },
+  chaosBomb:{ emoji:"💥", name:"무슨 짓을 할지 아무도 예측 못 하는 사람", tagline:"다음에 무슨 짓을 할지 본인도 모릅니다.", rarity:"출연진 10명 중 1명",
+    paragraphs:[
+      "대본에 없는 행동을 제일 먼저 저지르는 사람. 예측이 안 돼서 오히려 방송이 재밌어집니다.",
+      "본인은 그냥 그 순간 재밌어 보여서 한 건데, 편집하면 항상 그 장면이 제일 화제가 됩니다.",
+      "같이 게임하는 사람 입장에서는 피곤하지만, 보는 사람 입장에서는 제일 안 지루한 캐릭터입니다.",
+    ],
+    quote:"저 사람이랑 있으면 다음에 뭔 일이 생길지 몰라서 계속 긴장돼요.",
+    punch:"계획이 있냐고 물으면 없다고 당당하게 답하는 타입입니다.",
+    metrics:[["텐션 지수",88],["돌발력",97],["눈치력",21],["의리력",55],["웃음 유발력",90]],
+    pros:["예측불가한 재미를 만든다","분위기를 절대 지루하게 두지 않는다"],
+    cons:["팀 계획을 자주 흔든다","눈치 없이 사고를 칠 때가 있다"],
+    improve:[58,"피곤하게 만들 때도 있지만, 이 사람이 없으면 그날 방송이 심심해집니다."],
+    matchGood:"가만히 있어도 분위기가 저절로 올라가는 사람 — 텐션이 같이 폭발해서 시너지가 큽니다.",
+    matchBad:"말 안 해도 눈치껏 다 챙기는 사람 — 계획을 짜놓으면 매번 다 흐트러뜨립니다.",
+  },
+  hypeMaker:{ emoji:"🎉", name:"가만히 있어도 분위기가 저절로 올라가는 사람", tagline:"가만히 있어도 옆에 있으면 텐션이 올라갑니다.", rarity:"출연진 10명 중 2명",
+    paragraphs:[
+      "분위기가 처지려는 순간 제일 먼저 나서서 텐션을 끌어올립니다. 눈치 보지 않고 일단 신나고 봅니다.",
+      "리액션이 커서 촬영장 에너지를 확 바꿔놓는 타입. 덕분에 다른 사람들도 덩달아 텐션이 올라갑니다.",
+      "본인 텐션이 곧 그날 방송 분위기를 좌우한다는 걸 은근히 잘 알고 있습니다.",
+    ],
+    quote:"저 사람 오면 갑자기 다들 신나져요. 텐션이 전염되나 봐요.",
+    punch:"텐션 하나로 분위기를 통째로 바꿔놓는 사람입니다.",
+    metrics:[["텐션 지수",96],["돌발력",62],["눈치력",58],["의리력",70],["웃음 유발력",85]],
+    pros:["분위기를 확실하게 띄운다","같이 있으면 에너지가 생긴다"],
+    cons:["텐션이 부담스러울 때도 있다","혼자 텐션이 앞설 때가 있다"],
+    improve:[84,"이 사람 텐션 덕분에 그날 촬영 전체 분위기가 확 살아납니다."],
+    matchGood:"무슨 짓을 할지 아무도 예측 못 하는 사람 — 텐션이 같이 폭발해서 케미가 제일 좋습니다.",
+    matchBad:"텐션 낮아 보이는데 결정적일 때 다 웃기는 사람 — 텐션 온도차가 커서 서로 어색해질 때가 있습니다.",
+  },
+  weirdArtist:{ emoji:"🌀", name:"본인만 이해하는 드립을 진지하게 치는 사람", tagline:"본인만 웃긴 드립을 세상 진지하게 칩니다.", rarity:"출연진 10명 중 2명",
+    paragraphs:[
+      "다들 이해 못 하는 타이밍에 혼자 웃긴 포인트를 찾아냅니다. 처음엔 다들 조용해지지만, 나중엔 그게 제일 웃긴 장면이 됩니다.",
+      "생각의 흐름이 남들과 좀 다릅니다. 본인은 지극히 논리적이라고 주장합니다.",
+      "몇 초 늦게 다들 웃음이 터지는, '나중에 이해되는 개그'를 담당합니다.",
+    ],
+    quote:"처음엔 뭔 소린가 싶은데, 자려고 누우면 갑자기 웃겨요.",
+    punch:"이해되는 데 시간이 걸릴 뿐, 결국 제일 오래 기억되는 개그입니다.",
+    metrics:[["텐션 지수",54],["돌발력",80],["눈치력",39],["의리력",60],["웃음 유발력",77]],
+    pros:["남들과 다른 독창적인 시선을 가졌다","오래 기억되는 임팩트를 남긴다"],
+    cons:["타이밍이 안 맞을 때가 많다","공감받기까지 시간이 걸린다"],
+    improve:[63,"바로 안 웃겨도, 며칠 지나면 제일 생각나는 사람이 이 사람입니다."],
+    matchGood:"텐션 낮아 보이는데 결정적일 때 다 웃기는 사람 — 무표정 리액션이 이 사람 드립을 오히려 살려줍니다.",
+    matchBad:"게임 시작하자마자 규칙부터 정리하는 사람 — 논리적인 사람 입장에서는 도무지 못 따라갑니다.",
+  },
+  sharpEye:{ emoji:"📋", name:"말 안 해도 눈치껏 다 챙기는 사람", tagline:"말 안 해도 필요한 걸 먼저 챙겨놓습니다.", rarity:"출연진 10명 중 2명",
+    paragraphs:[
+      "누가 시키지 않아도 다음에 뭐가 필요한지 미리 파악해서 챙깁니다. 존재감은 크지 않지만 없으면 바로 티가 납니다.",
+      "상황 파악이 빨라서 분위기가 이상해지기 전에 먼저 화제를 돌리거나 정리합니다.",
+      "스포트라이트를 원하지 않지만, 팀이 잘 굴러가는 데 가장 큰 지분을 차지하는 사람입니다.",
+    ],
+    quote:"저 사람이 미리 다 챙겨놔서, 사실 우리가 편하게 하는 거였어요.",
+    punch:"티 안 나게 다 챙기는데, 알고 보면 제일 중요한 사람입니다.",
+    metrics:[["텐션 지수",47],["돌발력",18],["눈치력",97],["의리력",81],["웃음 유발력",44]],
+    pros:["상황 판단이 빠르고 정확하다","팀 전체를 편하게 만든다"],
+    cons:["존재감이 잘 드러나지 않는다","가끔 너무 조심스러워 텐션이 낮아 보인다"],
+    improve:[79,"티는 안 나지만, 이 사람이 미리 정리해둔 덕분에 팀이 훨씬 편하게 굴러갑니다."],
+    matchGood:"게임 시작하자마자 규칙부터 정리하는 사람 — 척하면 척, 굳이 말 안 해도 손발이 맞습니다.",
+    matchBad:"무슨 짓을 할지 아무도 예측 못 하는 사람 — 아무리 미리 챙겨도 매번 계획을 깨버립니다.",
+  },
+  bodyGag:{ emoji:"🤸", name:"말보다 몸이 먼저 나가는 사람", tagline:"말보다 몸이 먼저 반응합니다.", rarity:"출연진 10명 중 2명",
+    paragraphs:[
+      "설명하기 애매한 상황에서 일단 몸으로 먼저 표현합니다. 넘어지고 부딪혀도 리액션이 항상 크고 확실합니다.",
+      "체력 소모가 큰 역할을 자처하는 편이라, 방송 끝나면 제일 많이 지쳐 있습니다.",
+      "말로 설명하는 것보다 몸으로 보여주는 게 훨씬 빠르고 확실하다고 믿는 타입입니다.",
+    ],
+    quote:"말로 설명 안 해도 몸으로 다 보여줘서 진짜 웃겨요. 근데 본인은 매번 아파해요.",
+    punch:"몸이 힘든 만큼 화면은 항상 제일 재밌게 나오는 사람입니다.",
+    metrics:[["텐션 지수",79],["돌발력",71],["눈치력",42],["의리력",66],["웃음 유발력",92]],
+    pros:["확실하고 즉각적인 웃음을 만든다","몸을 사리지 않는 열정이 있다"],
+    cons:["체력 소모가 크다","가끔 오버해서 상황을 더 꼬이게 만든다"],
+    improve:[67,"몸은 고생하지만, 이 사람 리액션 하나로 그 장면이 다 살아납니다."],
+    matchGood:"무슨 짓을 할지 아무도 예측 못 하는 사람 — 몸과 정신이 둘 다 예측불가라 케미가 폭발합니다.",
+    matchBad:"텐션 낮아 보이는데 결정적일 때 다 웃기는 사람 — 텐션 차이가 커서 합이 잘 안 맞을 때가 있습니다.",
+  },
+  darkHorse:{ emoji:"🌟", name:"평소엔 있는 듯 없는 듯, 결정적일 때 다 가져가는 사람", tagline:"평소엔 있는 듯 없는 듯, 결정적일 때 다 가져갑니다.", rarity:"상위 4%",
+    paragraphs:[
+      "평소엔 크게 나서지 않아서 존재감이 옅어 보입니다. 그런데 중요한 순간에는 이상하게 이 사람이 다 해결합니다.",
+      "본인을 드러내려 애쓰지 않는데도, 결과적으로 제일 인상 깊은 장면을 가져가는 신기한 타입입니다.",
+      "화려하지 않아서 처음엔 눈에 안 띄지만, 다시 보면 매번 이 사람이 핵심에 있었다는 걸 깨닫게 됩니다.",
+    ],
+    quote:"저 사람 원래 조용한 편인데... 결정적인 순간엔 진짜 다 가져가더라고요.",
+    punch:"화려하지 않아도, 마지막에 웃는 건 항상 이 사람입니다.",
+    metrics:[["텐션 지수",52],["돌발력",44],["눈치력",83],["의리력",76],["웃음 유발력",73]],
+    pros:["결정적인 순간에 강하다","꾸준하고 신뢰감을 준다"],
+    cons:["평소엔 존재감이 약하다","과소평가되기 쉽다"],
+    improve:[90,"평소엔 티가 안 나지만, 결국 이 사람 덕분에 그날 방송이 완성됩니다."],
+    matchGood:"거의 모든 유형 — 존재감을 드러내지 않아 누구와도 무난하게 잘 어울립니다.",
+    matchBad:"가만히 있어도 분위기가 저절로 올라가는 사람 — 조용한 존재감이 하이텐션에 묻힐 때가 있습니다.",
+  },
+};
+
+/* ================= STATE ================= */
+let current = 0;
+let scores = {};
+let answerHistory = [];
+
+function resetState(){
+  current = 0;
+  answerHistory = [];
+  scores = {};
+  Object.keys(CHARACTERS).forEach(id => scores[id] = 0);
+}
+
+/* ================= NAV ================= */
+const screens = {
+  start: document.getElementById('screen-start'),
+  quiz: document.getElementById('screen-quiz'),
+  analyzing: document.getElementById('screen-analyzing'),
+  result: document.getElementById('screen-result'),
+};
+function showScreen(name){
+  Object.values(screens).forEach(s => s.classList.remove('active'));
+  screens[name].classList.add('active');
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
+}
+
+/* 카카오 애드핏 스크립트는 페이지 최초 로드 시점에 딱 한 번만 광고 슬롯을 스캔한다.
+   퀴즈를 풀어서 결과 화면에 도달하는 정상 흐름에서는 그 시점에 결과 화면이 아직
+   display:none 상태였기 때문에 광고가 채워지지 않는다. 결과 화면을 보여줄 때마다
+   스크립트를 새로 삽입해서 그 시점에 보이는 슬롯을 다시 스캔하게 만든다. */
+function reloadKakaoAd(){
+  const s = document.createElement('script');
+  s.src = '//t1.kakaocdn.net/kas/static/ba.min.js';
+  s.async = true;
+  document.body.appendChild(s);
+}
+
+(function renderPreviewStrip(){
+  const picks = ['leaderMc','hypeMaker','chaosBomb','coolDeadpan','darkHorse'];
+  const wrap = document.getElementById('preview-strip');
+  wrap.innerHTML = picks.map(id =>
+    '<span class="preview-thumb"><img src="variety-images/' + id + '.webp" alt="" width="52" height="52" decoding="async"></span>'
+  ).join('');
+})();
+
+document.getElementById('btn-start').addEventListener('click', () => {
+  resetState();
+  renderQuestion();
+  showScreen('quiz');
+});
+
+document.getElementById('btn-back').addEventListener('click', () => {
+  if(current > 0){
+    current -= 1;
+    const last = answerHistory.pop();
+    if(last){
+      Object.keys(last).forEach(id => { scores[id] -= last[id]; });
+    }
+    renderQuestion();
+  }
+});
+
+document.getElementById('btn-retry').addEventListener('click', () => {
+  try{ history.replaceState(null, '', window.location.pathname); }catch(e){}
+  resetState();
+  renderQuestion();
+  showScreen('quiz');
+});
+
+function renderQuestion(){
+  const total = QUESTIONS.length;
+  const item = QUESTIONS[current];
+  document.getElementById('q-current').textContent = 'Q' + (current + 1);
+  document.getElementById('q-total').textContent = '/ ' + total;
+  document.getElementById('progress-fill').style.width = Math.round((current / total) * 100) + '%';
+  document.getElementById('progress-caption').textContent = progressCaption(current);
+  document.getElementById('q-topic').textContent = item.topic.toUpperCase();
+  document.getElementById('q-text').textContent = item.q;
+  document.getElementById('btn-back').style.visibility = current === 0 ? 'hidden' : 'visible';
+
+  const idxChars = ['①','②','③','④','⑤'];
+  const wrap = document.getElementById('q-options');
+  wrap.innerHTML = '';
+  item.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = '<span class="option-idx">' + idxChars[i] + '</span><span>' + opt.t + '</span>';
+    btn.addEventListener('click', () => selectOption(opt.p));
+    wrap.appendChild(btn);
+  });
+}
+
+function selectOption(points){
+  answerHistory.push(points);
+  Object.keys(points).forEach(id => { scores[id] = (scores[id] || 0) + points[id]; });
+  current += 1;
+  if(current >= QUESTIONS.length){
+    runAnalyzing();
+  } else {
+    renderQuestion();
+  }
+}
+
+function runAnalyzing(){
+  showScreen('analyzing');
+  const textEl = document.getElementById('analyzing-text');
+  let step = 0;
+  textEl.textContent = ANALYZING_MESSAGES[0];
+  const iv = setInterval(() => {
+    step += 1;
+    if(step < ANALYZING_MESSAGES.length){
+      textEl.textContent = ANALYZING_MESSAGES[step];
+    }
+  }, 350);
+  setTimeout(() => {
+    clearInterval(iv);
+    renderResult();
+    showScreen('result');
+    reloadKakaoAd();
+  }, 1400);
+}
+
+/* ================= RESULT ================= */
+function pickCharacter(){
+  const order = Object.keys(CHARACTERS);
+  let bestId = order[0];
+  let bestScore = -Infinity;
+  order.forEach(id => {
+    if(scores[id] > bestScore){
+      bestScore = scores[id];
+      bestId = id;
+    }
+  });
+  return bestId;
+}
+
+function rarityTag(str){
+  if(str.indexOf('상위') === 0) return '희귀 유형';
+  const m = str.match(/(\d+)명 중 1명/);
+  if(m){
+    const pct = Math.round(100 / parseInt(m[1], 10));
+    return pct >= 17 ? '흔한 유형' : '드문 유형';
+  }
+  return '';
+}
+
+function renderRadar(containerId, metrics){
+  const size = 320, center = size / 2, maxR = 88;
+  const n = metrics.length;
+  const angleFor = i => -90 + i * (360 / n);
+  const pt = (angleDeg, r) => {
+    const rad = angleDeg * Math.PI / 180;
+    return [center + r * Math.cos(rad), center + r * Math.sin(rad)];
+  };
+
+  const gridRings = [0.33, 0.66, 1].map(f => {
+    const pts = metrics.map((_, i) => pt(angleFor(i), maxR * f).join(',')).join(' ');
+    return '<polygon points="' + pts + '" fill="none" stroke="var(--line)" stroke-width="1"/>';
+  }).join('');
+
+  const axes = metrics.map((_, i) => {
+    const [x, y] = pt(angleFor(i), maxR);
+    return '<line x1="' + center + '" y1="' + center + '" x2="' + x + '" y2="' + y + '" stroke="var(--line)" stroke-width="1"/>';
+  }).join('');
+
+  const dataPts = metrics.map(([, v], i) => pt(angleFor(i), (v / 100) * maxR).join(',')).join(' ');
+
+  const dots = metrics.map(([, v], i) => {
+    const [x, y] = pt(angleFor(i), (v / 100) * maxR);
+    return '<circle cx="' + x + '" cy="' + y + '" r="3.5" fill="var(--stamp)"/>';
+  }).join('');
+
+  const labels = metrics.map(([label, v], i) => {
+    const angle = angleFor(i);
+    const [lx, ly] = pt(angle, maxR + 22);
+    const cos = Math.cos(angle * Math.PI / 180);
+    let anchor = 'middle';
+    if(cos > 0.3) anchor = 'start';
+    else if(cos < -0.3) anchor = 'end';
+    return '<text x="' + lx + '" y="' + ly + '" text-anchor="' + anchor + '" class="radar-label">' +
+      '<tspan x="' + lx + '" dy="0">' + label + '</tspan>' +
+      '<tspan x="' + lx + '" dy="13" class="radar-value">' + v + '%</tspan>' +
+      '</text>';
+  }).join('');
+
+  const svg =
+    '<svg viewBox="0 0 ' + size + ' ' + size + '" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">' +
+    gridRings + axes +
+    '<polygon points="' + dataPts + '" fill="var(--accent)" fill-opacity="0.28" stroke="var(--accent)" stroke-width="2"/>' +
+    dots + labels +
+    '</svg>';
+
+  const container = document.getElementById(containerId);
+  container.innerHTML = svg;
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const svgEl = container.querySelector('svg');
+      if(svgEl) svgEl.classList.add('in');
+    });
+  });
+}
+
+let currentResultId = null;
+
+function renderResult(forcedId){
+  const id = forcedId || pickCharacter();
+  currentResultId = id;
+  const c = CHARACTERS[id];
+
+  document.getElementById('r-rarity').textContent = rarityTag(c.rarity) + ' · ' + c.rarity;
+  document.getElementById('r-emoji').textContent = c.emoji;
+  const img = document.getElementById('r-image');
+  img.src = 'variety-images/' + id + '.webp';
+  img.alt = c.name;
+  document.getElementById('r-name').textContent = c.name;
+  document.getElementById('r-tagline').textContent = c.tagline;
+  document.getElementById('r-quote').textContent = '“' + c.quote + '”';
+  document.getElementById('r-punch').textContent = c.punch;
+
+  const pWrap = document.getElementById('r-paragraphs');
+  pWrap.innerHTML = '';
+  c.paragraphs.forEach(t => {
+    const p = document.createElement('p');
+    p.textContent = t;
+    pWrap.appendChild(p);
+  });
+
+  renderRadar('r-radar', c.metrics);
+
+  const prosWrap = document.getElementById('r-pros');
+  prosWrap.innerHTML = c.pros.map(t => '<li>' + t + '</li>').join('');
+  const consWrap = document.getElementById('r-cons');
+  consWrap.innerHTML = c.cons.map(t => '<li>' + t + '</li>').join('');
+
+  document.getElementById('r-improve-val').textContent = c.improve[0] + '%';
+  document.getElementById('r-improve-fill').style.width = c.improve[0] + '%';
+  document.getElementById('r-improve-text').textContent = c.improve[1];
+
+  document.getElementById('r-match-good').textContent = c.matchGood;
+  document.getElementById('r-match-bad').textContent = c.matchBad;
+
+  const now = new Date();
+  const docNo = 'OF-' + now.getFullYear() + String(now.getMonth()+1).padStart(2,'0') + String(now.getDate()).padStart(2,'0') + '-' + Math.floor(1000 + Math.random()*9000);
+  document.getElementById('doc-number').textContent = '문서번호 ' + docNo;
+  document.getElementById('doc-date').textContent = '분석일자 ' + now.getFullYear() + '.' + String(now.getMonth()+1).padStart(2,'0') + '.' + String(now.getDate()).padStart(2,'0');
+
+  try{
+    history.replaceState(null, '', getResultUrl());
+  }catch(e){ /* file:// preview or unsupported context */ }
+}
+
+/* ================= SHARE ================= */
+window.addEventListener('DOMContentLoaded', () => {
+  if(window.Kakao && !Kakao.isInitialized()){
+    Kakao.init('db7d585780b0e9306521908da8b91840');
+  }
+});
+
+function getResultUrl(){
+  const baseUrl = window.location.origin + window.location.pathname;
+  return currentResultId ? (baseUrl + '?result=' + currentResultId) : baseUrl;
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+function shareKakao(){
+  const c = CHARACTERS[currentResultId];
+  const resultUrl = getResultUrl();
+  const imageUrl = new URL('variety-images/' + currentResultId + '.webp', window.location.href).href;
+  if(!window.Kakao || !Kakao.isInitialized()){
+    showToast('카카오 공유 초기화에 실패했습니다');
+    return;
+  }
+  Kakao.Share.sendDefault({
+    objectType: 'feed',
+    content: {
+      title: c.emoji + ' 나 예능 나가면 "' + c.name + '"래',
+      description: '인정하기 싫은데 소름 돋게 정확함... 너도 3분만 투자해서 확인해봐. (단톡방에 뿌리고 싶어지는 건 안 비밀)',
+      imageUrl: imageUrl,
+      imageWidth: 400,
+      imageHeight: 400,
+      link: { mobileWebUrl: resultUrl, webUrl: resultUrl },
+    },
+    buttons: [
+      { title: '내 결과 확인하기', link: { mobileWebUrl: resultUrl, webUrl: resultUrl } },
+    ],
+  });
+}
+
+function shareTwitter(){
+  const c = CHARACTERS[currentResultId];
+  const text = c.emoji + ' 나 예능 나가면 "' + c.name + '"래... 인정하기 싫은데 소름 돋게 정확함 👀 너도 해봐, 단톡방에도 몰래 뿌려보고.';
+  window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(getResultUrl()), '_blank');
+}
+
+function shareNaver(){
+  const c = CHARACTERS[currentResultId];
+  const title = c.emoji + ' 나 예능 나가면 "' + c.name + '"래... 너도 3분만 투자해서 확인해봐';
+  window.open('https://share.naver.com/web/shareView?url=' + encodeURIComponent(getResultUrl()) + '&title=' + encodeURIComponent(title), '_blank');
+}
+
+function shareFacebook(){
+  window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(getResultUrl()), '_blank');
+}
+
+function copyLink(){
+  navigator.clipboard.writeText(getResultUrl()).then(() => {
+    showToast('링크가 복사되었습니다');
+  }).catch(() => {
+    showToast('복사에 실패했습니다');
+  });
+}
+
+/* ================= SHARE CARD (canvas) ================= */
+function roundRectPath(ctx, x, y, w, h, r){
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+
+function loadImageEl(src){
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = src;
+  });
+}
+
+function wrapLines(ctx, text, maxWidth){
+  const words = text.split(' ');
+  let line = '';
+  const lines = [];
+  words.forEach(w => {
+    const test = line ? line + ' ' + w : w;
+    if(ctx.measureText(test).width > maxWidth && line){
+      lines.push(line);
+      line = w;
+    } else {
+      line = test;
+    }
+  });
+  if(line) lines.push(line);
+  return lines;
+}
+
+function drawWrapped(ctx, text, x, y, maxWidth, lineHeight){
+  const lines = wrapLines(ctx, text, maxWidth);
+  lines.forEach((l, i) => ctx.fillText(l, x, y + i * lineHeight));
+  return lines.length;
+}
+
+async function generateCard(){
+  const c = CHARACTERS[currentResultId];
+  const W = 1080;
+  const pad = 56, cardY = 140;
+  const cardX = pad, cardW = W - pad * 2;
+  const innerPad = 64;
+  const leftX = cardX + innerPad;
+  const textW = cardW - innerPad * 2;
+  const imgSize = 300;
+
+  let img = null;
+  try{ img = await loadImageEl('variety-images/' + currentResultId + '.webp'); }catch(e){ /* continue without it */ }
+
+  function layout(ctx, draw){
+    let y = cardY + 66;
+    ctx.textAlign = 'center';
+
+    ctx.font = '600 26px "IBM Plex Sans KR"';
+    if(draw){ ctx.fillStyle = '#8A7D5E'; ctx.fillText('예능 캐릭터 진단 테스트', W / 2, y); }
+    y += 54;
+
+    const rarityText = rarityTag(c.rarity) + ' · ' + c.rarity;
+    ctx.font = '600 24px "IBM Plex Mono"';
+    const rw = ctx.measureText(rarityText).width + 64;
+    const badgeH = 56;
+    if(draw){
+      ctx.strokeStyle = '#E8362B'; ctx.lineWidth = 3;
+      roundRectPath(ctx, W / 2 - rw / 2, y, rw, badgeH, badgeH / 2);
+      ctx.stroke();
+      ctx.fillStyle = '#E8362B';
+      ctx.fillText(rarityText, W / 2, y + badgeH / 2 + 8);
+    }
+    y += badgeH + 44;
+
+    if(draw && img){
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(W / 2, y + imgSize / 2, imgSize / 2, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.clip();
+      ctx.drawImage(img, W / 2 - imgSize / 2, y, imgSize, imgSize);
+      ctx.restore();
+      ctx.strokeStyle = '#FFD400'; ctx.lineWidth = 8;
+      ctx.beginPath();
+      ctx.arc(W / 2, y + imgSize / 2, imgSize / 2, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+    y += imgSize + 54;
+
+    ctx.font = '400 50px "Jua"';
+    if(draw) ctx.fillStyle = '#1A1512';
+    const nameLines = wrapLines(ctx, c.name, cardW - 100);
+    if(draw) drawWrapped(ctx, c.name, W / 2, y, cardW - 100, 58);
+    y += nameLines.length * 58 + 26;
+
+    ctx.font = '400 28px "IBM Plex Sans KR"';
+    if(draw) ctx.fillStyle = '#5C5347';
+    const taglineLines = wrapLines(ctx, c.tagline, cardW - 160);
+    if(draw) drawWrapped(ctx, c.tagline, W / 2, y, cardW - 160, 38);
+    y += taglineLines.length * 38 + 64;
+
+    ctx.textAlign = 'left';
+
+    function sectionLabel(text){
+      ctx.font = '600 24px "IBM Plex Mono"';
+      if(draw){ ctx.fillStyle = '#8A7D5E'; ctx.fillText(text, leftX, y); }
+      y += 44;
+    }
+
+    function bodyLines(list, font, color, lineHeight, gap){
+      ctx.font = font;
+      list.forEach(t => {
+        const lines = wrapLines(ctx, t, textW);
+        if(draw){
+          ctx.fillStyle = color;
+          lines.forEach((l, li) => ctx.fillText(l, leftX, y + li * lineHeight));
+        }
+        y += lines.length * lineHeight + gap;
+      });
+    }
+
+    sectionLabel('당신은 이런 사람입니다');
+    bodyLines(c.paragraphs, '400 26px "IBM Plex Sans KR"', '#1A1512', 38, 18);
+    y += 22;
+
+    sectionLabel('장점과 단점');
+    ctx.font = '700 24px "IBM Plex Sans KR"';
+    if(draw){ ctx.fillStyle = '#1FAE6E'; ctx.fillText('장점', leftX, y); }
+    y += 40;
+    bodyLines(c.pros.map(t => '• ' + t), '400 24px "IBM Plex Sans KR"', '#1A1512', 34, 10);
+    y += 20;
+    ctx.font = '700 24px "IBM Plex Sans KR"';
+    if(draw){ ctx.fillStyle = '#E8362B'; ctx.fillText('단점', leftX, y); }
+    y += 40;
+    bodyLines(c.cons.map(t => '• ' + t), '400 24px "IBM Plex Sans KR"', '#1A1512', 34, 10);
+    y += 22;
+
+    sectionLabel('당신의 예능 캐릭터 지표');
+    c.metrics.forEach(([label, value]) => {
+      ctx.font = '500 22px "IBM Plex Mono"';
+      if(draw){
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#5C5347';
+        ctx.fillText(label, leftX, y);
+        ctx.textAlign = 'right';
+        ctx.fillStyle = '#1A1512';
+        ctx.fillText(value + '%', leftX + textW, y);
+        ctx.textAlign = 'left';
+      }
+      y += 16;
+      if(draw){
+        ctx.fillStyle = '#F3ECD2';
+        roundRectPath(ctx, leftX, y, textW, 14, 7);
+        ctx.fill();
+        ctx.fillStyle = '#FFD400';
+        roundRectPath(ctx, leftX, y, Math.max(textW * value / 100, 14), 14, 7);
+        ctx.fill();
+      }
+      y += 14 + 30;
+    });
+    y += 8;
+
+    sectionLabel('동료들의 속마음');
+    const quoteText = '“' + c.quote + '”';
+    ctx.font = 'italic 500 26px "IBM Plex Sans KR"';
+    const quoteBoxPad = 24;
+    const quoteLines = wrapLines(ctx, quoteText, textW - quoteBoxPad * 2 + 24);
+    const quoteBoxH = quoteLines.length * 36 + 48;
+    if(draw){
+      ctx.fillStyle = '#FFF4C8';
+      roundRectPath(ctx, cardX + innerPad - quoteBoxPad, y, cardW - (innerPad - quoteBoxPad) * 2, quoteBoxH, 16);
+      ctx.fill();
+      ctx.fillStyle = '#1A1512';
+      quoteLines.forEach((l, li) => ctx.fillText(l, leftX, y + 40 + li * 36));
+    }
+    y += quoteBoxH + 44;
+
+    ctx.textAlign = 'center';
+    ctx.font = '400 30px "Jua"';
+    const punchLines = wrapLines(ctx, c.punch, cardW - 160);
+    const boxH = punchLines.length * 38 + 100;
+    if(draw){
+      ctx.fillStyle = '#141311';
+      roundRectPath(ctx, cardX + 40, y, cardW - 80, boxH, 24);
+      ctx.fill();
+      ctx.strokeStyle = '#FFD400'; ctx.lineWidth = 4;
+      roundRectPath(ctx, cardX + 40 + 2, y + 2, cardW - 84, boxH - 4, 22);
+      ctx.stroke();
+      ctx.fillStyle = 'rgba(255,255,255,.55)';
+      ctx.font = '600 20px "IBM Plex Mono"';
+      ctx.fillText('한마디', W / 2, y + 42);
+      ctx.fillStyle = '#FFD400';
+      ctx.font = '400 30px "Jua"';
+      drawWrapped(ctx, c.punch, W / 2, y + 90, cardW - 160, 38);
+    }
+    y += boxH + 54;
+
+    ctx.textAlign = 'left';
+    sectionLabel('현장 케미 지수');
+    ctx.font = '700 44px "IBM Plex Mono"';
+    if(draw){
+      ctx.textAlign = 'right';
+      ctx.fillStyle = '#E8362B';
+      ctx.fillText(c.improve[0] + '%', leftX + textW, y);
+      ctx.textAlign = 'left';
+    }
+    y += 12;
+    if(draw){
+      ctx.fillStyle = '#F3ECD2';
+      roundRectPath(ctx, leftX, y, textW, 14, 7);
+      ctx.fill();
+      ctx.fillStyle = '#FFD400';
+      roundRectPath(ctx, leftX, y, Math.max(textW * c.improve[0] / 100, 14), 14, 7);
+      ctx.fill();
+    }
+    y += 14 + 30;
+    bodyLines([c.improve[1]], '400 24px "IBM Plex Sans KR"', '#5C5347', 34, 0);
+    y += 46;
+
+    sectionLabel('이런 멤버와는?');
+    function matchRow(label, color, text){
+      ctx.font = '700 20px "IBM Plex Mono"';
+      const lw = ctx.measureText(label).width + 28;
+      if(draw){
+        ctx.fillStyle = color;
+        roundRectPath(ctx, leftX, y, lw, 34, 17);
+        ctx.fill();
+        ctx.fillStyle = '#FFFFFF';
+        ctx.textAlign = 'center';
+        ctx.fillText(label, leftX + lw / 2, y + 24);
+        ctx.textAlign = 'left';
+      }
+      y += 34 + 14;
+      ctx.font = '400 24px "IBM Plex Sans KR"';
+      const lines = wrapLines(ctx, text, textW);
+      if(draw){
+        ctx.fillStyle = '#1A1512';
+        lines.forEach((l, li) => ctx.fillText(l, leftX, y + li * 34));
+      }
+      y += lines.length * 34 + 28;
+    }
+    matchRow('잘 맞음', '#1FAE6E', c.matchGood);
+    matchRow('삐걱댐', '#E8362B', c.matchBad);
+    y += 8;
+
+    ctx.textAlign = 'center';
+    ctx.font = '500 22px "IBM Plex Mono"';
+    if(draw){ ctx.fillStyle = '#8A7D5E'; ctx.fillText(location.host, W / 2, y); }
+    y += 40;
+
+    return y;
+  }
+
+  const scratch = document.createElement('canvas');
+  scratch.width = W;
+  scratch.height = 8000;
+  const sctx = scratch.getContext('2d');
+  const contentBottom = layout(sctx, false);
+
+  const H = contentBottom + pad;
+  const canvas = document.createElement('canvas');
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext('2d');
+
+  const bgGrad = ctx.createLinearGradient(0, 0, W, H);
+  bgGrad.addColorStop(0, '#141311');
+  bgGrad.addColorStop(1, '#3A1410');
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, W, H);
+
+  ctx.globalAlpha = 0.35;
+  ctx.fillStyle = '#FFD400';
+  ctx.beginPath(); ctx.arc(110, 110, 170, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.arc(W - 90, H - 150, 210, 0, Math.PI * 2); ctx.fill();
+  ctx.globalAlpha = 1;
+
+  const cardH = contentBottom - cardY;
+  ctx.fillStyle = '#FFFBF0';
+  roundRectPath(ctx, cardX, cardY, cardW, cardH, 40);
+  ctx.fill();
+
+  layout(ctx, true);
+
+  return canvas;
+}
+
+async function saveCard(){
+  if(!currentResultId){ return; }
+  showToast('카드 생성 중...');
+  try{
+    if(document.fonts && document.fonts.ready){ await document.fonts.ready; }
+    const canvas = await generateCard();
+    canvas.toBlob(async (blob) => {
+      if(!blob){ showToast('카드 생성에 실패했습니다'); return; }
+      const file = new File([blob], 'variety-show-type-result.png', { type: 'image/png' });
+      if(navigator.canShare && navigator.canShare({ files: [file] })){
+        try{
+          await navigator.share({ files: [file], title: '나는 국민 예능 속 어떤 멤버st일까?' });
+          return;
+        }catch(e){ /* fall through to download */ }
+      }
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'variety-show-type-result.png';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 4000);
+      showToast('카드 이미지가 저장되었습니다');
+    }, 'image/png');
+  }catch(e){
+    showToast('카드 생성에 실패했습니다');
+  }
+}
+
+/* ================= DEEP LINK ================= */
+(function initFromUrl(){
+  const params = new URLSearchParams(window.location.search);
+  const result = params.get('result');
+  if(result && CHARACTERS[result]){
+    renderResult(result);
+    showScreen('result');
+  }
+})();
+</script>
+<script type="text/javascript" src="//t1.kakaocdn.net/kas/static/ba.min.js" async></script>
+</body>
+</html>
