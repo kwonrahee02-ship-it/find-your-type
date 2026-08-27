@@ -1,0 +1,1829 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover">
+<title>나는 이성에게 인기 많은 스타일일까? | 연애 인기 진단 테스트</title>
+<meta name="description" content="나는 이성에게 인기 많은 스타일일까? 연애 상황 10문항으로 진단하는 나의 이성 인기 지수와 연애 스타일. 밀당력, 매력 유형, 연애할 때 나만 모르는 습관까지 재미로 확인해보세요.">
+<meta name="keywords" content="이성 인기 테스트,연애 스타일 테스트,연애 심리테스트,인기 진단 테스트,밀당 테스트,연애 유형 테스트,소개팅 테스트,이성에게 인기있는 스타일,연애 자가진단,매력 유형 테스트">
+<meta property="og:title" content="나는 이성에게 인기 많은 스타일일까?">
+<meta property="og:description" content="당신도 모르는 연애 본캐를 진단해드립니다.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='100' y2='100'%3E%3Cstop offset='0' stop-color='%23FF4D8D'/%3E%3Cstop offset='1' stop-color='%23FF9F6E'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='24' fill='url(%23g)'/%3E%3Ctext x='50' y='68' font-size='56' text-anchor='middle'%3E%F0%9F%92%98%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#FF4D8D">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js" defer></script>
+<style>
+  :root{
+    --paper:#FFF3F1;
+    --card:#FFFFFF;
+    --card-raise:#FFFFFF;
+    --ink:#3B1E28;
+    --ink-soft:#8A5D68;
+    --ink-faint:#BE94A0;
+    --line:#FBE0E0;
+    --line-strong:#F5C4CB;
+    --accent:#FF4D8D;
+    --accent-ink:#FFFFFF;
+    --accent2:#FF9F6E;
+    --stamp:#FF4D8D;
+    --good:#12B886;
+    --bad:#F0553C;
+    --bar-track:#FCE7E7;
+    --shadow: 0 1px 0 rgba(89,26,46,.04), 0 10px 24px -14px rgba(191,44,90,.28);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#201317;
+      --card:#2B1B21;
+      --card-raise:#33212A;
+      --ink:#FBEAEE;
+      --ink-soft:#D3A9B4;
+      --ink-faint:#96727C;
+      --line:#3D2530;
+      --line-strong:#54303E;
+      --accent:#FF7AA8;
+      --accent-ink:#2A0F17;
+      --accent2:#FFB48A;
+      --stamp:#FF7AA8;
+      --good:#3EDCA6;
+      --bad:#FF8768;
+      --bar-track:#3D2530;
+      --shadow: 0 1px 0 rgba(0,0,0,.2), 0 10px 24px -14px rgba(0,0,0,.6);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#201317;
+    --card:#2B1B21;
+    --card-raise:#33212A;
+    --ink:#FBEAEE;
+    --ink-soft:#D3A9B4;
+    --ink-faint:#96727C;
+    --line:#3D2530;
+    --line-strong:#54303E;
+    --accent:#FF7AA8;
+    --accent-ink:#2A0F17;
+    --accent2:#FFB48A;
+    --stamp:#FF7AA8;
+    --good:#3EDCA6;
+    --bad:#FF8768;
+    --bar-track:#3D2530;
+    --shadow: 0 1px 0 rgba(0,0,0,.2), 0 10px 24px -14px rgba(0,0,0,.6);
+    color-scheme: dark;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+    min-height:100vh;
+    overflow-x:hidden;
+    word-break:keep-all;
+    overflow-wrap:break-word;
+  }
+  .mono{font-family:'IBM Plex Mono','IBM Plex Sans KR',monospace; font-variant-numeric:tabular-nums;}
+  .display{font-family:'Black Han Sans','IBM Plex Sans KR',sans-serif; font-weight:400; letter-spacing:.01em;}
+  h1,h2,h3,p{margin:0;}
+  img,svg{display:block; max-width:100%;}
+  button{font-family:inherit;}
+
+  #app{
+    max-width:560px;
+    margin:0 auto;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    padding:0 0 40px;
+  }
+
+  @media (min-width:680px){
+    body{
+      background:
+        radial-gradient(900px circle at 10% 6%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 60%),
+        radial-gradient(900px circle at 90% 94%, color-mix(in srgb, var(--accent2) 18%, transparent), transparent 60%),
+        var(--paper);
+      padding:56px 24px;
+    }
+    #app{
+      min-height:auto;
+      border-radius:28px;
+      box-shadow:0 40px 100px -40px rgba(34,28,59,.45), var(--shadow);
+      overflow:hidden;
+    }
+  }
+  .screen{display:none;}
+  .screen.active{display:flex; flex-direction:column;}
+
+  /* ---------- topbar ---------- */
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 20px;
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-badge{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono'; font-size:12px; letter-spacing:.08em;
+    color:var(--ink-soft); text-transform:uppercase;
+  }
+  .topbar-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--stamp);}
+
+  /* ---------- start screen ---------- */
+  .start-wrap{
+    flex:1; display:flex; flex-direction:column;
+    padding:48px 24px 24px;
+    text-align:center;
+  }
+  .hero-stage{
+    position:relative;
+    width:220px; height:190px;
+    margin:0 auto 12px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .hero-glow{
+    position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 32% 30%, color-mix(in srgb, var(--accent) 60%, transparent), transparent 62%),
+      radial-gradient(circle at 72% 68%, color-mix(in srgb, var(--accent2) 50%, transparent), transparent 65%);
+    filter: blur(22px);
+    opacity:.6;
+  }
+  .hero-icon{
+    position:absolute;
+    width:30px; height:30px;
+    color:var(--ink-soft);
+    opacity:.6;
+    animation: heroFloat 5s ease-in-out infinite;
+  }
+  .hero-icon.cup{ top:6px; left:14px; animation-delay:.2s; }
+  .hero-icon.note{ top:0; right:10px; animation-delay:1.1s; }
+  .hero-icon.clip{ bottom:14px; left:2px; animation-delay:.6s; }
+  .hero-icon.chart{ bottom:6px; right:0; animation-delay:1.6s; }
+  @keyframes heroFloat{
+    0%, 100%{ transform: translateY(0) rotate(var(--r,0deg)); }
+    50%{ transform: translateY(-7px) rotate(var(--r,0deg)); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero-icon{ animation:none; }
+  }
+  .badge-stamp{
+    width:88px; height:88px;
+    border:3px solid var(--stamp);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:38px;
+    color:var(--stamp);
+    transform:rotate(-8deg);
+    position:relative;
+    background:var(--card);
+    box-shadow:var(--shadow);
+  }
+  .badge-stamp::after{
+    content:'';
+    position:absolute; inset:6px;
+    border:1px dashed var(--stamp);
+    border-radius:50%;
+    opacity:.5;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono'; font-size:13px; letter-spacing:.14em;
+    color:var(--ink-faint); text-transform:uppercase; margin-bottom:14px;
+  }
+  .hero-title{
+    font-size:38px; line-height:1.28;
+    text-wrap:balance;
+    margin-bottom:18px;
+  }
+  .hero-sub{
+    font-size:16px; color:var(--ink-soft);
+    max-width:38ch; margin:0 auto 32px;
+  }
+  .start-meta{
+    display:flex; justify-content:center; gap:22px;
+    margin-bottom:36px;
+    font-family:'IBM Plex Mono'; font-size:12px; color:var(--ink-faint);
+  }
+  .start-meta b{color:var(--ink-soft); font-weight:600;}
+  .preview-strip{
+    display:flex; justify-content:center; gap:10px;
+    margin-bottom:28px;
+  }
+  .preview-thumb{
+    width:52px; height:52px; border-radius:50%;
+    overflow:hidden;
+    border:2px solid var(--line);
+    box-shadow:var(--shadow);
+    flex:0 0 auto;
+  }
+  .preview-thumb img{width:100%; height:100%; object-fit:cover; display:block;}
+
+  .btn-primary{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    background:var(--accent); color:var(--accent-ink);
+    border:none; border-radius:8px;
+    padding:18px 28px;
+    font-size:17px; font-weight:700;
+    cursor:pointer;
+    box-shadow:var(--shadow);
+    transition:transform .12s ease;
+    width:100%;
+  }
+  .btn-primary:active{transform:scale(.98);}
+  .btn-secondary{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    background:transparent; color:var(--ink);
+    border:1.5px solid var(--line-strong); border-radius:8px;
+    padding:16px 24px;
+    font-size:15px; font-weight:600;
+    cursor:pointer;
+    width:100%;
+  }
+  .btn-secondary:active{transform:scale(.98);}
+
+  .disclaimer{
+    margin-top:28px;
+    font-size:12px; color:var(--ink-faint);
+    max-width:40ch; margin-left:auto; margin-right:auto;
+  }
+
+  /* ---------- quiz screen ---------- */
+  .progress-wrap{
+    padding:18px 20px 0;
+  }
+  .progress-row{
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin-bottom:8px;
+    font-family:'IBM Plex Mono'; font-size:12px; color:var(--ink-faint);
+  }
+  .progress-row .cur{color:var(--ink); font-weight:600; font-size:13px;}
+  .progress-track{
+    height:6px; background:var(--bar-track); border-radius:3px; overflow:hidden;
+  }
+  .progress-fill{
+    height:100%; background:var(--stamp); border-radius:3px;
+    transition:width .35s cubic-bezier(.4,0,.2,1);
+  }
+  .progress-caption{
+    margin-top:8px; font-size:12px; color:var(--ink-faint);
+    font-family:'IBM Plex Mono'; letter-spacing:-.01em;
+  }
+
+  .analyzing-wrap{
+    flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:18px; padding:20px;
+  }
+  .analyzing-spinner{
+    width:40px; height:40px; border-radius:50%;
+    border:3px solid var(--bar-track); border-top-color:var(--stamp);
+    animation:spin .8s linear infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .analyzing-text{
+    font-size:15px; font-weight:600; color:var(--ink-soft);
+    font-family:'IBM Plex Mono';
+  }
+
+  .quiz-body{
+    flex:1; display:flex; flex-direction:column;
+    padding:32px 20px 20px;
+  }
+  .quiz-topic{
+    font-family:'IBM Plex Mono'; font-size:12px; letter-spacing:.1em;
+    color:var(--stamp); text-transform:uppercase; margin-bottom:14px;
+  }
+  .quiz-q{
+    font-size:23px; line-height:1.42; font-weight:700;
+    margin-bottom:28px;
+  }
+  .options{
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .option-btn{
+    display:flex; align-items:center; gap:14px;
+    text-align:left;
+    background:var(--card);
+    border:1.5px solid var(--line);
+    border-radius:10px;
+    padding:15px 16px;
+    font-size:15px; color:var(--ink);
+    cursor:pointer;
+    transition:border-color .12s ease, background .12s ease;
+  }
+  .option-btn:hover{border-color:var(--line-strong);}
+  .option-btn:active{background:var(--card-raise); transform:scale(.995);}
+  .option-idx{
+    flex:0 0 auto;
+    width:26px; height:26px; border-radius:6px;
+    border:1px solid var(--line-strong);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono'; font-size:12px; font-weight:600; color:var(--ink-soft);
+  }
+  .quiz-nav{
+    margin-top:20px;
+  }
+  .btn-back{
+    background:none; border:none; color:var(--ink-faint);
+    font-size:13px; cursor:pointer; padding:8px 0;
+  }
+
+  .ad-slot{
+    margin:20px 0;
+    border:1px dashed var(--line-strong);
+    border-radius:8px;
+    padding:14px;
+    text-align:center;
+    font-family:'IBM Plex Mono'; font-size:11px; letter-spacing:.08em;
+    color:var(--ink-faint); text-transform:uppercase;
+  }
+
+  /* ---------- result screen ---------- */
+  .doc-header{
+    padding:20px 20px 16px;
+    border-bottom:1px solid var(--line);
+  }
+  .doc-meta{
+    display:flex; justify-content:space-between;
+    font-family:'IBM Plex Mono'; font-size:11px; color:var(--ink-faint);
+    margin-bottom:6px;
+  }
+  .doc-stamp-line{
+    display:flex; align-items:center; gap:6px;
+    font-family:'IBM Plex Mono'; font-size:11px; color:var(--good); font-weight:600;
+  }
+  .doc-stamp-line .sq{width:8px;height:8px;border:1.5px solid var(--good); transform:rotate(45deg);}
+
+  .result-body{padding:28px 20px 12px;}
+
+  .result-rarity{
+    display:inline-block;
+    font-family:'IBM Plex Mono'; font-size:11px; letter-spacing:.06em;
+    color:var(--stamp); border:1px solid var(--stamp); border-radius:20px;
+    padding:4px 12px; margin-bottom:18px;
+  }
+  .result-emoji{font-size:56px; margin-bottom:12px;}
+  .id-photo{
+    width:172px; height:172px; margin:0 auto 20px;
+    border-radius:16px; overflow:hidden;
+    border:2px solid var(--line-strong);
+    box-shadow:var(--shadow);
+    position:relative;
+    background:var(--card);
+  }
+  .id-photo img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    animation: idPhotoBob 3.4s ease-in-out infinite;
+    transform-origin:50% 85%;
+  }
+  @keyframes idPhotoBob{
+    0%, 100%{ transform: translateY(0) rotate(0deg); }
+    50%{ transform: translateY(-5px) rotate(-1.5deg); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .id-photo img{ animation:none; }
+  }
+  .id-photo-emoji{
+    position:absolute; bottom:-6px; right:-6px;
+    width:38px; height:38px; border-radius:50%;
+    background:var(--card-raise);
+    border:2px solid var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    font-size:19px;
+    box-shadow:var(--shadow);
+  }
+  .result-verdict-label{
+    font-family:'IBM Plex Mono'; font-size:12px; letter-spacing:.08em;
+    color:var(--ink-faint); text-transform:uppercase;
+    margin-bottom:6px;
+  }
+  .result-name{
+    font-size:30px; line-height:1.32;
+    margin-bottom:14px;
+  }
+  .result-tagline{
+    font-size:16px; color:var(--ink-soft);
+    padding-left:14px; border-left:3px solid var(--accent);
+    margin-bottom:28px;
+  }
+
+  .section{
+    margin-bottom:28px;
+  }
+  .section-label{
+    font-family:'IBM Plex Mono'; font-size:11px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink-faint);
+    margin-bottom:10px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .section-label::after{content:''; flex:1; height:1px; background:var(--line);}
+
+  .desc-card{
+    background:var(--card); border:1px solid var(--line); border-radius:10px;
+    padding:18px 18px;
+    display:flex; flex-direction:column; gap:12px;
+  }
+  .desc-card p{font-size:14.5px; color:var(--ink);}
+
+  .quote-card{
+    background:var(--card); border:1px dashed var(--line-strong); border-radius:10px;
+    padding:18px;
+    font-size:15px; font-style:normal;
+    position:relative;
+  }
+  .quote-card::before{
+    content:'"'; font-family:'Black Han Sans'; font-size:34px; color:var(--accent);
+    position:absolute; top:2px; left:14px; line-height:1;
+  }
+  .quote-card span{
+    display:block; padding-left:22px; color:var(--ink);
+  }
+  .quote-label{font-size:11px; color:var(--ink-faint); margin-top:10px; padding-left:22px;}
+
+  .radar-wrap{
+    display:flex; justify-content:center;
+  }
+  .radar-wrap svg{
+    width:100%; max-width:320px; height:auto;
+    transform: scale(.3);
+    opacity:0;
+    transition: transform .5s cubic-bezier(.34,1.56,.64,1), opacity .4s ease;
+  }
+  .radar-wrap svg.in{
+    transform: scale(1);
+    opacity:1;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .radar-wrap svg{ transition:none; transform:scale(1); opacity:1; }
+  }
+  .radar-label{
+    font-size:10.5px; fill:var(--ink-soft); font-family:'IBM Plex Sans KR';
+  }
+  .radar-value{
+    font-family:'IBM Plex Mono'; font-size:10px; font-weight:600; fill:var(--stamp);
+  }
+
+  .punch-card{
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius:14px;
+    padding:24px 22px;
+    color:#fff;
+    text-align:center;
+    box-shadow:var(--shadow);
+  }
+  .punch-label{
+    font-family:'IBM Plex Mono'; font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+    opacity:.85; margin-bottom:10px;
+  }
+  .punch-card p{
+    font-family:'Black Han Sans'; font-size:21px; line-height:1.55; margin:0;
+  }
+
+  .metric-row{
+    display:flex; align-items:center; gap:12px;
+    margin-bottom:14px;
+  }
+  .metric-row:last-child{margin-bottom:0;}
+  .metric-label{
+    flex:0 0 128px; font-size:13px; color:var(--ink-soft);
+  }
+  .metric-bar{
+    flex:1; height:8px; background:var(--bar-track); border-radius:4px; overflow:hidden;
+  }
+  .metric-fill{
+    height:100%; background:var(--stamp); border-radius:4px;
+  }
+  .metric-val{
+    flex:0 0 38px; text-align:right;
+    font-family:'IBM Plex Mono'; font-size:13px; font-weight:600; color:var(--ink);
+  }
+
+  .pc-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:12px;
+  }
+  .pc-box{
+    border-radius:10px; padding:14px;
+    font-size:13px;
+  }
+  .pc-box.pro{background:color-mix(in srgb, var(--good) 10%, var(--card)); border:1px solid color-mix(in srgb, var(--good) 30%, var(--line));}
+  .pc-box.con{background:color-mix(in srgb, var(--bad) 10%, var(--card)); border:1px solid color-mix(in srgb, var(--bad) 30%, var(--line));}
+  .pc-title{font-weight:700; margin-bottom:8px; font-size:12px; letter-spacing:.04em;}
+  .pc-box.pro .pc-title{color:var(--good);}
+  .pc-box.con .pc-title{color:var(--bad);}
+  .pc-box ul{margin:0; padding-left:16px;}
+  .pc-box li{margin-bottom:4px; color:var(--ink-soft);}
+
+  .improve-card{
+    background:var(--card); border:1px solid var(--line); border-radius:10px; padding:18px;
+  }
+  .improve-top{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px;}
+  .improve-top .val{font-family:'IBM Plex Mono'; font-size:22px; font-weight:700; color:var(--stamp);}
+  .improve-track{height:8px; background:var(--bar-track); border-radius:4px; overflow:hidden; margin-bottom:12px;}
+  .improve-fill{height:100%; background:var(--accent); border-radius:4px;}
+  .improve-card p{font-size:14px; color:var(--ink-soft);}
+
+  .match-grid{display:flex; flex-direction:column; gap:10px;}
+  .match-item{
+    display:flex; gap:12px; align-items:flex-start;
+    border:1px solid var(--line); border-radius:10px; padding:12px 14px;
+    background:var(--card);
+  }
+  .match-tag{
+    flex:0 0 auto; font-family:'IBM Plex Mono'; font-size:10px; font-weight:700;
+    padding:3px 8px; border-radius:5px; letter-spacing:.04em; margin-top:1px;
+  }
+  .match-item.good .match-tag{background:color-mix(in srgb, var(--good) 20%, transparent); color:var(--good);}
+  .match-item.bad .match-tag{background:color-mix(in srgb, var(--bad) 20%, transparent); color:var(--bad);}
+  .match-item p{font-size:13.5px; color:var(--ink-soft);}
+
+  .share-block{
+    margin-top:8px; margin-bottom:28px;
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .share-hook{
+    font-size:14.5px; color:var(--ink-soft); text-align:center;
+    line-height:1.55; margin-bottom:16px; font-weight:600;
+  }
+  .share-title{
+    font-size:12.5px; color:var(--ink-faint); text-align:center;
+    margin-bottom:4px; letter-spacing:.03em;
+  }
+  .share-row{
+    display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
+    margin-bottom:6px;
+  }
+  .share-btn{
+    width:48px; height:48px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:19px; font-weight:700;
+    border:1px solid var(--line);
+    background:var(--card);
+    color:var(--ink);
+    cursor:pointer;
+    transition:transform .12s ease;
+  }
+  .share-btn:active{transform:scale(.94);}
+  .share-btn.kakao{background:#FEE500; color:#3A1D1D; border-color:#FEE500;}
+  .share-btn.twitter{background:#111111; color:#fff; border-color:#111111;}
+  .share-btn.naver{background:#03C75A; color:#fff; border-color:#03C75A;}
+  .share-btn.facebook{background:#1877F2; color:#fff; border-color:#1877F2;}
+
+  .related-strip{
+    display:flex; gap:8px; overflow-x:auto; padding-bottom:4px;
+    -webkit-overflow-scrolling:touch;
+  }
+  .related-chip{
+    flex:0 0 auto;
+    font-size:12.5px; color:var(--ink-soft);
+    border:1px solid var(--line); border-radius:20px;
+    padding:8px 14px; white-space:nowrap;
+    background:var(--card);
+    text-decoration:none; display:inline-block;
+  }
+
+  .footer-note{
+    font-size:11.5px; color:var(--ink-faint); text-align:center;
+    padding:20px; line-height:1.7;
+  }
+
+  .toast{
+    position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--ink); color:var(--paper);
+    padding:12px 20px; border-radius:8px; font-size:13.5px;
+    opacity:0; pointer-events:none; transition:opacity .2s ease, transform .2s ease;
+    z-index:50; white-space:nowrap;
+  }
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <div class="topbar">
+    <span class="topbar-badge"><span class="dot"></span>연애 인기 분석소</span>
+    <span class="topbar-badge">💘</span>
+  </div>
+
+  <!-- START -->
+  <section class="screen active" id="screen-start">
+    <div class="start-wrap">
+      <div class="hero-stage" aria-hidden="true">
+        <div class="hero-glow"></div>
+        <svg class="hero-icon cup" style="--r:-12deg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>
+        <svg class="hero-icon note" style="--r:9deg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h11l3 3v13H5V4Z"/><path d="M16 4v3h3"/><path d="M8.5 11h7M8.5 14.5h7M8.5 18h4"/></svg>
+        <svg class="hero-icon clip" style="--r:-8deg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8l-6.2 3.3 1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg>
+        <svg class="hero-icon chart" style="--r:11deg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>
+        <div class="badge-stamp">💘</div>
+      </div>
+      <div class="eyebrow">연애 인기 진단 테스트</div>
+      <h1 class="hero-title display">나는 이성에게<br>인기 많은 스타일일까?</h1>
+      <p class="hero-sub">주변에서는 이미 눈치채고 있었을지도 모릅니다.<br>3분이면 당신의 진짜 연애 인기 지수가 나옵니다.</p>
+      <div class="preview-strip" id="preview-strip"></div>
+      <div class="start-meta">
+        <span><b>10</b>문항</span>
+        <span><b>20</b>가지 유형</span>
+        <span>약 <b>1</b>분</span>
+      </div>
+      <button class="btn-primary" id="btn-start">내 연애 인기 지수 확인하기</button>
+      <p class="disclaimer">※ 본 테스트는 재미를 위한 엔터테인먼트 콘텐츠이며 전문적인 심리검사가 아닙니다.</p>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="screen" id="screen-quiz">
+    <div class="progress-wrap">
+      <div class="progress-row">
+        <span class="cur" id="q-current">Q1</span>
+        <span id="q-total">/ 20</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:5%"></div></div>
+      <div class="progress-caption" id="progress-caption">연애 데이터를 수집하고 있습니다.</div>
+    </div>
+    <div class="quiz-body">
+      <div class="quiz-topic" id="q-topic">SITUATION</div>
+      <h2 class="quiz-q" id="q-text">질문</h2>
+      <div class="options" id="q-options"></div>
+      <div class="quiz-nav">
+        <button class="btn-back" id="btn-back">← 이전 질문</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANALYZING -->
+  <section class="screen" id="screen-analyzing">
+    <div class="analyzing-wrap">
+      <div class="analyzing-spinner" aria-hidden="true"></div>
+      <div class="analyzing-text" id="analyzing-text">분석 중...</div>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section class="screen" id="screen-result">
+    <div class="doc-header">
+      <div class="doc-meta">
+        <span class="mono" id="doc-number">문서번호 —</span>
+        <span class="mono" id="doc-date">분석일자 —</span>
+      </div>
+      <div class="doc-stamp-line"><span class="sq"></span>분석 완료</div>
+    </div>
+
+    <div class="result-body">
+      <span class="result-rarity" id="r-rarity">출현 빈도</span>
+      <div class="id-photo">
+        <img id="r-image" src="" alt="" width="400" height="400" decoding="async">
+        <span class="id-photo-emoji" id="r-emoji">🐣</span>
+      </div>
+      <p class="result-verdict-label">당신의 판정</p>
+      <h1 class="result-name display" id="r-name">결과 이름</h1>
+      <p class="result-tagline" id="r-tagline">한 줄 분석</p>
+
+      <div class="section">
+        <div class="section-label">당신은 이런 사람입니다</div>
+        <div class="desc-card" id="r-paragraphs"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">장점과 단점</div>
+        <div class="pc-grid">
+          <div class="pc-box pro">
+            <div class="pc-title">장점</div>
+            <ul id="r-pros"></ul>
+          </div>
+          <div class="pc-box con">
+            <div class="pc-title">단점</div>
+            <ul id="r-cons"></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">당신의 연애 스타일 지표</div>
+        <div class="radar-wrap" id="r-radar-wrap">
+          <div id="r-radar"></div>
+        </div>
+        <p style="font-size:11px; color:var(--ink-faint); margin-top:8px; text-align:center;">※ 위 수치는 과학적 근거가 없는 엔터테인먼트용 결과입니다.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-label">이성들의 속마음</div>
+        <div class="quote-card">
+          <span id="r-quote">속마음</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="punch-card">
+          <div class="punch-label">한마디</div>
+          <p id="r-punch"></p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">이성 인기 지수</div>
+        <div class="improve-card">
+          <div class="improve-top">
+            <span style="font-size:13px; color:var(--ink-soft);">이성 인기 지수</span>
+            <span class="val" id="r-improve-val">0%</span>
+          </div>
+          <div class="improve-track"><div class="improve-fill" id="r-improve-fill" style="width:0%"></div></div>
+          <p id="r-improve-text"></p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">이런 상대와는?</div>
+        <div class="match-grid">
+          <div class="match-item good"><span class="match-tag">잘 맞음</span><p id="r-match-good"></p></div>
+          <div class="match-item bad"><span class="match-tag">피곤함</span><p id="r-match-bad"></p></div>
+        </div>
+      </div>
+
+      <div class="share-block">
+        <p class="share-hook">이 결과, 짝사랑하는 그 사람도 궁금해할 수 있습니다.<br>친구한테 보내거나, 썸 상대에게 몰래 보내보세요.</p>
+        <p class="share-title">이 결과 공유하기</p>
+        <div class="share-row">
+          <button class="share-btn kakao" title="카카오톡 공유" onclick="shareKakao()">💬</button>
+          <button class="share-btn twitter" title="트위터 공유" onclick="shareTwitter()">𝕏</button>
+          <button class="share-btn naver" title="네이버 공유" onclick="shareNaver()">N</button>
+          <button class="share-btn facebook" title="페이스북 공유" onclick="shareFacebook()">f</button>
+          <button class="share-btn" title="링크 복사" onclick="copyLink()">🔗</button>
+        </div>
+        <button class="btn-secondary" id="btn-save-card" onclick="saveCard()">🖼️ 결과 카드 이미지로 저장</button>
+        <button class="btn-secondary" id="btn-retry">🔄 다시 하기</button>
+      </div>
+
+      <div class="section">
+        <div class="section-label">다른 테스트</div>
+        <div class="related-strip">
+          <a class="related-chip" href="/">💼 나는 회사에서 어떤 사람일까?</a>
+          <span class="related-chip">👑 나의 꼰대력은? (준비중)</span>
+          <span class="related-chip">🗣️ 나의 오지랖 지수는? (준비중)</span>
+          <span class="related-chip">🧳 나의 퇴사 충동은 몇 %? (준비중)</span>
+        </div>
+      </div>
+
+      <p class="footer-note">본 테스트는 재미를 위한 엔터테인먼트 콘텐츠이며 전문적인 심리검사가 아닙니다.<br>결과는 저장되지 않으며 답변에 따라 언제든 달라질 수 있습니다.</p>
+    </div>
+  </section>
+
+</div>
+
+<div class="toast" id="toast">링크가 복사되었습니다</div>
+
+<script>
+/* ================= DATA ================= */
+
+const QUESTIONS = [
+  { topic:"소개팅 전날", tier:0, q:"소개팅 전날 밤, 당신은?", options:[
+    {t:"뭘 입을지 며칠 전부터 고민한다", p:{planner:2, openBook:1}},
+    {t:"상대방 SNS부터 찾아본다", p:{stalkerVibe:2, chameleon:1}},
+    {t:"별생각 없이 평소대로 잔다", p:{cooltype:2, workFirst:1}},
+    {t:"무슨 얘기를 할지 시뮬레이션을 돌려본다", p:{shy:2, selfTalk:1}},
+    {t:"그냥 설레서 잠이 안 온다", p:{openBook:2, hyperType:1}},
+  ]},
+  { topic:"첫 만남", tier:0, q:"소개팅 자리에서 어색한 침묵이 흐른다. 당신은?", options:[
+    {t:"그냥 먼저 아무 말이나 던진다", p:{moodmaker:2, honestType:1}},
+    {t:"상대방이 좋아할 만한 주제를 재빨리 찾는다", p:{chameleon:2, planner:1}},
+    {t:"침묵이 편해서 그냥 둔다", p:{cooltype:2, workFirst:1}},
+    {t:"긴장해서 오히려 텐션이 확 올라간다", p:{hyperType:2, tsundere:1}},
+    {t:"내 얘기를 늘어놓기 시작한다", p:{selfTalk:2, honestType:1}},
+  ]},
+  { topic:"연락 텀", tier:1, q:"썸 타는 사람이 답장이 늦다. 당신은?", options:[
+    {t:"나도 똑같이 늦게 답장한다", p:{lateReply:2, hotcold:1}},
+    {t:"무슨 일 있나 걱정돼서 다시 연락한다", p:{openBook:2, stalkerVibe:1}},
+    {t:"신경 안 쓰고 하던 일 계속한다", p:{workFirst:2, cooltype:1}},
+    {t:"프로필이랑 SNS를 계속 들락거린다", p:{stalkerVibe:2, exObsessed:1}},
+    {t:"그런가보다 하고 다른 사람이랑 논다", p:{moodmaker:2, chameleon:1}},
+  ]},
+  { topic:"데이트 코스", tier:1, q:"데이트 장소를 정할 때 당신은?", options:[
+    {t:"동선까지 완벽하게 짜서 예약한다", p:{planner:2, honestType:1}},
+    {t:"상대방 취향에 맞춰서 다 맞춰준다", p:{chameleon:2, friendzone:1}},
+    {t:"“아무 데나 좋아”라고 답한다", p:{whatever:2, shy:1}},
+    {t:"내가 가고 싶은 곳으로 정한다", p:{selfTalk:2, hotcold:1}},
+    {t:"즉흥적으로 그날 기분 따라 정한다", p:{moodmaker:2, honestType:1}},
+  ]},
+  { topic:"질투", tier:1, q:"상대방이 다른 이성과 친하게 지내는 걸 봤다. 당신은?", options:[
+    {t:"티 안 내려고 하는데 표정이 굳는다", p:{tsundere:2, openBook:1}},
+    {t:"대놓고 서운하다고 말한다", p:{honestType:2, hotcold:1}},
+    {t:"신경 쓰이지만 티는 절대 안 낸다", p:{cooltype:2, tsundere:1}},
+    {t:"그 사람 SNS까지 찾아보게 된다", p:{stalkerVibe:2, exObsessed:1}},
+    {t:"나도 다른 사람이랑 더 친하게 지낸다", p:{hotcold:2, moodmaker:1}},
+  ]},
+  { topic:"다툼", tier:1, q:"연인과 다퉜다. 당신은?", options:[
+    {t:"먼저 연락해서 풀자고 한다", p:{openBook:2, honestType:1}},
+    {t:"상대방이 먼저 연락할 때까지 기다린다", p:{hotcold:2, tsundere:1}},
+    {t:"그냥 시간이 해결해줄 거라 믿는다", p:{cooltype:2, workFirst:1}},
+    {t:"왜 화났는지 하나하나 다 맞춰준다", p:{chameleon:2, friendzone:1}},
+    {t:"감정적으로 확 터뜨리고 본다", p:{hyperType:2, honestType:1}},
+  ]},
+  { topic:"고백", tier:2, q:"마음에 드는 사람이 생겼다. 당신은?", options:[
+    {t:"티 안 내고 계속 친한 친구처럼 지낸다", p:{friendzone:2, shy:1}},
+    {t:"은근히 잘해주면서 반응을 살핀다", p:{hotcold:2, chameleon:1}},
+    {t:"그냥 솔직하게 고백해버린다", p:{honestType:2, openBook:1}},
+    {t:"좋아하는 티가 나서 주변에서 다 눈치챈다", p:{openBook:2, hyperType:1}},
+    {t:"며칠을 고민만 하다가 타이밍을 놓친다", p:{shy:2, missedChance:1}},
+  ]},
+  { topic:"이별 후", tier:2, q:"헤어진 후 당신은?", options:[
+    {t:"SNS로 잘 지내는지 계속 확인한다", p:{exObsessed:2, stalkerVibe:1}},
+    {t:"한동안 힘들어하다가 훌훌 털어낸다", p:{cooltype:2, honestType:1}},
+    {t:"다시 연락해볼까 계속 고민한다", p:{missedChance:2, exObsessed:1}},
+    {t:"바로 다른 사람 만날 준비를 한다", p:{chameleon:2, moodmaker:1}},
+    {t:"일에 몰두하며 잊으려 한다", p:{workFirst:2, cooltype:1}},
+  ]},
+  { topic:"그룹 모임", tier:3, q:"친구들과의 모임에 썸 상대가 나타났다. 당신은?", options:[
+    {t:"평소보다 훨씬 밝고 재밌는 사람이 된다", p:{hyperType:2, moodmaker:1}},
+    {t:"괜히 무심한 척 거리를 둔다", p:{tsundere:2, hotcold:1}},
+    {t:"자연스럽게 분위기를 이끌며 챙긴다", p:{everyonesFirstLove:2, moodmaker:1}},
+    {t:"긴장해서 말수가 줄어든다", p:{shy:2, tsundere:1}},
+    {t:"평소랑 다를 거 없이 그대로 행동한다", p:{trueCharm:2, cooltype:1}},
+  ]},
+  { topic:"연애관", tier:4, q:"솔직히 연애에 대한 당신의 마음과 가장 가까운 것은?", options:[
+    {t:"있는 그대로의 나를 좋아해주면 좋겠다", p:{trueCharm:2, honestType:1}},
+    {t:"잘 맞는 사람이면 노력해서 맞춰갈 수 있다", p:{chameleon:2, everyonesFirstLove:1}},
+    {t:"지금은 연애보다 내 할 일이 우선이다", p:{workFirst:2, cooltype:1}},
+    {t:"좋은 사람이 나타나면 자연스럽게 흘러가면 좋겠다", p:{everyonesFirstLove:2, trueCharm:1}},
+    {t:"밀당 없이 서로 솔직한 게 제일 좋다", p:{honestType:2, openBook:1}},
+  ]},
+];
+
+const PROGRESS_CAPTIONS = [
+  { upto:1, text:"연애 데이터를 수집하고 있습니다." },
+  { upto:5, text:"슬슬 연애 본캐가 드러나고 있습니다." },
+  { upto:7, text:"조금 찔리는 질문이 나옵니다." },
+  { upto:8, text:"거의 다 왔습니다. 도망칠 수 없습니다." },
+  { upto:9, text:"마지막 질문입니다. 솔직하게 답하세요." },
+];
+function progressCaption(idx){
+  for (const c of PROGRESS_CAPTIONS) if (idx <= c.upto) return c.text;
+  return PROGRESS_CAPTIONS[PROGRESS_CAPTIONS.length-1].text;
+}
+
+const ANALYZING_MESSAGES = [
+  "연애 패턴 분석 중...",
+  "밀당 지수 계산 중...",
+  "당신의 연애 본캐를 찾는 중...",
+  "분석 완료!",
+];
+
+const CHARACTERS = {
+  lateReply:{ emoji:"🐌", name:"답장은 항상 3시간 늦게 하는 사람", tagline:"바로 답장하면 지는 것 같아서, 일부러 텀을 둡니다.", rarity:"이성 10명 중 2명",
+    paragraphs:[
+      "메시지를 보자마자 읽었으면서도 답장은 꼭 몇 시간 지나서 보냅니다. 본인 딴에는 '너무 급해 보이면 안 되니까'라는 나름의 전략입니다.",
+      "문제는 상대방도 똑같이 생각한다는 것. 결국 둘 다 서로 눈치만 보다가 대화가 자연스럽게 식어버립니다.",
+      "밀당이라고 부르고 싶지만, 사실은 그냥 타이밍을 놓치는 것에 가깝습니다.",
+    ],
+    quote:"빨리 답장하면 안 될 것 같아서... 근데 그러다 그 사람 마음이 식어요.",
+    punch:"그냥 바로 답장하세요! 밀당이 아니라 그냥 늦은 겁니다!",
+    metrics:[["답장 텀",82],["밀당 자신감",68],["실제 매력",71],["타이밍 감각",24],["관심 표현력",31]],
+    pros:["여유 있어 보이는 인상을 준다","쉽게 매달리지 않는다"],
+    cons:["관심 없어 보일 위험이 크다","서로 눈치만 보다 흐지부지된다"],
+    improve:[46,"여유로워 보이려다 그냥 관심 없는 사람처럼 보일 때가 더 많습니다."],
+    matchGood:"💬 밀당 없이 솔직한 사람 — 답장 텀 신경 안 쓰고 편하게 다가와 줍니다.",
+    matchBad:"🔎 SNS까지 다 찾아보는 사람 — 답장이 늦을 때마다 속으로 온갖 상상을 다 합니다.",
+  },
+  selfTalk:{ emoji:"🎤", name:"소개팅에서 내 얘기만 하다 끝나는 사람", tagline:"상대방 이름은 가물가물해도 내가 무슨 말 했는지는 다 기억합니다.", rarity:"이성 10명 중 3명",
+    paragraphs:[
+      "긴장을 풀려고 말을 시작했는데, 정신 차리고 보면 한 시간 내내 내 얘기만 하고 있습니다.",
+      "상대방이 몇 번 리액션을 해줬다는 이유로 '오늘 대화 잘 통했다'고 혼자 결론 내립니다.",
+      "정작 상대방이 무슨 일을 하는지, 뭘 좋아하는지는 헤어지고 나서야 궁금해집니다.",
+    ],
+    quote:"제 얘기는 언제 물어봐 주시나 기다리다가 그냥 포기했어요.",
+    punch:"질문 좀 하세요! 대화는 혼자 하는 게 아닙니다!",
+    metrics:[["말하는 양",95],["질문하는 양",14],["자기 확신",90],["상대 파악력",21],["재만남 확률",33]],
+    pros:["말주변이 좋고 분위기를 어색하지 않게 만든다","자신감이 넘친다"],
+    cons:["상대방에게 관심을 잘 안 보인다","대화가 일방적으로 흐른다"],
+    improve:[33,"말은 재밌게 하는데, 상대방 이야기 들을 틈을 안 줍니다."],
+    matchGood:"🙈 좋아하는 티가 다 나는 사람 — 들어주는 걸 좋아해서 궁합이 은근히 좋습니다.",
+    matchBad:"😤 좋아하는 사람 앞에서 츤데레 되는 사람 — 서로 자기 얘기만 하다 대화가 안 이어집니다.",
+  },
+  missedChance:{ emoji:"😮‍💨", name:"고민만 하다가 타이밍 놓치는 사람", tagline:"머릿속 시뮬레이션은 완벽한데, 실제 행동은 늘 한 발 늦습니다.", rarity:"이성 10명 중 3명",
+    paragraphs:[
+      "고백할까 말까, 연락할까 말까를 며칠씩 고민합니다. 그 사이 상대방은 이미 다른 사람과 잘 되고 있습니다.",
+      "'이 정도면 눈치챘겠지'라고 생각하지만, 상대방 입장에서는 전혀 티가 안 났을 가능성이 큽니다.",
+      "지나고 나서야 '그때 말할걸'이라며 후회하는 패턴을 몇 년째 반복 중입니다.",
+    ],
+    quote:"그렇게 좋아했으면서 왜 말을 안 했지 진짜 궁금해요.",
+    punch:"고민할 시간에 그냥 말하세요! 어차피 결과는 똑같습니다!",
+    metrics:[["고민 시간",96],["실행력",11],["뒤늦은 후회",93],["눈치 기대치",78],["재도전 의지",22]],
+    pros:["신중하게 생각하고 행동한다","상대방을 함부로 대하지 않는다"],
+    cons:["결정적 타이밍을 자주 놓친다","혼자 결론 내리고 포기가 빠르다"],
+    improve:[29,"마음이 없어서가 아니라 타이밍을 놓쳐서 끝난 인연이 대부분입니다."],
+    matchGood:"🎉 분위기 이끄는 사람 — 대신 타이밍을 잡아주니 의외로 잘 맞습니다.",
+    matchBad:"🌡️ 잘해주다 무심해지는 사람 — 서로 눈치만 보다 아무 일도 안 일어납니다.",
+  },
+  openBook:{ emoji:"🙈", name:"좋아하는 티가 얼굴에 다 나는 사람", tagline:"숨기려고 해도 표정 관리가 전혀 안 됩니다.", rarity:"이성 10명 중 3명",
+    paragraphs:[
+      "마음에 드는 사람 앞에서는 목소리 톤부터 달라집니다. 본인만 모릅니다.",
+      "주변 친구들은 이미 다 눈치챘는데, 정작 당사자는 '티 안 났겠지?'라고 믿고 있습니다.",
+      "이런 솔직함이 오히려 매력으로 작용할 때도 많지만, 밀당을 기대하는 상대에게는 조금 심심하게 느껴질 수 있습니다.",
+    ],
+    quote:"너무 티 나서 귀여운데, 가끔은 좀 여유 있어 보였으면.",
+    punch:"티 내는 거 나쁜 거 아닙니다! 그게 매력이에요!",
+    metrics:[["관심 표현력",92],["표정 관리",9],["순수함",95],["밀당 능력",14],["호감도 상승 속도",81]],
+    pros:["솔직하고 꾸밈이 없다","상대방이 마음을 알기 쉽다"],
+    cons:["밀당을 전혀 못한다","너무 빨리 마음을 들켜버린다"],
+    improve:[69,"부담스러워하는 사람도 있지만, 솔직함에 넘어가는 사람이 훨씬 많습니다."],
+    matchGood:"💼 연애보다 내 할 일이 우선인 사람 — 솔직한 호감 표현이 은근히 잘 통합니다.",
+    matchBad:"🐌 답장 항상 3시간 늦게 하는 사람 — 마음은 다 티나는데 상대 반응이 느려서 애가 탑니다.",
+  },
+  hotcold:{ emoji:"🌡️", name:"잘해주다가 갑자기 무심해지는 사람", tagline:"본인은 밀당이라고 부르지만, 상대방은 그냥 변덕이라고 부릅니다.", rarity:"이성 10명 중 3명",
+    paragraphs:[
+      "며칠은 세상 다정하다가, 며칠은 연락이 뚝 끊깁니다. 패턴을 예측할 수가 없습니다.",
+      "본인은 '너무 매달리면 매력 없어 보인다'는 나름의 전략이라고 믿습니다.",
+      "문제는 상대방이 그 온도차를 즐기기보다 지쳐서 먼저 떠나는 경우가 더 많다는 것.",
+    ],
+    quote:"잘해줄 땐 세상 다정한데... 도대체 뭐가 진짜인지 모르겠어요.",
+    punch:"일관성 좀 가지세요! 온탕냉탕에 사람 지칩니다!",
+    metrics:[["온도차",91],["밀당 자신감",85],["실제 매력",74],["상대 피로도",83],["연애 지속력",38]],
+    pros:["초반 호감도 상승 속도가 빠르다","적당한 긴장감을 만든다"],
+    cons:["온도차가 너무 심해서 상대가 지친다","진심이 뭔지 헷갈리게 만든다"],
+    improve:[42,"밀당이라고 믿고 있지만, 상대방은 그냥 피곤해하고 있을 확률이 높습니다."],
+    matchGood:"😤 좋아하는 사람 앞에서 츤데레 되는 사람 — 온도차 게임을 서로 즐길 수 있습니다.",
+    matchBad:"🙈 좋아하는 티가 다 나는 사람 — 온도차를 못 견디고 먼저 지쳐버립니다.",
+  },
+  friendzone:{ emoji:"🤝", name:"이성친구는 많은데 다 친구로만 남는 사람", tagline:"인기는 많은데 이상하게 다 '좋은 친구'로 끝납니다.", rarity:"이성 10명 중 3명",
+    paragraphs:[
+      "누구에게나 편하고 잘 챙겨줘서 이성 친구가 많습니다. 문제는 딱 거기까지라는 것.",
+      "고민 상담도 제일 먼저 해주고, 힘들 때 가장 먼저 찾는 사람인데도 정작 연애 상대로는 잘 안 떠오릅니다.",
+      "본인도 이 패턴을 어느 정도 알지만, 딱히 바꿀 마음은 없어 보입니다.",
+    ],
+    quote:"진짜 편하고 좋은 사람인데... 이상하게 설레지는 않아요.",
+    punch:"가끔은 친구 말고 이성으로 어필도 좀 하세요!",
+    metrics:[["친화력",93],["편안함",96],["이성적 매력 어필",21],["상담 능력",90],["실제 연애 전환율",12]],
+    pros:["누구에게나 편하고 신뢰를 준다","고민 상담을 잘 해준다"],
+    cons:["이성적 매력을 잘 어필하지 못한다","항상 친구 포지션에 머문다"],
+    improve:[51,"친구로는 최고인데, 그 이상을 기대하게 만드는 포인트가 부족합니다."],
+    matchGood:"💬 밀당 없이 솔직한 사람 — 친구에서 연인으로 자연스럽게 넘어갈 수 있습니다.",
+    matchBad:"🦎 상대에 따라 스타일이 바뀌는 사람 — 친구 관계에 안주하다 다른 사람에게 넘어갑니다.",
+  },
+  planner:{ emoji:"📋", name:"데이트 코스를 완벽하게 준비하는 사람", tagline:"동선, 시간, 메뉴까지 미리 다 짜놓는 노력형 인기러입니다.", rarity:"이성 10명 중 3명",
+    paragraphs:[
+      "데이트 전날 동선을 몇 번씩 확인하고, 예약도 미리 다 해둡니다. 상대방을 배려하는 마음이 준비 과정에 다 드러납니다.",
+      "돌발 상황에는 약간 당황하지만, 그마저도 최선을 다해 수습하려고 합니다.",
+      "노력이 진심으로 느껴져서 인기가 많은 편이지만, 가끔은 너무 계획적이라 즉흥적인 로맨스를 기대하는 사람에게는 아쉬울 수 있습니다.",
+    ],
+    quote:"이렇게까지 준비해줄 줄은 몰랐는데... 솔직히 감동이었어요.",
+    punch:"준비성 그대로 좋습니다! 가끔은 즉흥도 좀 즐기세요!",
+    metrics:[["준비성",97],["배려심",92],["즉흥 대응력",41],["상대 만족도",88],["데이트 완성도",95]],
+    pros:["세심하고 배려심이 깊다","데이트 준비에 진심이다"],
+    cons:["돌발 상황에 약하다","가끔 너무 계획적이라 부담스러울 수 있다"],
+    improve:[78,"준비성 하나만으로도 이미 반은 먹고 들어갑니다."],
+    matchGood:"🌷 다정해서 모두가 좋아하는 사람 — 서로의 배려가 잘 맞아떨어집니다.",
+    matchBad:"🤷 뭐든 아무거나형 — 준비한 보람이 없어서 은근히 서운합니다.",
+  },
+  cooltype:{ emoji:"😎", name:"연애보다 내 페이스가 우선인 사람", tagline:"좋아해도 티 안 나게, 서운해도 담담하게 넘깁니다.", rarity:"이성 10명 중 2명",
+    paragraphs:[
+      "연락이 뜸해도 크게 신경 쓰지 않습니다. 좋으면 좋은 거고, 아니면 아닌 거라는 태도가 확고합니다.",
+      "이 여유로움이 매력으로 작용해서 은근히 관심을 받는 편이지만, 상대방은 '나한테 관심이 있긴 한 건가' 헷갈릴 때가 많습니다.",
+      "본인은 쿨하다고 생각하지만, 상대방 입장에서는 그냥 무심한 것처럼 느껴지기도 합니다.",
+    ],
+    quote:"여유 있어서 매력적인데... 가끔은 좀 적극적이었으면 좋겠어요.",
+    punch:"가끔은 마음 표현도 좀 하세요! 관심 없는 줄 압니다!",
+    metrics:[["여유로움",94],["감정 기복",8],["관심 표현력",29],["매력 지수",81],["상대 확신도",35]],
+    pros:["감정적으로 흔들리지 않는다","여유로운 매력이 있다"],
+    cons:["관심 표현이 부족해 오해를 산다","상대가 확신을 갖기 어렵다"],
+    improve:[58,"여유로운 매력은 확실한데, 마음을 표현 안 하면 상대는 계속 불안해합니다."],
+    matchGood:"🐌 답장 항상 3시간 늦게 하는 사람 — 서로 페이스에 대해 별로 간섭하지 않습니다.",
+    matchBad:"🙈 좋아하는 티가 다 나는 사람 — 온도차 때문에 늘 상대가 먼저 지칩니다.",
+  },
+  exObsessed:{ emoji:"📸", name:"헤어지고도 계속 SNS 확인하는 사람", tagline:"끝난 관계인데 마음은 아직 정리가 안 됐습니다.", rarity:"이성 10명 중 2명",
+    paragraphs:[
+      "헤어진 지 한참 됐는데도 상대방 SNS를 습관처럼 들어가 봅니다.",
+      "잘 지내는 것 같으면 서운하고, 안 좋아 보이면 괜히 신경 쓰입니다. 어느 쪽이든 마음이 편하지 않습니다.",
+      "새로운 사람을 만나도 자꾸 예전 사람과 비교하게 되는 게 가장 큰 문제입니다.",
+    ],
+    quote:"아직 못 잊은 거 다 티나요... 새로운 사람 만나도 계속 비교하잖아요.",
+    punch:"그만 찾아보세요! 그 시간에 앞을 보고 사세요!",
+    metrics:[["미련 지수",92],["SNS 확인 빈도",95],["새 만남 준비도",24],["과거 비교 습관",88],["감정 정리 속도",17]],
+    pros:["한 사람에게 깊이 마음을 쏟는다","관계를 쉽게 정리하지 않는다"],
+    cons:["새로운 만남에 집중하기 어렵다","자꾸 과거와 비교하게 된다"],
+    improve:[31,"새로운 사람을 만나도 마음 한켠은 여전히 예전 사람에게 가 있습니다."],
+    matchGood:"💼 연애보다 내 할 일이 우선인 사람 — 서로 감정에 크게 휘둘리지 않아 안정적입니다.",
+    matchBad:"🎉 분위기 이끄는 사람 — 새로운 만남에 적극적인 상대와는 속도가 안 맞습니다.",
+  },
+  stalkerVibe:{ emoji:"🔎", name:"관심 생기면 SNS부터 다 찾아보는 사람", tagline:"만나기도 전에 이미 그 사람의 인생을 반쯤 파악했습니다.", rarity:"이성 10명 중 3명",
+    paragraphs:[
+      "소개팅 상대가 정해지면 그날부터 SNS, 태그된 사진까지 전부 찾아봅니다.",
+      "정작 만나서는 모르는 척 연기해야 해서 은근히 힘듭니다.",
+      "관심이 많다는 증거지만, 상대방이 알면 조금 부담스러워할 수도 있는 수준입니다.",
+    ],
+    quote:"저에 대해 이미 다 알고 계신 것 같은데... 그거 어떻게 아셨어요?",
+    punch:"적당히 찾아보세요! 만나서 알아가는 재미도 있어야죠!",
+    metrics:[["관심 표현력",88],["정보 수집력",97],["연기력(모르는 척)",65],["부담감 유발",71],["설렘 유지력",44]],
+    pros:["관심이 많고 적극적이다","상대를 미리 이해하려는 노력을 한다"],
+    cons:["과도한 관심이 부담스러울 수 있다","알아가는 재미를 스스로 줄인다"],
+    improve:[53,"관심은 진심인데, 상대방이 알면 살짝 놀랄 수 있는 수준입니다."],
+    matchGood:"🙈 좋아하는 티가 다 나는 사람 — 서로 관심 표현이 잘 맞아서 편합니다.",
+    matchBad:"😎 연애보다 내 페이스가 우선인 사람 — 관심 온도차가 너무 커서 지칩니다.",
+  },
+  moodmaker:{ emoji:"🎉", name:"모임 분위기를 자연스럽게 이끄는 사람", tagline:"어디서든 중심에 있는데, 본인은 그러려고 한 적이 없다고 합니다.", rarity:"이성 10명 중 2명",
+    paragraphs:[
+      "그룹 모임에서 어색한 분위기를 제일 먼저 풀어주는 사람입니다. 대화를 자연스럽게 이끌고 다들 편하게 만듭니다.",
+      "이런 매력 덕분에 이성에게 인기가 많은 편이지만, 정작 특정한 한 사람에게 집중하는 건 서툽니다.",
+      "누구에게나 친절해서, 정작 마음에 둔 사람은 '나한테만 특별한 건가' 헷갈려 할 때가 많습니다.",
+    ],
+    quote:"인기 많은 거 아는데... 나한테만 그런 건지 모르겠어서 불안해요.",
+    punch:"관심 있는 사람한테는 티 좀 더 내주세요!",
+    metrics:[["분위기 메이커력",96],["인기",89],["한 사람 집중력",34],["매력 지수",90],["오해 유발력",68]],
+    pros:["누구와도 잘 어울리고 인기가 많다","분위기를 밝게 만든다"],
+    cons:["한 사람에게 집중하는 게 서툴다","특별함을 표현하기 어려워한다"],
+    improve:[64,"인기는 확실히 많은데, 마음에 둔 사람에게는 그 인기가 오히려 불안 요소가 됩니다."],
+    matchGood:"💬 밀당 없이 솔직한 사람 — 확실하게 표현해주면 관계가 훨씬 편해집니다.",
+    matchBad:"😮‍💨 고민만 하다 타이밍 놓치는 사람 — 서로 마음을 확인할 타이밍을 계속 놓칩니다.",
+  },
+  whatever:{ emoji:"🤷", name:"뭐든 아무거나형", tagline:"좋아하는 게 뭐냐고 물으면 항상 '아무거나'가 튀어나옵니다.", rarity:"이성 10명 중 2명",
+    paragraphs:[
+      "데이트 코스도, 메뉴도, 영화도 다 상대방한테 맡깁니다. 배려심이라고 생각하지만 매번 반복되면 얘기가 다릅니다.",
+      "상대방 입장에서는 취향을 전혀 알 수 없어서 계속 혼자 결정해야 하는 부담을 느낍니다.",
+      "정작 나온 결과에 대해서는 은근히 호불호가 갈리면서도 그때는 말을 안 합니다.",
+    ],
+    quote:"맨날 아무거나라고 하는데, 나중에 보면 은근히 싫어하는 게 있더라고요.",
+    punch:"그냥 원하는 거 말하세요! 아무거나는 배려가 아닙니다!",
+    metrics:[["결정 회피력",90],["배려로 포장하는 능력",77],["실제 취향 표현력",13],["상대 부담 유발",81],["숨은 호불호",68]],
+    pros:["까다롭지 않고 무난하다","갈등을 잘 만들지 않는다"],
+    cons:["취향을 전혀 표현하지 않는다","상대에게 결정 부담을 계속 떠넘긴다"],
+    improve:[37,"배려처럼 보이지만, 상대는 매번 혼자 결정하느라 은근히 지쳐갑니다."],
+    matchGood:"📋 데이트 코스 완벽 준비형 — 결정을 대신 해줘서 궁합이 잘 맞습니다.",
+    matchBad:"🎤 소개팅에서 내 얘기만 하는 사람 — 둘 다 취향 얘기를 안 해서 서로를 전혀 모릅니다.",
+  },
+  tsundere:{ emoji:"😤", name:"좋아하는 사람 앞에서 갑자기 츤데레가 되는 사람", tagline:"마음은 100인데 표현은 항상 반대로 나갑니다.", rarity:"이성 10명 중 3명",
+    paragraphs:[
+      "좋아하는 사람 앞에서는 오히려 퉁명스러워지거나 괜히 장난스럽게 굽니다. 본심과 정반대로 행동합니다.",
+      "질투가 나도 티 안 내려다가 표정이 굳어버리고, 서운해도 절대 먼저 말 안 합니다.",
+      "상대방이 눈치가 빠르면 귀엽게 봐주지만, 그렇지 않으면 그냥 까칠한 사람으로 오해받기 십상입니다.",
+    ],
+    quote:"츤데레인 거 알겠는데... 가끔은 그냥 솔직하게 말해줬으면 좋겠어요.",
+    punch:"마음이랑 반대로 말하지 마세요! 다 티 나요!",
+    metrics:[["속마음",95],["표현력",22],["질투 은폐력",41],["오해 유발력",79],["귀여움 지수",83]],
+    pros:["귀엽고 반전 매력이 있다","눈치 빠른 상대에게는 매력적으로 느껴진다"],
+    cons:["본심과 반대로 표현해 오해를 산다","서운함을 먼저 말하지 않는다"],
+    improve:[55,"귀여워 보이지만, 눈치 없는 상대를 만나면 그냥 까칠한 사람이 됩니다."],
+    matchGood:"🌡️ 잘해주다 무심해지는 사람 — 밀당 코드가 잘 맞아서 재밌게 흘러갑니다.",
+    matchBad:"💬 밀당 없이 솔직한 사람 — 직진하는 상대 앞에서 계속 마음과 반대로 굽니다.",
+  },
+  chameleon:{ emoji:"🦎", name:"상대방에 따라 연애 스타일이 완전히 바뀌는 사람", tagline:"만나는 사람 취향에 맞춰 나조차도 다른 사람이 됩니다.", rarity:"이성 10명 중 3명",
+    paragraphs:[
+      "상대방이 좋아하는 것, 원하는 스타일에 빠르게 맞춥니다. 적응력이 정말 뛰어납니다.",
+      "이런 배려 덕분에 초반 호감도는 항상 높은 편이지만, 정작 '진짜 나'는 뭘 좋아하는지 스스로도 헷갈립니다.",
+      "관계가 끝나면 다음 사람 앞에서는 또 완전히 다른 사람이 되어 있습니다.",
+    ],
+    quote:"처음엔 나한테 딱 맞는 사람인 줄 알았는데... 원래 그런 사람인지 헷갈려요.",
+    punch:"가끔은 원래 당신 모습으로도 만나보세요!",
+    metrics:[["적응력",96],["초반 호감도",89],["자기 정체성",21],["배려심",84],["관계 지속력",47]],
+    pros:["누구와도 잘 맞춰준다","상대를 세심하게 배려한다"],
+    cons:["자기 취향과 정체성이 흐려진다","진짜 모습을 알기 어렵게 만든다"],
+    improve:[61,"맞춰주는 매력은 확실한데, 상대는 가끔 '진짜 이 사람'이 궁금해집니다."],
+    matchGood:"🌷 다정해서 모두가 좋아하는 사람 — 서로 배려가 잘 맞아 편안한 관계가 됩니다.",
+    matchBad:"💬 밀당 없이 솔직한 사람 — 솔직한 상대 앞에서 진짜 모습을 숨기기 어려워합니다.",
+  },
+  honestType:{ emoji:"💬", name:"밀당 없이 그냥 솔직하게 다 말하는 사람", tagline:"좋으면 좋다, 서운하면 서운하다 — 그때그때 다 말해버립니다.", rarity:"이성 10명 중 2명",
+    paragraphs:[
+      "밀당이라는 개념 자체가 잘 이해가 안 됩니다. 좋아하면 좋아한다고 말하는 게 제일 편합니다.",
+      "이런 솔직함이 신선하게 느껴져서 매력적으로 다가가는 경우가 많습니다.",
+      "다만 너무 빨리 마음을 다 보여줘서, 밀당을 기대하던 상대는 살짝 심심해할 수도 있습니다.",
+    ],
+    quote:"이렇게 솔직한 사람 처음 봐서 오히려 믿음이 가요.",
+    punch:"그 솔직함 무기입니다! 계속 그렇게 사세요!",
+    metrics:[["솔직함",97],["밀당 능력",9],["신뢰도",93],["매력 지수",85],["설렘 유지력",58]],
+    pros:["신뢰가 가고 마음을 편하게 해준다","오해를 만들지 않는다"],
+    cons:["밀당이 전혀 없어 심심할 수 있다","마음을 너무 빨리 다 보여준다"],
+    improve:[82,"솔직함이 부담스러운 사람도 있지만, 대부분은 이 신뢰감에 넘어갑니다."],
+    matchGood:"🙈 좋아하는 티가 다 나는 사람 — 서로 솔직해서 오해 없이 편하게 만납니다.",
+    matchBad:"😤 좋아하는 사람 앞에서 츤데레 되는 사람 — 진심을 숨기는 상대를 이해하기 어려워합니다.",
+  },
+  shy:{ emoji:"🙊", name:"세 번째 데이트까지 손도 못 잡는 사람", tagline:"마음은 이미 저 멀리 갔는데, 행동은 여전히 제자리입니다.", rarity:"이성 10명 중 2명",
+    paragraphs:[
+      "좋아하는 마음은 확실한데, 스킨십은커녕 눈도 제대로 못 마주칩니다.",
+      "머릿속으로는 오늘 손 잡아야지 몇 번을 다짐하지만, 실제로는 손끝도 못 대고 헤어집니다.",
+      "상대방은 '나한테 관심이 없나' 오해하기 쉽지만, 사실 누구보다 떨리는 마음을 숨기고 있는 것뿐입니다.",
+    ],
+    quote:"너무 소심해서 오히려 제가 먼저 다가가야 하나 고민했어요.",
+    punch:"용기 좀 내세요! 상대도 기다리고 있을지 몰라요!",
+    metrics:[["소심함",93],["속마음 확신도",88],["행동 실행력",11],["귀여움",79],["오해 유발력",72]],
+    pros:["상대를 함부로 대하지 않고 조심스럽다","진심이 깊다"],
+    cons:["행동으로 옮기는 게 너무 느리다","관심 없어 보일 위험이 크다"],
+    improve:[39,"마음은 확실한데 행동이 너무 느려서, 상대가 먼저 지쳐 포기할 때가 많습니다."],
+    matchGood:"🎉 분위기 이끄는 사람 — 대신 먼저 다가와 줘서 궁합이 잘 맞습니다.",
+    matchBad:"⚡ 이성 앞에서 텐션 3배 되는 사람 — 서로 페이스가 안 맞아 어색해집니다.",
+  },
+  hyperType:{ emoji:"⚡", name:"이성 앞에서 텐션이 3배 올라가는 사람", tagline:"평소엔 조용한데, 마음에 드는 사람 앞에서만 텐션이 폭발합니다.", rarity:"이성 10명 중 2명",
+    paragraphs:[
+      "긴장하면 오히려 텐션이 확 올라가는 타입입니다. 평소 모습을 아는 친구들은 다른 사람인 줄 압니다.",
+      "본인은 재밌게 하려는 건데, 상대방은 그 텐션을 따라가느라 은근히 힘들어할 때가 있습니다.",
+      "매력적으로 봐주는 사람도 많지만, 부담스러워하는 사람도 그만큼 있습니다.",
+    ],
+    quote:"재밌긴 한데... 평소에도 이런 텐션이면 저는 좀 힘들 것 같아요.",
+    punch:"그 텐션 반만 유지해도 충분합니다!",
+    metrics:[["텐션 지수",97],["긴장 은폐력",8],["재미 유발력",88],["상대 부담감",65],["첫인상 강렬함",92]],
+    pros:["재밌고 에너지가 넘친다","분위기를 확실하게 띄운다"],
+    cons:["긴장을 텐션으로 숨기려는 게 티가 난다","상대가 페이스를 따라가기 힘들 수 있다"],
+    improve:[48,"재밌어하는 사람도 많지만, 그 텐션을 매번 감당해야 하는 상대는 은근히 지칩니다."],
+    matchGood:"🎉 분위기 이끄는 사람 — 텐션이 잘 맞아서 둘이 있으면 시끌벅적 재밌습니다.",
+    matchBad:"😎 연애보다 내 페이스가 우선인 사람 — 텐션 차이가 너무 커서 서로 피곤해집니다.",
+  },
+  workFirst:{ emoji:"💼", name:"연애보다 내 할 일이 우선인 사람", tagline:"연애 세포보다 마감 기한이 먼저 떠오릅니다.", rarity:"이성 10명 중 2명",
+    paragraphs:[
+      "연락이 늦어도, 데이트 약속이 미뤄져도 크게 개의치 않습니다. 지금 하고 있는 일이 우선이기 때문입니다.",
+      "이런 무심함이 오히려 매력으로 느껴져서 관심을 받는 경우도 많지만, 상대방은 늘 뒷전인 기분을 느낍니다.",
+      "정작 진지하게 마음을 정하면 누구보다 확실하고 안정적인 연애를 합니다.",
+    ],
+    quote:"일하는 모습 멋있긴 한데... 저보다 일이 먼저인 것 같아서 서운해요.",
+    punch:"가끔은 일보다 사람을 먼저 챙겨보세요!",
+    metrics:[["자기 관리력",95],["연애 우선순위",21],["안정감",84],["매력 지수",76],["연락 빈도",29]],
+    pros:["자기 일에 확실한 주관이 있다","안정적이고 믿음직하다"],
+    cons:["연애가 늘 뒷전으로 밀린다","상대가 소외감을 느끼기 쉽다"],
+    improve:[56,"무심해 보이지만, 마음을 정하면 누구보다 진지하고 안정적인 상대가 됩니다."],
+    matchGood:"😎 연애보다 내 페이스가 우선인 사람 — 서로의 속도를 이해해줘서 편안합니다.",
+    matchBad:"🔎 SNS까지 다 찾아보는 사람 — 관심을 갈구하는 상대에게는 늘 부족하게 느껴집니다.",
+  },
+  everyonesFirstLove:{ emoji:"🌷", name:"다정해서 모두가 좋아하는데 진지한 만남은 어려운 사람", tagline:"누구에게나 다정한 게 문제라면 문제입니다.", rarity:"상위 5%",
+    paragraphs:[
+      "누구에게나 친절하고 다정합니다. 그 다정함 덕분에 주변에서 좋아하는 사람이 끊이지 않습니다.",
+      "문제는 이 다정함이 특정한 한 사람만을 향한 게 아니라는 것. 다들 '나한테만 특별한 건가' 기대했다가 헷갈려합니다.",
+      "본인은 그냥 원래 다정한 성격일 뿐인데, 의도치 않게 여러 사람의 마음을 흔들어 놓습니다.",
+    ],
+    quote:"다정한 거 아는데... 그게 저한테만인지 원래 그런 건지 모르겠어요.",
+    punch:"마음이 있으면 확실하게 표현해주세요! 다들 헷갈립니다!",
+    metrics:[["다정함",98],["인기",93],["특정인 집중도",29],["오해 유발력",81],["매력 지수",95]],
+    pros:["누구에게나 다정하고 배려심이 깊다","자연스럽게 인기가 많다"],
+    cons:["특정한 사람에게 마음을 확실히 표현하지 못한다","의도치 않게 여러 사람에게 기대를 준다"],
+    improve:[85,"다정함이 오해를 부르기도 하지만, 결국 그 다정함 때문에 다들 계속 좋아합니다."],
+    matchGood:"✨ 있는 그대로 인기 많은 사람 — 서로의 매력을 자연스럽게 알아봐 줍니다.",
+    matchBad:"😮‍💨 고민만 하다 타이밍 놓치는 사람 — 다정함을 특별함으로 착각했다가 혼자 상처받습니다.",
+  },
+  trueCharm:{ emoji:"✨", name:"있는 그대로의 모습으로 인기 많은 사람", tagline:"꾸미지 않아도, 애쓰지 않아도 사람이 모입니다.", rarity:"상위 3%",
+    paragraphs:[
+      "특별히 밀당을 하지도, 애써 맞춰주지도 않습니다. 그냥 있는 그대로 행동하는데 사람들이 자연스럽게 끌립니다.",
+      "본인다움을 잃지 않으면서도 상대를 편안하게 만드는 재주가 있습니다. 억지스러운 매력 어필이 전혀 없습니다.",
+      "가장 어렵고도 가장 부러운 유형. 다들 이렇게 되고 싶어 하지만, 흉내 낸다고 되는 게 아닙니다.",
+    ],
+    quote:"저 사람은 뭘 해도 그냥 매력 있어. 애쓰는 게 하나도 안 보이는데.",
+    punch:"그 자연스러움 그대로 유지하세요! 이게 진짜 인기입니다!",
+    metrics:[["자연스러운 매력",99],["자기 확신",95],["인기",97],["밀당 필요성",5],["편안함",93]],
+    pros:["꾸미지 않아도 매력적이다","상대를 편안하게 만든다","자기다움이 확고하다"],
+    cons:["가끔 너무 여유로워서 무심해 보일 수 있다"],
+    improve:[96,"이 사람 앞에서는 다들 애쓰지 않아도 좋은 사람이 되고 싶어집니다."],
+    matchGood:"거의 모든 유형 — 자연스러운 매력이라 대체로 잘 맞습니다.",
+    matchBad:"🔎 SNS까지 다 찾아보는 사람 — 과도한 관심을 오히려 부담스러워합니다.",
+  },
+};
+
+/* ================= STATE ================= */
+let current = 0;
+let scores = {};
+let answerHistory = [];
+
+function resetState(){
+  current = 0;
+  answerHistory = [];
+  scores = {};
+  Object.keys(CHARACTERS).forEach(id => scores[id] = 0);
+}
+
+/* ================= NAV ================= */
+const screens = {
+  start: document.getElementById('screen-start'),
+  quiz: document.getElementById('screen-quiz'),
+  analyzing: document.getElementById('screen-analyzing'),
+  result: document.getElementById('screen-result'),
+};
+function showScreen(name){
+  Object.values(screens).forEach(s => s.classList.remove('active'));
+  screens[name].classList.add('active');
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
+}
+
+/* 카카오 애드핏 스크립트는 페이지 최초 로드 시점에 딱 한 번만 광고 슬롯을 스캔한다.
+   퀴즈를 풀어서 결과 화면에 도달하는 정상 흐름에서는 그 시점에 결과 화면이 아직
+   display:none 상태였기 때문에 광고가 채워지지 않는다. 결과 화면을 보여줄 때마다
+   스크립트를 새로 삽입해서 그 시점에 보이는 슬롯을 다시 스캔하게 만든다. */
+function reloadKakaoAd(){
+  const s = document.createElement('script');
+  s.src = '//t1.kakaocdn.net/kas/static/ba.min.js';
+  s.async = true;
+  document.body.appendChild(s);
+}
+
+(function renderPreviewStrip(){
+  const picks = ['trueCharm','everyonesFirstLove','moodmaker','openBook','tsundere'];
+  const wrap = document.getElementById('preview-strip');
+  wrap.innerHTML = picks.map(id =>
+    '<span class="preview-thumb"><img src="dating-images/' + id + '.webp" alt="" width="52" height="52" decoding="async"></span>'
+  ).join('');
+})();
+
+document.getElementById('btn-start').addEventListener('click', () => {
+  resetState();
+  renderQuestion();
+  showScreen('quiz');
+});
+
+document.getElementById('btn-back').addEventListener('click', () => {
+  if(current > 0){
+    current -= 1;
+    const last = answerHistory.pop();
+    if(last){
+      Object.keys(last).forEach(id => { scores[id] -= last[id]; });
+    }
+    renderQuestion();
+  }
+});
+
+document.getElementById('btn-retry').addEventListener('click', () => {
+  try{ history.replaceState(null, '', window.location.pathname); }catch(e){}
+  resetState();
+  renderQuestion();
+  showScreen('quiz');
+});
+
+function renderQuestion(){
+  const total = QUESTIONS.length;
+  const item = QUESTIONS[current];
+  document.getElementById('q-current').textContent = 'Q' + (current + 1);
+  document.getElementById('q-total').textContent = '/ ' + total;
+  document.getElementById('progress-fill').style.width = Math.round((current / total) * 100) + '%';
+  document.getElementById('progress-caption').textContent = progressCaption(current);
+  document.getElementById('q-topic').textContent = item.topic.toUpperCase();
+  document.getElementById('q-text').textContent = item.q;
+  document.getElementById('btn-back').style.visibility = current === 0 ? 'hidden' : 'visible';
+
+  const idxChars = ['①','②','③','④','⑤'];
+  const wrap = document.getElementById('q-options');
+  wrap.innerHTML = '';
+  item.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = '<span class="option-idx">' + idxChars[i] + '</span><span>' + opt.t + '</span>';
+    btn.addEventListener('click', () => selectOption(opt.p));
+    wrap.appendChild(btn);
+  });
+}
+
+function selectOption(points){
+  answerHistory.push(points);
+  Object.keys(points).forEach(id => { scores[id] = (scores[id] || 0) + points[id]; });
+  current += 1;
+  if(current >= QUESTIONS.length){
+    runAnalyzing();
+  } else {
+    renderQuestion();
+  }
+}
+
+function runAnalyzing(){
+  showScreen('analyzing');
+  const textEl = document.getElementById('analyzing-text');
+  let step = 0;
+  textEl.textContent = ANALYZING_MESSAGES[0];
+  const iv = setInterval(() => {
+    step += 1;
+    if(step < ANALYZING_MESSAGES.length){
+      textEl.textContent = ANALYZING_MESSAGES[step];
+    }
+  }, 350);
+  setTimeout(() => {
+    clearInterval(iv);
+    renderResult();
+    showScreen('result');
+    reloadKakaoAd();
+  }, 1400);
+}
+
+/* ================= RESULT ================= */
+function pickCharacter(){
+  const order = Object.keys(CHARACTERS);
+  let bestId = order[0];
+  let bestScore = -Infinity;
+  order.forEach(id => {
+    if(scores[id] > bestScore){
+      bestScore = scores[id];
+      bestId = id;
+    }
+  });
+  return bestId;
+}
+
+function rarityTag(str){
+  if(str.indexOf('상위') === 0) return '희귀 유형';
+  const m = str.match(/(\d+)명 중 1명/);
+  if(m){
+    const pct = Math.round(100 / parseInt(m[1], 10));
+    return pct >= 17 ? '흔한 유형' : '드문 유형';
+  }
+  return '';
+}
+
+function renderRadar(containerId, metrics){
+  const size = 320, center = size / 2, maxR = 88;
+  const n = metrics.length;
+  const angleFor = i => -90 + i * (360 / n);
+  const pt = (angleDeg, r) => {
+    const rad = angleDeg * Math.PI / 180;
+    return [center + r * Math.cos(rad), center + r * Math.sin(rad)];
+  };
+
+  const gridRings = [0.33, 0.66, 1].map(f => {
+    const pts = metrics.map((_, i) => pt(angleFor(i), maxR * f).join(',')).join(' ');
+    return '<polygon points="' + pts + '" fill="none" stroke="var(--line)" stroke-width="1"/>';
+  }).join('');
+
+  const axes = metrics.map((_, i) => {
+    const [x, y] = pt(angleFor(i), maxR);
+    return '<line x1="' + center + '" y1="' + center + '" x2="' + x + '" y2="' + y + '" stroke="var(--line)" stroke-width="1"/>';
+  }).join('');
+
+  const dataPts = metrics.map(([, v], i) => pt(angleFor(i), (v / 100) * maxR).join(',')).join(' ');
+
+  const dots = metrics.map(([, v], i) => {
+    const [x, y] = pt(angleFor(i), (v / 100) * maxR);
+    return '<circle cx="' + x + '" cy="' + y + '" r="3.5" fill="var(--stamp)"/>';
+  }).join('');
+
+  const labels = metrics.map(([label, v], i) => {
+    const angle = angleFor(i);
+    const [lx, ly] = pt(angle, maxR + 22);
+    const cos = Math.cos(angle * Math.PI / 180);
+    let anchor = 'middle';
+    if(cos > 0.3) anchor = 'start';
+    else if(cos < -0.3) anchor = 'end';
+    return '<text x="' + lx + '" y="' + ly + '" text-anchor="' + anchor + '" class="radar-label">' +
+      '<tspan x="' + lx + '" dy="0">' + label + '</tspan>' +
+      '<tspan x="' + lx + '" dy="13" class="radar-value">' + v + '%</tspan>' +
+      '</text>';
+  }).join('');
+
+  const svg =
+    '<svg viewBox="0 0 ' + size + ' ' + size + '" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">' +
+    gridRings + axes +
+    '<polygon points="' + dataPts + '" fill="var(--accent)" fill-opacity="0.28" stroke="var(--accent)" stroke-width="2"/>' +
+    dots + labels +
+    '</svg>';
+
+  const container = document.getElementById(containerId);
+  container.innerHTML = svg;
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const svgEl = container.querySelector('svg');
+      if(svgEl) svgEl.classList.add('in');
+    });
+  });
+}
+
+let currentResultId = null;
+
+function renderResult(forcedId){
+  const id = forcedId || pickCharacter();
+  currentResultId = id;
+  const c = CHARACTERS[id];
+
+  document.getElementById('r-rarity').textContent = rarityTag(c.rarity) + ' · ' + c.rarity;
+  document.getElementById('r-emoji').textContent = c.emoji;
+  const img = document.getElementById('r-image');
+  img.src = 'dating-images/' + id + '.webp';
+  img.alt = c.name;
+  document.getElementById('r-name').textContent = c.name;
+  document.getElementById('r-tagline').textContent = c.tagline;
+  document.getElementById('r-quote').textContent = '“' + c.quote + '”';
+  document.getElementById('r-punch').textContent = c.punch;
+
+  const pWrap = document.getElementById('r-paragraphs');
+  pWrap.innerHTML = '';
+  c.paragraphs.forEach(t => {
+    const p = document.createElement('p');
+    p.textContent = t;
+    pWrap.appendChild(p);
+  });
+
+  renderRadar('r-radar', c.metrics);
+
+  const prosWrap = document.getElementById('r-pros');
+  prosWrap.innerHTML = c.pros.map(t => '<li>' + t + '</li>').join('');
+  const consWrap = document.getElementById('r-cons');
+  consWrap.innerHTML = c.cons.map(t => '<li>' + t + '</li>').join('');
+
+  document.getElementById('r-improve-val').textContent = c.improve[0] + '%';
+  document.getElementById('r-improve-fill').style.width = c.improve[0] + '%';
+  document.getElementById('r-improve-text').textContent = c.improve[1];
+
+  document.getElementById('r-match-good').textContent = c.matchGood;
+  document.getElementById('r-match-bad').textContent = c.matchBad;
+
+  const now = new Date();
+  const docNo = 'OF-' + now.getFullYear() + String(now.getMonth()+1).padStart(2,'0') + String(now.getDate()).padStart(2,'0') + '-' + Math.floor(1000 + Math.random()*9000);
+  document.getElementById('doc-number').textContent = '문서번호 ' + docNo;
+  document.getElementById('doc-date').textContent = '분석일자 ' + now.getFullYear() + '.' + String(now.getMonth()+1).padStart(2,'0') + '.' + String(now.getDate()).padStart(2,'0');
+
+  try{
+    history.replaceState(null, '', getResultUrl());
+  }catch(e){ /* file:// preview or unsupported context */ }
+}
+
+/* ================= SHARE ================= */
+window.addEventListener('DOMContentLoaded', () => {
+  if(window.Kakao && !Kakao.isInitialized()){
+    Kakao.init('db7d585780b0e9306521908da8b91840');
+  }
+});
+
+function getResultUrl(){
+  const baseUrl = window.location.origin + window.location.pathname;
+  return currentResultId ? (baseUrl + '?result=' + currentResultId) : baseUrl;
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+function shareKakao(){
+  const c = CHARACTERS[currentResultId];
+  const resultUrl = getResultUrl();
+  const imageUrl = new URL('dating-images/' + currentResultId + '.webp', window.location.href).href;
+  if(!window.Kakao || !Kakao.isInitialized()){
+    showToast('카카오 공유 초기화에 실패했습니다');
+    return;
+  }
+  Kakao.Share.sendDefault({
+    objectType: 'feed',
+    content: {
+      title: c.emoji + ' 나 연애할 때 "' + c.name + '"래',
+      description: '인정하기 싫은데 소름 돋게 정확함... 너도 3분만 투자해서 확인해봐. (썸 상대한테 보내고 싶어지는 건 안 비밀)',
+      imageUrl: imageUrl,
+      imageWidth: 400,
+      imageHeight: 400,
+      link: { mobileWebUrl: resultUrl, webUrl: resultUrl },
+    },
+    buttons: [
+      { title: '내 결과 확인하기', link: { mobileWebUrl: resultUrl, webUrl: resultUrl } },
+    ],
+  });
+}
+
+function shareTwitter(){
+  const c = CHARACTERS[currentResultId];
+  const text = c.emoji + ' 나 연애할 때 "' + c.name + '"래... 인정하기 싫은데 소름 돋게 정확함 👀 너도 해봐, 썸 상대한테도 몰래 보내보고.';
+  window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(getResultUrl()), '_blank');
+}
+
+function shareNaver(){
+  const c = CHARACTERS[currentResultId];
+  const title = c.emoji + ' 나 연애할 때 "' + c.name + '"래... 너도 3분만 투자해서 확인해봐';
+  window.open('https://share.naver.com/web/shareView?url=' + encodeURIComponent(getResultUrl()) + '&title=' + encodeURIComponent(title), '_blank');
+}
+
+function shareFacebook(){
+  window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(getResultUrl()), '_blank');
+}
+
+function copyLink(){
+  navigator.clipboard.writeText(getResultUrl()).then(() => {
+    showToast('링크가 복사되었습니다');
+  }).catch(() => {
+    showToast('복사에 실패했습니다');
+  });
+}
+
+/* ================= SHARE CARD (canvas) ================= */
+function roundRectPath(ctx, x, y, w, h, r){
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+
+function loadImageEl(src){
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = src;
+  });
+}
+
+function wrapLines(ctx, text, maxWidth){
+  const words = text.split(' ');
+  let line = '';
+  const lines = [];
+  words.forEach(w => {
+    const test = line ? line + ' ' + w : w;
+    if(ctx.measureText(test).width > maxWidth && line){
+      lines.push(line);
+      line = w;
+    } else {
+      line = test;
+    }
+  });
+  if(line) lines.push(line);
+  return lines;
+}
+
+function drawWrapped(ctx, text, x, y, maxWidth, lineHeight){
+  const lines = wrapLines(ctx, text, maxWidth);
+  lines.forEach((l, i) => ctx.fillText(l, x, y + i * lineHeight));
+  return lines.length;
+}
+
+async function generateCard(){
+  const c = CHARACTERS[currentResultId];
+  const W = 1080;
+  const pad = 56, cardY = 140;
+  const cardX = pad, cardW = W - pad * 2;
+  const innerPad = 64;
+  const leftX = cardX + innerPad;
+  const textW = cardW - innerPad * 2;
+  const imgSize = 300;
+
+  let img = null;
+  try{ img = await loadImageEl('dating-images/' + currentResultId + '.webp'); }catch(e){ /* continue without it */ }
+
+  function layout(ctx, draw){
+    let y = cardY + 66;
+    ctx.textAlign = 'center';
+
+    ctx.font = '600 26px "IBM Plex Sans KR"';
+    if(draw){ ctx.fillStyle = '#9C93B5'; ctx.fillText('연애 인기 진단 테스트', W / 2, y); }
+    y += 54;
+
+    const rarityText = rarityTag(c.rarity) + ' · ' + c.rarity;
+    ctx.font = '600 24px "IBM Plex Mono"';
+    const rw = ctx.measureText(rarityText).width + 64;
+    const badgeH = 56;
+    if(draw){
+      ctx.strokeStyle = '#FF6F91'; ctx.lineWidth = 3;
+      roundRectPath(ctx, W / 2 - rw / 2, y, rw, badgeH, badgeH / 2);
+      ctx.stroke();
+      ctx.fillStyle = '#FF6F91';
+      ctx.fillText(rarityText, W / 2, y + badgeH / 2 + 8);
+    }
+    y += badgeH + 44;
+
+    if(draw && img){
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(W / 2, y + imgSize / 2, imgSize / 2, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.clip();
+      ctx.drawImage(img, W / 2 - imgSize / 2, y, imgSize, imgSize);
+      ctx.restore();
+      ctx.strokeStyle = '#F5F2FE'; ctx.lineWidth = 8;
+      ctx.beginPath();
+      ctx.arc(W / 2, y + imgSize / 2, imgSize / 2, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+    y += imgSize + 54;
+
+    ctx.font = '400 50px "Black Han Sans"';
+    if(draw) ctx.fillStyle = '#221C3B';
+    const nameLines = wrapLines(ctx, c.name, cardW - 100);
+    if(draw) drawWrapped(ctx, c.name, W / 2, y, cardW - 100, 58);
+    y += nameLines.length * 58 + 26;
+
+    ctx.font = '400 28px "IBM Plex Sans KR"';
+    if(draw) ctx.fillStyle = '#6B6285';
+    const taglineLines = wrapLines(ctx, c.tagline, cardW - 160);
+    if(draw) drawWrapped(ctx, c.tagline, W / 2, y, cardW - 160, 38);
+    y += taglineLines.length * 38 + 64;
+
+    ctx.textAlign = 'left';
+
+    function sectionLabel(text){
+      ctx.font = '600 24px "IBM Plex Mono"';
+      if(draw){ ctx.fillStyle = '#9C93B5'; ctx.fillText(text, leftX, y); }
+      y += 44;
+    }
+
+    function bodyLines(list, font, color, lineHeight, gap){
+      ctx.font = font;
+      list.forEach(t => {
+        const lines = wrapLines(ctx, t, textW);
+        if(draw){
+          ctx.fillStyle = color;
+          lines.forEach((l, li) => ctx.fillText(l, leftX, y + li * lineHeight));
+        }
+        y += lines.length * lineHeight + gap;
+      });
+    }
+
+    sectionLabel('당신은 이런 사람입니다');
+    bodyLines(c.paragraphs, '400 26px "IBM Plex Sans KR"', '#221C3B', 38, 18);
+    y += 22;
+
+    sectionLabel('장점과 단점');
+    ctx.font = '700 24px "IBM Plex Sans KR"';
+    if(draw){ ctx.fillStyle = '#12B886'; ctx.fillText('장점', leftX, y); }
+    y += 40;
+    bodyLines(c.pros.map(t => '• ' + t), '400 24px "IBM Plex Sans KR"', '#221C3B', 34, 10);
+    y += 20;
+    ctx.font = '700 24px "IBM Plex Sans KR"';
+    if(draw){ ctx.fillStyle = '#F0553C'; ctx.fillText('단점', leftX, y); }
+    y += 40;
+    bodyLines(c.cons.map(t => '• ' + t), '400 24px "IBM Plex Sans KR"', '#221C3B', 34, 10);
+    y += 22;
+
+    sectionLabel('당신의 연애 스타일 지표');
+    c.metrics.forEach(([label, value]) => {
+      ctx.font = '500 22px "IBM Plex Mono"';
+      if(draw){
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#6B6285';
+        ctx.fillText(label, leftX, y);
+        ctx.textAlign = 'right';
+        ctx.fillStyle = '#221C3B';
+        ctx.fillText(value + '%', leftX + textW, y);
+        ctx.textAlign = 'left';
+      }
+      y += 16;
+      if(draw){
+        ctx.fillStyle = '#EDE8FB';
+        roundRectPath(ctx, leftX, y, textW, 14, 7);
+        ctx.fill();
+        ctx.fillStyle = '#7C5CFC';
+        roundRectPath(ctx, leftX, y, Math.max(textW * value / 100, 14), 14, 7);
+        ctx.fill();
+      }
+      y += 14 + 30;
+    });
+    y += 8;
+
+    sectionLabel('이성들의 속마음');
+    const quoteText = '“' + c.quote + '”';
+    ctx.font = 'italic 500 26px "IBM Plex Sans KR"';
+    const quoteBoxPad = 24;
+    const quoteLines = wrapLines(ctx, quoteText, textW - quoteBoxPad * 2 + 24);
+    const quoteBoxH = quoteLines.length * 36 + 48;
+    if(draw){
+      ctx.fillStyle = '#F5F2FE';
+      roundRectPath(ctx, cardX + innerPad - quoteBoxPad, y, cardW - (innerPad - quoteBoxPad) * 2, quoteBoxH, 16);
+      ctx.fill();
+      ctx.fillStyle = '#221C3B';
+      quoteLines.forEach((l, li) => ctx.fillText(l, leftX, y + 40 + li * 36));
+    }
+    y += quoteBoxH + 44;
+
+    ctx.textAlign = 'center';
+    ctx.font = '400 30px "Black Han Sans"';
+    const punchLines = wrapLines(ctx, c.punch, cardW - 160);
+    const boxH = punchLines.length * 38 + 100;
+    if(draw){
+      const boxGrad = ctx.createLinearGradient(cardX + 40, y, cardX + cardW - 40, y);
+      boxGrad.addColorStop(0, '#7C5CFC');
+      boxGrad.addColorStop(1, '#FF6F91');
+      ctx.fillStyle = boxGrad;
+      roundRectPath(ctx, cardX + 40, y, cardW - 80, boxH, 24);
+      ctx.fill();
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = '600 20px "IBM Plex Mono"';
+      ctx.fillText('한마디', W / 2, y + 42);
+      ctx.font = '400 30px "Black Han Sans"';
+      drawWrapped(ctx, c.punch, W / 2, y + 90, cardW - 160, 38);
+    }
+    y += boxH + 54;
+
+    ctx.textAlign = 'left';
+    sectionLabel('이성 인기 지수');
+    ctx.font = '700 44px "IBM Plex Mono"';
+    if(draw){
+      ctx.textAlign = 'right';
+      ctx.fillStyle = '#FF6F91';
+      ctx.fillText(c.improve[0] + '%', leftX + textW, y);
+      ctx.textAlign = 'left';
+    }
+    y += 12;
+    if(draw){
+      ctx.fillStyle = '#EDE8FB';
+      roundRectPath(ctx, leftX, y, textW, 14, 7);
+      ctx.fill();
+      ctx.fillStyle = '#7C5CFC';
+      roundRectPath(ctx, leftX, y, Math.max(textW * c.improve[0] / 100, 14), 14, 7);
+      ctx.fill();
+    }
+    y += 14 + 30;
+    bodyLines([c.improve[1]], '400 24px "IBM Plex Sans KR"', '#6B6285', 34, 0);
+    y += 46;
+
+    sectionLabel('이런 상대와는?');
+    function matchRow(label, color, text){
+      ctx.font = '700 20px "IBM Plex Mono"';
+      const lw = ctx.measureText(label).width + 28;
+      if(draw){
+        ctx.fillStyle = color;
+        roundRectPath(ctx, leftX, y, lw, 34, 17);
+        ctx.fill();
+        ctx.fillStyle = '#FFFFFF';
+        ctx.textAlign = 'center';
+        ctx.fillText(label, leftX + lw / 2, y + 24);
+        ctx.textAlign = 'left';
+      }
+      y += 34 + 14;
+      ctx.font = '400 24px "IBM Plex Sans KR"';
+      const lines = wrapLines(ctx, text, textW);
+      if(draw){
+        ctx.fillStyle = '#221C3B';
+        lines.forEach((l, li) => ctx.fillText(l, leftX, y + li * 34));
+      }
+      y += lines.length * 34 + 28;
+    }
+    matchRow('잘 맞음', '#12B886', c.matchGood);
+    matchRow('피곤함', '#F0553C', c.matchBad);
+    y += 8;
+
+    ctx.textAlign = 'center';
+    ctx.font = '500 22px "IBM Plex Mono"';
+    if(draw){ ctx.fillStyle = '#9C93B5'; ctx.fillText(location.host, W / 2, y); }
+    y += 40;
+
+    return y;
+  }
+
+  const scratch = document.createElement('canvas');
+  scratch.width = W;
+  scratch.height = 8000;
+  const sctx = scratch.getContext('2d');
+  const contentBottom = layout(sctx, false);
+
+  const H = contentBottom + pad;
+  const canvas = document.createElement('canvas');
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext('2d');
+
+  const bgGrad = ctx.createLinearGradient(0, 0, W, H);
+  bgGrad.addColorStop(0, '#7C5CFC');
+  bgGrad.addColorStop(1, '#FF6F91');
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, W, H);
+
+  ctx.globalAlpha = 0.14;
+  ctx.fillStyle = '#FFFFFF';
+  ctx.beginPath(); ctx.arc(110, 110, 170, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.arc(W - 90, H - 150, 210, 0, Math.PI * 2); ctx.fill();
+  ctx.globalAlpha = 1;
+
+  const cardH = contentBottom - cardY;
+  ctx.fillStyle = '#FFFFFF';
+  roundRectPath(ctx, cardX, cardY, cardW, cardH, 40);
+  ctx.fill();
+
+  layout(ctx, true);
+
+  return canvas;
+}
+
+async function saveCard(){
+  if(!currentResultId){ return; }
+  showToast('카드 생성 중...');
+  try{
+    if(document.fonts && document.fonts.ready){ await document.fonts.ready; }
+    const canvas = await generateCard();
+    canvas.toBlob(async (blob) => {
+      if(!blob){ showToast('카드 생성에 실패했습니다'); return; }
+      const file = new File([blob], 'dating-popularity-result.png', { type: 'image/png' });
+      if(navigator.canShare && navigator.canShare({ files: [file] })){
+        try{
+          await navigator.share({ files: [file], title: '나는 이성에게 인기 많은 스타일일까?' });
+          return;
+        }catch(e){ /* fall through to download */ }
+      }
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'dating-popularity-result.png';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 4000);
+      showToast('카드 이미지가 저장되었습니다');
+    }, 'image/png');
+  }catch(e){
+    showToast('카드 생성에 실패했습니다');
+  }
+}
+
+/* ================= DEEP LINK ================= */
+(function initFromUrl(){
+  const params = new URLSearchParams(window.location.search);
+  const result = params.get('result');
+  if(result && CHARACTERS[result]){
+    renderResult(result);
+    showScreen('result');
+  }
+})();
+</script>
+<script type="text/javascript" src="//t1.kakaocdn.net/kas/static/ba.min.js" async></script>
+</body>
+</html>
