@@ -142,6 +142,9 @@
     padding:48px 24px 24px;
     text-align:center;
   }
+  .burst-shape{
+    clip-path: polygon(50% 0%, 61% 15%, 78% 5%, 80% 24%, 100% 27%, 90% 44%, 100% 61%, 82% 64%, 82% 84%, 64% 78%, 55% 96%, 45% 78%, 27% 84%, 27% 64%, 9% 61%, 19% 44%, 9% 27%, 29% 24%, 31% 5%, 48% 15%);
+  }
   .hero-sticker{
     width:148px; height:148px;
     margin:0 auto 20px;
@@ -161,13 +164,14 @@
     border-radius:15px;
   }
   .hero-sticker::before{
-    content:'NEW!';
-    position:absolute; top:-14px; right:-22px;
+    content:'!!';
+    position:absolute; top:-20px; right:-26px;
+    width:52px; height:52px;
     background:var(--accent2); color:#fff;
-    font-family:'Jua'; font-size:13px;
-    padding:4px 10px; border-radius:20px;
-    border:2px solid #141311;
+    font-family:'Jua'; font-size:20px;
+    display:flex; align-items:center; justify-content:center;
     transform:rotate(12deg);
+    clip-path: polygon(50% 0%, 61% 15%, 78% 5%, 80% 24%, 100% 27%, 90% 44%, 100% 61%, 82% 64%, 82% 84%, 64% 78%, 55% 96%, 45% 78%, 27% 84%, 27% 64%, 9% 61%, 19% 44%, 9% 27%, 29% 24%, 31% 5%, 48% 15%);
   }
   .eyebrow{
     font-family:'IBM Plex Mono'; font-size:13px; letter-spacing:.14em;
@@ -269,13 +273,30 @@
     font-family:'IBM Plex Mono';
   }
 
-  .quiz-body{
-    flex:1; display:flex; flex-direction:column;
-    padding:32px 20px 20px;
+  .scene-banner{
+    display:flex; align-items:center; gap:14px;
+    padding:18px 20px 0;
+  }
+  .scene-icon{
+    flex:0 0 auto;
+    width:64px; height:64px;
+    background:var(--accent2);
+    border:3px solid #141311;
+    display:flex; align-items:center; justify-content:center;
+    font-size:32px;
+    clip-path: polygon(50% 0%, 61% 15%, 78% 5%, 80% 24%, 100% 27%, 90% 44%, 100% 61%, 82% 64%, 82% 84%, 64% 78%, 55% 96%, 45% 78%, 27% 84%, 27% 64%, 9% 61%, 19% 44%, 9% 27%, 29% 24%, 31% 5%, 48% 15%);
   }
   .quiz-topic{
-    font-family:'IBM Plex Mono'; font-size:12px; letter-spacing:.1em;
-    color:var(--stamp); text-transform:uppercase; margin-bottom:14px;
+    display:inline-block;
+    background:#141311; color:var(--accent);
+    font-family:'Jua'; font-size:15px;
+    padding:8px 14px; border-radius:6px;
+    transform:rotate(-1.4deg);
+    text-shadow:1px 1px 0 rgba(0,0,0,.4);
+  }
+  .quiz-body{
+    flex:1; display:flex; flex-direction:column;
+    padding:20px 20px 20px;
   }
   .quiz-q{
     font-size:23px; line-height:1.42; font-weight:700;
@@ -356,13 +377,14 @@
     .id-photo img{ animation:none; }
   }
   .id-photo-emoji{
-    position:absolute; bottom:-12px; right:-12px;
-    width:44px; height:44px; border-radius:50%;
-    background:var(--accent);
+    position:absolute; bottom:-14px; right:-14px;
+    width:48px; height:48px;
+    background:var(--accent2);
     border:3px solid #141311;
     display:flex; align-items:center; justify-content:center;
-    font-size:22px;
+    font-size:20px;
     transform:rotate(8deg);
+    clip-path: polygon(50% 0%, 61% 15%, 78% 5%, 80% 24%, 100% 27%, 90% 44%, 100% 61%, 82% 64%, 82% 84%, 64% 78%, 55% 96%, 45% 78%, 27% 84%, 27% 64%, 9% 61%, 19% 44%, 9% 27%, 29% 24%, 31% 5%, 48% 15%);
   }
   .result-verdict-label{display:none;}
   .result-caption{
@@ -385,12 +407,15 @@
     margin-bottom:26px;
   }
   .section-label{
-    font-family:'IBM Plex Mono'; font-size:11px; letter-spacing:.1em;
-    text-transform:uppercase; color:var(--ink-faint);
-    margin-bottom:10px;
-    display:flex; align-items:center; gap:8px;
+    display:inline-flex; align-items:center;
+    font-family:'Jua'; font-size:13px;
+    color:#141311; background:var(--accent);
+    padding:4px 12px; border-radius:4px;
+    border:2px solid #141311;
+    margin-bottom:12px;
   }
-  .section-label::after{content:''; flex:1; height:1px; background:var(--line);}
+  .section:nth-of-type(odd) .section-label{transform:rotate(-1.4deg);}
+  .section:nth-of-type(even) .section-label{transform:rotate(1.2deg); background:var(--card);}
 
   /* 3줄 요약 — 삐뚤빼뚤한 스티키노트 스택 */
   .zinger-stack{display:flex; flex-direction:column; gap:10px;}
@@ -566,13 +591,13 @@
 
   <div class="topbar">
     <span class="topbar-badge"><span class="dot"></span>예능 케미 분석소</span>
-    <span class="topbar-badge">🎬</span>
+    <span class="topbar-badge">💀</span>
   </div>
 
   <!-- START -->
   <section class="screen active" id="screen-start">
     <div class="start-wrap">
-      <div class="hero-sticker" aria-hidden="true">🎬</div>
+      <div class="hero-sticker" aria-hidden="true">💀</div>
       <div class="eyebrow">예능 캐릭터 진단 테스트</div>
       <h1 class="hero-title display">나는 국민 예능 속<br>어떤 멤버st일까?</h1>
       <p class="hero-sub">그 시절 다 같이 봤던 그 예능, 그 안에 있었다면 당신은?<br>3분이면 당신의 예능 멤버st가 나옵니다.</p>
@@ -597,8 +622,11 @@
       <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:5%"></div></div>
       <div class="progress-caption" id="progress-caption">출연진 데이터를 모으고 있습니다.</div>
     </div>
-    <div class="quiz-body">
+    <div class="scene-banner">
+      <div class="scene-icon" id="q-icon">🎬</div>
       <div class="quiz-topic" id="q-topic">SITUATION</div>
+    </div>
+    <div class="quiz-body">
       <h2 class="quiz-q" id="q-text">질문</h2>
       <div class="options" id="q-options"></div>
       <div class="quiz-nav">
@@ -704,70 +732,70 @@
 /* ================= DATA ================= */
 
 const QUESTIONS = [
-  { topic:"출연 제안", tier:0, q:"예능 프로그램 출연 제안이 왔다. 당신의 첫 반응은?", options:[
+  { topic:"출연 제안", icon:"📋", tier:0, q:"예능 프로그램 출연 제안이 왔다. 당신의 첫 반응은?", options:[
     {t:"일단 대본이랑 규칙부터 꼼꼼히 확인한다", p:{leaderMc:2, sharpEye:1}},
     {t:"출연료부터 세게 물어본다", p:{sharpTongue:2, bigEatLoyal:1}},
     {t:"밥은 잘 챙겨주냐고부터 물어본다", p:{bigEatLoyal:2, hypeMaker:1}},
     {t:"왜 하필 나냐면서도 결국 한다", p:{coolDeadpan:2, weirdArtist:1}},
     {t:"일단 하겠다고 하고 뒷일은 생각 안 한다", p:{chaosBomb:2, hypeMaker:1}},
   ]},
-  { topic:"게임 시작 전", tier:0, q:"팀 게임을 시작하기 전, 당신은?", options:[
+  { topic:"게임 시작 전", icon:"🎮", tier:0, q:"팀 게임을 시작하기 전, 당신은?", options:[
     {t:"분위기부터 띄우면서 텐션을 올린다", p:{hypeMaker:2, bodyGag:1}},
     {t:"갑자기 엉뚱한 필승 전략을 제안한다", p:{weirdArtist:2, chaosBomb:1}},
     {t:"팀원 역할부터 눈치껏 배분한다", p:{sharpEye:2, leaderMc:1}},
     {t:"일단 몸부터 움직이며 감으로 부딪힌다", p:{bodyGag:2, chaosBomb:1}},
     {t:"이길 수 있는 규칙의 허점부터 찾는다", p:{leaderMc:2, sharpEye:1}},
   ]},
-  { topic:"촬영 중 허기", tier:1, q:"촬영 중간에 배가 고파졌다. 당신은?", options:[
+  { topic:"촬영 중 허기", icon:"🍜", tier:1, q:"촬영 중간에 배가 고파졌다. 당신은?", options:[
     {t:"밥 언제 주냐고 제작진한테 계속 따진다", p:{sharpTongue:2, bigEatLoyal:1}},
     {t:"옆 사람 간식을 은근슬쩍 나눠 먹자고 한다", p:{bigEatLoyal:2, hypeMaker:1}},
     {t:"배고픈 티 없이 묵묵히 촬영에 집중한다", p:{coolDeadpan:2, leaderMc:1}},
     {t:"갑자기 먹는 이야기로 삼천포로 빠진다", p:{chaosBomb:2, weirdArtist:1}},
     {t:"배고픈 것도 텐션으로 승화시켜 웃긴다", p:{hypeMaker:2, bodyGag:1}},
   ]},
-  { topic:"팀원의 실수", tier:1, q:"팀원이 게임에서 결정적인 실수를 했다. 당신은?", options:[
+  { topic:"팀원의 실수", icon:"😅", tier:1, q:"팀원이 게임에서 결정적인 실수를 했다. 당신은?", options:[
     {t:"그 실수가 왜 웃긴지 엉뚱하게 분석한다", p:{weirdArtist:2, chaosBomb:1}},
     {t:"바로 다음 전략부터 눈치껏 다시 짠다", p:{sharpEye:2, leaderMc:1}},
     {t:"몸으로 오버해서 리액션하며 웃긴다", p:{bodyGag:2, chaosBomb:1}},
     {t:"괜찮다고 다독이며 팀 분위기부터 챙긴다", p:{leaderMc:2, bigEatLoyal:1}},
     {t:"“아 진짜!” 소리부터 지르지만 뒤끝은 없다", p:{sharpTongue:2, bigEatLoyal:1}},
   ]},
-  { topic:"벌칙 정하기", tier:1, q:"벌칙을 정하는 순간이 왔다. 당신은?", options:[
+  { topic:"벌칙 정하기", icon:"🎯", tier:1, q:"벌칙을 정하는 순간이 왔다. 당신은?", options:[
     {t:"걸려도 다 같이 먹으면 된다며 여유 부린다", p:{bigEatLoyal:2, hypeMaker:1}},
     {t:"걸려도 상관없다는 쿨한 표정을 짓는다", p:{coolDeadpan:2, leaderMc:1}},
     {t:"가위바위보 도중 갑자기 딴짓을 한다", p:{chaosBomb:2, weirdArtist:1}},
     {t:"무조건 나 걸릴 것 같다며 미리 엄살부터 부린다", p:{hypeMaker:2, bodyGag:1}},
     {t:"벌칙보다 그 순간 표정 관리가 더 안 된다", p:{weirdArtist:2, chaosBomb:1}},
   ]},
-  { topic:"클로즈업", tier:2, q:"카메라가 갑자기 나를 클로즈업했다. 당신은?", options:[
+  { topic:"클로즈업", icon:"📸", tier:2, q:"카메라가 갑자기 나를 클로즈업했다. 당신은?", options:[
     {t:"당황하지 않고 자연스럽게 화제를 돌린다", p:{sharpEye:2, leaderMc:1}},
     {t:"바로 몸개그로 상황을 넘긴다", p:{bodyGag:2, chaosBomb:1}},
     {t:"당황하지 않고 바로 정리된 멘트를 던진다", p:{leaderMc:2, hypeMaker:1}},
     {t:"옆 사람한테 카메라를 떠넘기며 툴툴댄다", p:{sharpTongue:2, sharpEye:1}},
     {t:"순간 얼음이 됐다가 배시시 웃는다", p:{bigEatLoyal:2, hypeMaker:1}},
   ]},
-  { topic:"싸해진 분위기", tier:2, q:"팀 분위기가 갑자기 싸해졌다. 당신은?", options:[
+  { topic:"싸해진 분위기", icon:"🥶", tier:2, q:"팀 분위기가 갑자기 싸해졌다. 당신은?", options:[
     {t:"그냥 못 본 척 자연스럽게 넘어간다", p:{coolDeadpan:2, bigEatLoyal:1}},
     {t:"예상 못한 돌발행동으로 분위기를 깬다", p:{chaosBomb:2, bodyGag:1}},
     {t:"재빨리 아무 농담이나 던져서 풀어본다", p:{hypeMaker:2, bodyGag:1}},
     {t:"뜬금없는 이야기를 꺼내서 오히려 더 싸해진다", p:{weirdArtist:2, coolDeadpan:1}},
     {t:"눈치껏 다음 순서로 화제를 자연스레 넘긴다", p:{sharpEye:2, leaderMc:1}},
   ]},
-  { topic:"촬영 끝나고 혼자", tier:2, q:"촬영이 끝나고 아무도 안 볼 때, 사실 당신은?", options:[
+  { topic:"촬영 끝나고 혼자", icon:"🌙", tier:2, q:"촬영이 끝나고 아무도 안 볼 때, 사실 당신은?", options:[
     {t:"다음엔 뭘로 웃길지 벌써 고민한다", p:{bodyGag:2, chaosBomb:1}},
     {t:"오늘 진행에서 아쉬웠던 부분을 복기한다", p:{leaderMc:2, sharpEye:1}},
     {t:"누구보다 편집 분량을 신경 쓴다", p:{sharpTongue:2, hypeMaker:1}},
     {t:"다들 밥은 챙겨 먹었는지부터 확인한다", p:{bigEatLoyal:2, hypeMaker:1}},
     {t:"혼자 오늘 실수한 장면만 계속 곱씹는다", p:{coolDeadpan:2, weirdArtist:1}},
   ]},
-  { topic:"진짜 역할", tier:3, q:"솔직히, 이 프로그램에서 당신의 진짜 역할은?", options:[
+  { topic:"진짜 역할", icon:"🎭", tier:3, q:"솔직히, 이 프로그램에서 당신의 진짜 역할은?", options:[
     {t:"예측 불가능한 재미를 던지는 사람", p:{chaosBomb:2, weirdArtist:1}},
     {t:"분위기를 계속 띄우는 사람", p:{hypeMaker:2, bodyGag:1}},
     {t:"있는 듯 없는 듯하다가 뜬금없이 터지는 사람", p:{weirdArtist:2, coolDeadpan:1}},
     {t:"다 같이 잘 굴러가게 조율하는 사람", p:{sharpEye:2, leaderMc:1}},
     {t:"몸으로라도 웃음을 만들어내는 사람", p:{bodyGag:2, chaosBomb:1}},
   ]},
-  { topic:"이 예능이 계속된다면", tier:4, q:"이 예능이 몇 년째 이어진다면, 당신은 어떤 존재이고 싶나?", options:[
+  { topic:"이 예능이 계속된다면", icon:"⭐", tier:4, q:"이 예능이 몇 년째 이어진다면, 당신은 어떤 존재이고 싶나?", options:[
     {t:"없으면 진행이 안 되는 중심 축이고 싶다", p:{leaderMc:2, sharpEye:1}},
     {t:"다들 은근히 의지하는 든든한 사람이고 싶다", p:{coolDeadpan:2, bigEatLoyal:1}},
     {t:"매번 분위기를 살리는 흥 부자이고 싶다", p:{hypeMaker:2, bodyGag:1}},
@@ -1023,7 +1051,8 @@ function renderQuestion(){
   document.getElementById('q-total').textContent = '/ ' + total;
   document.getElementById('progress-fill').style.width = Math.round((current / total) * 100) + '%';
   document.getElementById('progress-caption').textContent = progressCaption(current);
-  document.getElementById('q-topic').textContent = item.topic.toUpperCase();
+  document.getElementById('q-topic').textContent = item.topic;
+  document.getElementById('q-icon').textContent = item.icon;
   document.getElementById('q-text').textContent = item.q;
   document.getElementById('btn-back').style.visibility = current === 0 ? 'hidden' : 'visible';
 
