@@ -142,56 +142,32 @@
     padding:48px 24px 24px;
     text-align:center;
   }
-  .hero-stage{
-    position:relative;
-    width:220px; height:190px;
-    margin:0 auto 12px;
+  .hero-sticker{
+    width:148px; height:148px;
+    margin:0 auto 20px;
+    background:var(--accent);
+    border:5px solid #141311;
+    border-radius:22px;
+    transform:rotate(-7deg);
     display:flex; align-items:center; justify-content:center;
-  }
-  .hero-glow{
-    position:absolute; inset:0;
-    background:
-      radial-gradient(circle at 32% 30%, color-mix(in srgb, var(--accent) 60%, transparent), transparent 62%),
-      radial-gradient(circle at 72% 68%, color-mix(in srgb, var(--accent2) 50%, transparent), transparent 65%);
-    filter: blur(22px);
-    opacity:.6;
-  }
-  .hero-icon{
-    position:absolute;
-    width:30px; height:30px;
-    color:var(--ink-soft);
-    opacity:.6;
-    animation: heroFloat 5s ease-in-out infinite;
-  }
-  .hero-icon.cup{ top:6px; left:14px; animation-delay:.2s; }
-  .hero-icon.note{ top:0; right:10px; animation-delay:1.1s; }
-  .hero-icon.clip{ bottom:14px; left:2px; animation-delay:.6s; }
-  .hero-icon.chart{ bottom:6px; right:0; animation-delay:1.6s; }
-  @keyframes heroFloat{
-    0%, 100%{ transform: translateY(0) rotate(var(--r,0deg)); }
-    50%{ transform: translateY(-7px) rotate(var(--r,0deg)); }
-  }
-  @media (prefers-reduced-motion: reduce){
-    .hero-icon{ animation:none; }
-  }
-  .badge-stamp{
-    width:88px; height:88px;
-    border:3px solid var(--stamp);
-    border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    font-size:38px;
-    color:var(--stamp);
-    transform:rotate(-8deg);
+    font-size:66px;
+    box-shadow:7px 7px 0 rgba(20,19,17,.85);
     position:relative;
-    background:var(--card);
-    box-shadow:var(--shadow);
   }
-  .badge-stamp::after{
+  .hero-sticker::after{
     content:'';
-    position:absolute; inset:6px;
-    border:1px dashed var(--stamp);
-    border-radius:50%;
-    opacity:.5;
+    position:absolute; inset:9px;
+    border:2px dashed rgba(20,19,17,.35);
+    border-radius:15px;
+  }
+  .hero-sticker::before{
+    content:'NEW!';
+    position:absolute; top:-14px; right:-22px;
+    background:var(--accent2); color:#fff;
+    font-family:'Jua'; font-size:13px;
+    padding:4px 10px; border-radius:20px;
+    border:2px solid #141311;
+    transform:rotate(12deg);
   }
   .eyebrow{
     font-family:'IBM Plex Mono'; font-size:13px; letter-spacing:.14em;
@@ -213,16 +189,18 @@
   }
   .start-meta b{color:var(--ink-soft); font-weight:600;}
   .preview-strip{
-    display:flex; justify-content:center; gap:10px;
+    display:flex; justify-content:center; gap:6px;
     margin-bottom:28px;
   }
   .preview-thumb{
-    width:52px; height:52px; border-radius:50%;
+    width:56px; height:56px; border-radius:12px;
     overflow:hidden;
-    border:2px solid var(--line);
-    box-shadow:var(--shadow);
+    border:3px solid #141311;
+    background:var(--card-raise);
     flex:0 0 auto;
   }
+  .preview-thumb:nth-child(odd){transform:rotate(-6deg);}
+  .preview-thumb:nth-child(even){transform:rotate(5deg);}
   .preview-thumb img{width:100%; height:100%; object-fit:cover; display:block;}
 
   .btn-primary{
@@ -310,21 +288,22 @@
     display:flex; align-items:center; gap:14px;
     text-align:left;
     background:var(--card);
-    border:1.5px solid var(--line);
+    border:2px solid #141311;
     border-radius:10px;
     padding:15px 16px;
     font-size:15px; color:var(--ink);
     cursor:pointer;
-    transition:border-color .12s ease, background .12s ease;
+    transition:transform .1s ease;
   }
-  .option-btn:hover{border-color:var(--line-strong);}
-  .option-btn:active{background:var(--card-raise); transform:scale(.995);}
+  .option-btn:hover{transform:translate(-1px,-1px); box-shadow:3px 3px 0 rgba(20,19,17,.5);}
+  .option-btn:active{background:var(--card-raise); transform:scale(.98);}
   .option-idx{
     flex:0 0 auto;
-    width:26px; height:26px; border-radius:6px;
-    border:1px solid var(--line-strong);
+    width:28px; height:28px; border-radius:50%;
+    border:2px solid #141311;
+    background:var(--accent);
     display:flex; align-items:center; justify-content:center;
-    font-family:'IBM Plex Mono'; font-size:12px; font-weight:600; color:var(--ink-soft);
+    font-family:'Jua'; font-size:13px; color:#141311;
   }
   .quiz-nav{
     margin-top:20px;
@@ -344,23 +323,8 @@
     color:var(--ink-faint); text-transform:uppercase;
   }
 
-  /* ---------- result screen ---------- */
-  .doc-header{
-    padding:20px 20px 16px;
-    border-bottom:1px solid var(--line);
-  }
-  .doc-meta{
-    display:flex; justify-content:space-between;
-    font-family:'IBM Plex Mono'; font-size:11px; color:var(--ink-faint);
-    margin-bottom:6px;
-  }
-  .doc-stamp-line{
-    display:flex; align-items:center; gap:6px;
-    font-family:'IBM Plex Mono'; font-size:11px; color:var(--good); font-weight:600;
-  }
-  .doc-stamp-line .sq{width:8px;height:8px;border:1.5px solid var(--good); transform:rotate(45deg);}
-
-  .result-body{padding:28px 20px 12px;}
+  /* ---------- result screen (밈 카드 포맷) ---------- */
+  .result-body{padding:24px 20px 12px;}
 
   .result-rarity{
     display:inline-block;
@@ -368,14 +332,16 @@
     color:var(--stamp); border:1px solid var(--stamp); border-radius:20px;
     padding:4px 12px; margin-bottom:18px;
   }
-  .result-emoji{font-size:56px; margin-bottom:12px;}
+  .result-emoji{display:none;}
+
   .id-photo{
-    width:172px; height:172px; margin:0 auto 20px;
-    border-radius:16px; overflow:hidden;
-    border:2px solid var(--line-strong);
-    box-shadow:var(--shadow);
+    width:212px; height:212px; margin:0 auto 22px;
+    border-radius:20px; overflow:hidden;
+    border:5px solid #141311;
+    box-shadow:8px 8px 0 rgba(20,19,17,.18);
     position:relative;
     background:var(--card);
+    transform:rotate(-3deg);
   }
   .id-photo img{
     width:100%; height:100%; object-fit:cover; display:block;
@@ -384,37 +350,39 @@
   }
   @keyframes idPhotoBob{
     0%, 100%{ transform: translateY(0) rotate(0deg); }
-    50%{ transform: translateY(-5px) rotate(-1.5deg); }
+    50%{ transform: translateY(-5px) rotate(1.5deg); }
   }
   @media (prefers-reduced-motion: reduce){
     .id-photo img{ animation:none; }
   }
   .id-photo-emoji{
-    position:absolute; bottom:-6px; right:-6px;
-    width:38px; height:38px; border-radius:50%;
-    background:var(--card-raise);
-    border:2px solid var(--paper);
+    position:absolute; bottom:-12px; right:-12px;
+    width:44px; height:44px; border-radius:50%;
+    background:var(--accent);
+    border:3px solid #141311;
     display:flex; align-items:center; justify-content:center;
-    font-size:19px;
-    box-shadow:var(--shadow);
+    font-size:22px;
+    transform:rotate(8deg);
   }
-  .result-verdict-label{
-    font-family:'IBM Plex Mono'; font-size:12px; letter-spacing:.08em;
-    color:var(--ink-faint); text-transform:uppercase;
-    margin-bottom:6px;
+  .result-verdict-label{display:none;}
+  .result-caption{
+    display:inline-block;
+    background:#141311; color:var(--accent);
+    font-family:'Jua'; font-size:25px; line-height:1.4;
+    padding:12px 20px; border-radius:8px;
+    transform:rotate(-1.4deg);
+    box-shadow:5px 5px 0 rgba(20,19,17,.16);
+    margin-bottom:16px;
+    text-shadow:2px 2px 0 rgba(0,0,0,.35);
   }
-  .result-name{
-    font-size:30px; line-height:1.32;
-    margin-bottom:14px;
-  }
+  .result-name{display:none;}
   .result-tagline{
-    font-size:16px; color:var(--ink-soft);
-    padding-left:14px; border-left:3px solid var(--accent);
-    margin-bottom:28px;
+    font-size:15px; color:var(--ink-soft);
+    max-width:34ch; margin:0 auto 30px;
   }
 
   .section{
-    margin-bottom:28px;
+    margin-bottom:26px;
   }
   .section-label{
     font-family:'IBM Plex Mono'; font-size:11px; letter-spacing:.1em;
@@ -424,49 +392,65 @@
   }
   .section-label::after{content:''; flex:1; height:1px; background:var(--line);}
 
-  .desc-card{
-    background:var(--card); border:1px solid var(--line); border-radius:10px;
-    padding:18px 18px;
-    display:flex; flex-direction:column; gap:12px;
+  /* 3줄 요약 — 삐뚤빼뚤한 스티키노트 스택 */
+  .zinger-stack{display:flex; flex-direction:column; gap:10px;}
+  .zinger{
+    font-size:14.5px; color:#141311;
+    padding:14px 16px;
+    border-radius:6px;
+    border:2px solid #141311;
+    box-shadow:4px 4px 0 rgba(20,19,17,.14);
   }
-  .desc-card p{font-size:14.5px; color:var(--ink);}
+  .zinger:nth-child(1){background:color-mix(in srgb, var(--accent) 55%, #fff); transform:rotate(-1.2deg);}
+  .zinger:nth-child(2){background:color-mix(in srgb, var(--accent2) 22%, #fff); transform:rotate(1deg);}
+  .zinger:nth-child(3){background:var(--card); transform:rotate(-0.6deg);}
 
-  .quote-card{
-    background:var(--card); border:1px dashed var(--line-strong); border-radius:10px;
-    padding:18px;
-    font-size:15px; font-style:normal;
+  /* 능력치 — 게임 스탯 카드 */
+  .stat-card{
+    border:2px solid #141311; border-radius:10px;
+    padding:16px 18px;
+    background:var(--card);
+  }
+  .metric-row{
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:12px;
+  }
+  .metric-row:last-child{margin-bottom:0;}
+  .metric-label{
+    flex:0 0 84px; font-size:12.5px; color:var(--ink-soft);
+    font-family:'IBM Plex Mono';
+  }
+  .metric-bar{
+    flex:1; height:10px; background:var(--bar-track); border-radius:5px; overflow:hidden;
+    border:1.5px solid #141311;
+  }
+  .metric-fill{
+    height:100%; background:var(--accent);
+  }
+  .metric-row.highlight .metric-fill{background:var(--accent2);}
+  .metric-val{
+    flex:0 0 34px; text-align:right;
+    font-family:'IBM Plex Mono'; font-size:12.5px; font-weight:700; color:var(--ink);
+  }
+
+  /* 동료 왈 — 카톡 말풍선 */
+  .chat-row{display:flex; align-items:flex-end; gap:8px;}
+  .chat-avatar{
+    flex:0 0 auto; width:34px; height:34px; border-radius:10px;
+    background:var(--accent2); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size:15px; border:2px solid #141311;
+  }
+  .chat-col{display:flex; flex-direction:column; gap:3px; max-width:78%;}
+  .chat-name{font-size:11px; color:var(--ink-faint);}
+  .chat-bubble{
     position:relative;
-  }
-  .quote-card::before{
-    content:'"'; font-family:'Jua'; font-size:34px; color:var(--accent2);
-    position:absolute; top:2px; left:14px; line-height:1;
-  }
-  .quote-card span{
-    display:block; padding-left:22px; color:var(--ink);
-  }
-  .quote-label{font-size:11px; color:var(--ink-faint); margin-top:10px; padding-left:22px;}
-
-  .radar-wrap{
-    display:flex; justify-content:center;
-  }
-  .radar-wrap svg{
-    width:100%; max-width:320px; height:auto;
-    transform: scale(.3);
-    opacity:0;
-    transition: transform .5s cubic-bezier(.34,1.56,.64,1), opacity .4s ease;
-  }
-  .radar-wrap svg.in{
-    transform: scale(1);
-    opacity:1;
-  }
-  @media (prefers-reduced-motion: reduce){
-    .radar-wrap svg{ transition:none; transform:scale(1); opacity:1; }
-  }
-  .radar-label{
-    font-size:10.5px; fill:var(--ink-soft); font-family:'IBM Plex Sans KR';
-  }
-  .radar-value{
-    font-family:'IBM Plex Mono'; font-size:10px; font-weight:600; fill:var(--stamp);
+    background:#FEE500;
+    color:#141311;
+    padding:12px 14px;
+    border-radius:4px 14px 14px 14px;
+    font-size:14px; line-height:1.5;
+    border:2px solid #141311;
   }
 
   .punch-card{
@@ -488,62 +472,30 @@
     text-shadow:2px 2px 0 rgba(0,0,0,.4);
   }
 
-  .metric-row{
-    display:flex; align-items:center; gap:12px;
-    margin-bottom:14px;
+  /* 특징 태그 — pros/cons를 짧은 칩으로 */
+  .tag-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .tag-chip{
+    display:inline-flex; align-items:center; gap:5px;
+    font-size:12.5px; padding:7px 12px;
+    border-radius:20px; border:1.5px solid #141311;
+    white-space:nowrap;
   }
-  .metric-row:last-child{margin-bottom:0;}
-  .metric-label{
-    flex:0 0 128px; font-size:13px; color:var(--ink-soft);
-  }
-  .metric-bar{
-    flex:1; height:8px; background:var(--bar-track); border-radius:4px; overflow:hidden;
-  }
-  .metric-fill{
-    height:100%; background:var(--stamp); border-radius:4px;
-  }
-  .metric-val{
-    flex:0 0 38px; text-align:right;
-    font-family:'IBM Plex Mono'; font-size:13px; font-weight:600; color:var(--ink);
-  }
+  .tag-chip.pro{background:color-mix(in srgb, var(--good) 20%, #fff);}
+  .tag-chip.con{background:color-mix(in srgb, var(--bad) 16%, #fff);}
 
-  .pc-grid{
-    display:grid; grid-template-columns:1fr 1fr; gap:12px;
-  }
-  .pc-box{
-    border-radius:10px; padding:14px;
-    font-size:13px;
-  }
-  .pc-box.pro{background:color-mix(in srgb, var(--good) 10%, var(--card)); border:1px solid color-mix(in srgb, var(--good) 30%, var(--line));}
-  .pc-box.con{background:color-mix(in srgb, var(--bad) 10%, var(--card)); border:1px solid color-mix(in srgb, var(--bad) 30%, var(--line));}
-  .pc-title{font-weight:700; margin-bottom:8px; font-size:12px; letter-spacing:.04em;}
-  .pc-box.pro .pc-title{color:var(--good);}
-  .pc-box.con .pc-title{color:var(--bad);}
-  .pc-box ul{margin:0; padding-left:16px;}
-  .pc-box li{margin-bottom:4px; color:var(--ink-soft);}
-
-  .improve-card{
-    background:var(--card); border:1px solid var(--line); border-radius:10px; padding:18px;
-  }
-  .improve-top{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px;}
-  .improve-top .val{font-family:'IBM Plex Mono'; font-size:22px; font-weight:700; color:var(--stamp);}
-  .improve-track{height:8px; background:var(--bar-track); border-radius:4px; overflow:hidden; margin-bottom:12px;}
-  .improve-fill{height:100%; background:var(--accent); border-radius:4px;}
-  .improve-card p{font-size:14px; color:var(--ink-soft);}
-
-  .match-grid{display:flex; flex-direction:column; gap:10px;}
+  .match-grid{display:flex; flex-direction:column; gap:8px;}
   .match-item{
-    display:flex; gap:12px; align-items:flex-start;
-    border:1px solid var(--line); border-radius:10px; padding:12px 14px;
+    display:flex; gap:10px; align-items:flex-start;
+    border:2px solid #141311; border-radius:8px; padding:10px 12px;
     background:var(--card);
   }
   .match-tag{
     flex:0 0 auto; font-family:'IBM Plex Mono'; font-size:10px; font-weight:700;
     padding:3px 8px; border-radius:5px; letter-spacing:.04em; margin-top:1px;
   }
-  .match-item.good .match-tag{background:color-mix(in srgb, var(--good) 20%, transparent); color:var(--good);}
-  .match-item.bad .match-tag{background:color-mix(in srgb, var(--bad) 20%, transparent); color:var(--bad);}
-  .match-item p{font-size:13.5px; color:var(--ink-soft);}
+  .match-item.good .match-tag{background:color-mix(in srgb, var(--good) 24%, transparent); color:#0d6b47;}
+  .match-item.bad .match-tag{background:color-mix(in srgb, var(--bad) 24%, transparent); color:#9c2c1f;}
+  .match-item p{font-size:13px; color:var(--ink-soft);}
 
   .share-block{
     margin-top:8px; margin-bottom:28px;
@@ -620,14 +572,7 @@
   <!-- START -->
   <section class="screen active" id="screen-start">
     <div class="start-wrap">
-      <div class="hero-stage" aria-hidden="true">
-        <div class="hero-glow"></div>
-        <svg class="hero-icon cup" style="--r:-12deg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v3l-6 6v5l-4 2v-7L4 7Z"/></svg>
-        <svg class="hero-icon note" style="--r:9deg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 12 4l9 4.5-9 4.5-9-4.5Z"/><path d="M7 10.5V16c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5v-5.5"/></svg>
-        <svg class="hero-icon clip" style="--r:-8deg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6.2"/><circle cx="9.6" cy="7.4" r=".9" fill="currentColor" stroke="none"/><circle cx="14.4" cy="7.4" r=".9" fill="currentColor" stroke="none"/><path d="M9 11.5c1 1 4 1 5 0"/><path d="M8.2 20.5 12 15l3.8 5.5"/></svg>
-        <svg class="hero-icon chart" style="--r:11deg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4"/><circle cx="12" cy="12" r="3.4"/></svg>
-        <div class="badge-stamp">🎬</div>
-      </div>
+      <div class="hero-sticker" aria-hidden="true">🎬</div>
       <div class="eyebrow">예능 캐릭터 진단 테스트</div>
       <h1 class="hero-title display">나는 국민 예능 속<br>어떤 멤버st일까?</h1>
       <p class="hero-sub">그 시절 다 같이 봤던 그 예능, 그 안에 있었다면 당신은?<br>3분이면 당신의 예능 멤버st가 나옵니다.</p>
@@ -672,55 +617,39 @@
 
   <!-- RESULT -->
   <section class="screen" id="screen-result">
-    <div class="doc-header">
-      <div class="doc-meta">
-        <span class="mono" id="doc-number">문서번호 —</span>
-        <span class="mono" id="doc-date">분석일자 —</span>
-      </div>
-      <div class="doc-stamp-line"><span class="sq"></span>분석 완료</div>
-    </div>
-
     <div class="result-body">
       <span class="result-rarity" id="r-rarity">출현 빈도</span>
       <div class="id-photo">
         <img id="r-image" src="" alt="" width="400" height="400" decoding="async">
         <span class="id-photo-emoji" id="r-emoji">🐣</span>
       </div>
-      <p class="result-verdict-label">당신의 판정</p>
-      <h1 class="result-name display" id="r-name">결과 이름</h1>
+      <div class="result-caption display" id="r-name">결과 이름</div>
       <p class="result-tagline" id="r-tagline">한 줄 분석</p>
 
       <div class="section">
-        <div class="section-label">당신은 이런 사람입니다</div>
-        <div class="desc-card" id="r-paragraphs"></div>
+        <div class="section-label">3줄 요약</div>
+        <div class="zinger-stack" id="r-paragraphs"></div>
       </div>
 
       <div class="section">
-        <div class="section-label">장점과 단점</div>
-        <div class="pc-grid">
-          <div class="pc-box pro">
-            <div class="pc-title">장점</div>
-            <ul id="r-pros"></ul>
-          </div>
-          <div class="pc-box con">
-            <div class="pc-title">단점</div>
-            <ul id="r-cons"></ul>
-          </div>
-        </div>
+        <div class="section-label">특징</div>
+        <div class="tag-row" id="r-tags"></div>
       </div>
 
       <div class="section">
-        <div class="section-label">당신의 예능 캐릭터 지표</div>
-        <div class="radar-wrap" id="r-radar-wrap">
-          <div id="r-radar"></div>
-        </div>
+        <div class="section-label">능력치</div>
+        <div class="stat-card" id="r-stats"></div>
         <p style="font-size:11px; color:var(--ink-faint); margin-top:8px; text-align:center;">※ 위 수치는 과학적 근거가 없는 엔터테인먼트용 결과입니다.</p>
       </div>
 
       <div class="section">
-        <div class="section-label">동료들의 속마음</div>
-        <div class="quote-card">
-          <span id="r-quote">속마음</span>
+        <div class="section-label">동료 왈</div>
+        <div class="chat-row">
+          <div class="chat-avatar">💬</div>
+          <div class="chat-col">
+            <span class="chat-name">같은 팀 동료</span>
+            <div class="chat-bubble"><span id="r-quote">속마음</span></div>
+          </div>
         </div>
       </div>
 
@@ -728,18 +657,6 @@
         <div class="punch-card">
           <div class="punch-label">한마디</div>
           <p id="r-punch"></p>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-label">현장 케미 지수</div>
-        <div class="improve-card">
-          <div class="improve-top">
-            <span style="font-size:13px; color:var(--ink-soft);">현장 케미 지수</span>
-            <span class="val" id="r-improve-val">0%</span>
-          </div>
-          <div class="improve-track"><div class="improve-fill" id="r-improve-fill" style="width:0%"></div></div>
-          <p id="r-improve-text"></p>
         </div>
       </div>
 
@@ -1176,60 +1093,17 @@ function rarityTag(str){
   return '';
 }
 
-function renderRadar(containerId, metrics){
-  const size = 320, center = size / 2, maxR = 88;
-  const n = metrics.length;
-  const angleFor = i => -90 + i * (360 / n);
-  const pt = (angleDeg, r) => {
-    const rad = angleDeg * Math.PI / 180;
-    return [center + r * Math.cos(rad), center + r * Math.sin(rad)];
-  };
-
-  const gridRings = [0.33, 0.66, 1].map(f => {
-    const pts = metrics.map((_, i) => pt(angleFor(i), maxR * f).join(',')).join(' ');
-    return '<polygon points="' + pts + '" fill="none" stroke="var(--line)" stroke-width="1"/>';
-  }).join('');
-
-  const axes = metrics.map((_, i) => {
-    const [x, y] = pt(angleFor(i), maxR);
-    return '<line x1="' + center + '" y1="' + center + '" x2="' + x + '" y2="' + y + '" stroke="var(--line)" stroke-width="1"/>';
-  }).join('');
-
-  const dataPts = metrics.map(([, v], i) => pt(angleFor(i), (v / 100) * maxR).join(',')).join(' ');
-
-  const dots = metrics.map(([, v], i) => {
-    const [x, y] = pt(angleFor(i), (v / 100) * maxR);
-    return '<circle cx="' + x + '" cy="' + y + '" r="3.5" fill="var(--stamp)"/>';
-  }).join('');
-
-  const labels = metrics.map(([label, v], i) => {
-    const angle = angleFor(i);
-    const [lx, ly] = pt(angle, maxR + 22);
-    const cos = Math.cos(angle * Math.PI / 180);
-    let anchor = 'middle';
-    if(cos > 0.3) anchor = 'start';
-    else if(cos < -0.3) anchor = 'end';
-    return '<text x="' + lx + '" y="' + ly + '" text-anchor="' + anchor + '" class="radar-label">' +
-      '<tspan x="' + lx + '" dy="0">' + label + '</tspan>' +
-      '<tspan x="' + lx + '" dy="13" class="radar-value">' + v + '%</tspan>' +
-      '</text>';
-  }).join('');
-
-  const svg =
-    '<svg viewBox="0 0 ' + size + ' ' + size + '" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">' +
-    gridRings + axes +
-    '<polygon points="' + dataPts + '" fill="var(--accent)" fill-opacity="0.28" stroke="var(--accent)" stroke-width="2"/>' +
-    dots + labels +
-    '</svg>';
-
-  const container = document.getElementById(containerId);
-  container.innerHTML = svg;
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      const svgEl = container.querySelector('svg');
-      if(svgEl) svgEl.classList.add('in');
-    });
-  });
+function renderStats(containerId, metrics, improve){
+  const rows = metrics.map(([label, v]) =>
+    '<div class="metric-row"><span class="metric-label">' + label + '</span>' +
+    '<div class="metric-bar"><div class="metric-fill" style="width:' + v + '%"></div></div>' +
+    '<span class="metric-val">' + v + '%</span></div>'
+  ).join('');
+  const highlightRow =
+    '<div class="metric-row highlight"><span class="metric-label">현장 케미</span>' +
+    '<div class="metric-bar"><div class="metric-fill" style="width:' + improve[0] + '%"></div></div>' +
+    '<span class="metric-val">' + improve[0] + '%</span></div>';
+  document.getElementById(containerId).innerHTML = rows + highlightRow;
 }
 
 let currentResultId = null;
@@ -1252,29 +1126,21 @@ function renderResult(forcedId){
   const pWrap = document.getElementById('r-paragraphs');
   pWrap.innerHTML = '';
   c.paragraphs.forEach(t => {
-    const p = document.createElement('p');
-    p.textContent = t;
-    pWrap.appendChild(p);
+    const d = document.createElement('div');
+    d.className = 'zinger';
+    d.textContent = t;
+    pWrap.appendChild(d);
   });
 
-  renderRadar('r-radar', c.metrics);
+  const tagWrap = document.getElementById('r-tags');
+  tagWrap.innerHTML =
+    c.pros.map(t => '<span class="tag-chip pro">👍 ' + t + '</span>').join('') +
+    c.cons.map(t => '<span class="tag-chip con">👎 ' + t + '</span>').join('');
 
-  const prosWrap = document.getElementById('r-pros');
-  prosWrap.innerHTML = c.pros.map(t => '<li>' + t + '</li>').join('');
-  const consWrap = document.getElementById('r-cons');
-  consWrap.innerHTML = c.cons.map(t => '<li>' + t + '</li>').join('');
-
-  document.getElementById('r-improve-val').textContent = c.improve[0] + '%';
-  document.getElementById('r-improve-fill').style.width = c.improve[0] + '%';
-  document.getElementById('r-improve-text').textContent = c.improve[1];
+  renderStats('r-stats', c.metrics, c.improve);
 
   document.getElementById('r-match-good').textContent = c.matchGood;
   document.getElementById('r-match-bad').textContent = c.matchBad;
-
-  const now = new Date();
-  const docNo = 'OF-' + now.getFullYear() + String(now.getMonth()+1).padStart(2,'0') + String(now.getDate()).padStart(2,'0') + '-' + Math.floor(1000 + Math.random()*9000);
-  document.getElementById('doc-number').textContent = '문서번호 ' + docNo;
-  document.getElementById('doc-date').textContent = '분석일자 ' + now.getFullYear() + '.' + String(now.getMonth()+1).padStart(2,'0') + '.' + String(now.getDate()).padStart(2,'0');
 
   try{
     history.replaceState(null, '', getResultUrl());
@@ -1473,7 +1339,7 @@ async function generateCard(){
       });
     }
 
-    sectionLabel('당신은 이런 사람입니다');
+    sectionLabel('3줄 요약');
     bodyLines(c.paragraphs, '400 26px "IBM Plex Sans KR"', '#1A1512', 38, 18);
     y += 22;
 
@@ -1489,7 +1355,7 @@ async function generateCard(){
     bodyLines(c.cons.map(t => '• ' + t), '400 24px "IBM Plex Sans KR"', '#1A1512', 34, 10);
     y += 22;
 
-    sectionLabel('당신의 예능 캐릭터 지표');
+    sectionLabel('능력치');
     c.metrics.forEach(([label, value]) => {
       ctx.font = '500 22px "IBM Plex Mono"';
       if(draw){
@@ -1514,7 +1380,7 @@ async function generateCard(){
     });
     y += 8;
 
-    sectionLabel('동료들의 속마음');
+    sectionLabel('동료 왈');
     const quoteText = '“' + c.quote + '”';
     ctx.font = 'italic 500 26px "IBM Plex Sans KR"';
     const quoteBoxPad = 24;
