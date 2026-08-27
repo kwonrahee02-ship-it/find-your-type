@@ -1271,6 +1271,17 @@ function showScreen(name){
   window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
 }
 
+/* 카카오 애드핏 스크립트는 페이지 최초 로드 시점에 딱 한 번만 광고 슬롯을 스캔한다.
+   퀴즈를 풀어서 결과 화면에 도달하는 정상 흐름에서는 그 시점에 결과 화면이 아직
+   display:none 상태였기 때문에 광고가 채워지지 않는다. 결과 화면을 보여줄 때마다
+   스크립트를 새로 삽입해서 그 시점에 보이는 슬롯을 다시 스캔하게 만든다. */
+function reloadKakaoAd(){
+  const s = document.createElement('script');
+  s.src = '//t1.kakaocdn.net/kas/static/ba.min.js';
+  s.async = true;
+  document.body.appendChild(s);
+}
+
 (function renderPreviewStrip(){
   const picks = ['rose','nosy','advice','explode','zen'];
   const wrap = document.getElementById('preview-strip');
@@ -1352,6 +1363,7 @@ function runAnalyzing(){
     clearInterval(iv);
     renderResult();
     showScreen('result');
+    reloadKakaoAd();
   }, 1400);
 }
 
@@ -1597,7 +1609,223 @@ function drawWrapped(ctx, text, x, y, maxWidth, lineHeight){
 
 async function generateCard(){
   const c = CHARACTERS[currentResultId];
-  const W = 1080, H = 1350;
+  const W = 1080;
+  const pad = 56, cardY = 140;
+  const cardX = pad, cardW = W - pad * 2;
+  const innerPad = 64;
+  const leftX = cardX + innerPad;
+  const textW = cardW - innerPad * 2;
+  const imgSize = 300;
+
+  let img = null;
+  try{ img = await loadImageEl('workplace-images/' + currentResultId + '.webp'); }catch(e){ /* continue without it */ }
+
+  function layout(ctx, draw){
+    let y = cardY + 66;
+    ctx.textAlign = 'center';
+
+    ctx.font = '600 26px "IBM Plex Sans KR"';
+    if(draw){ ctx.fillStyle = '#9C93B5'; ctx.fillText('직장인 캐릭터 테스트', W / 2, y); }
+    y += 54;
+
+    const rarityText = rarityTag(c.rarity) + ' · ' + c.rarity;
+    ctx.font = '600 24px "IBM Plex Mono"';
+    const rw = ctx.measureText(rarityText).width + 64;
+    const badgeH = 56;
+    if(draw){
+      ctx.strokeStyle = '#FF6F91'; ctx.lineWidth = 3;
+      roundRectPath(ctx, W / 2 - rw / 2, y, rw, badgeH, badgeH / 2);
+      ctx.stroke();
+      ctx.fillStyle = '#FF6F91';
+      ctx.fillText(rarityText, W / 2, y + badgeH / 2 + 8);
+    }
+    y += badgeH + 44;
+
+    if(draw && img){
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(W / 2, y + imgSize / 2, imgSize / 2, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.clip();
+      ctx.drawImage(img, W / 2 - imgSize / 2, y, imgSize, imgSize);
+      ctx.restore();
+      ctx.strokeStyle = '#F5F2FE'; ctx.lineWidth = 8;
+      ctx.beginPath();
+      ctx.arc(W / 2, y + imgSize / 2, imgSize / 2, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+    y += imgSize + 54;
+
+    ctx.font = '400 50px "Black Han Sans"';
+    if(draw) ctx.fillStyle = '#221C3B';
+    const nameLines = wrapLines(ctx, c.name, cardW - 100);
+    if(draw) drawWrapped(ctx, c.name, W / 2, y, cardW - 100, 58);
+    y += nameLines.length * 58 + 26;
+
+    ctx.font = '400 28px "IBM Plex Sans KR"';
+    if(draw) ctx.fillStyle = '#6B6285';
+    const taglineLines = wrapLines(ctx, c.tagline, cardW - 160);
+    if(draw) drawWrapped(ctx, c.tagline, W / 2, y, cardW - 160, 38);
+    y += taglineLines.length * 38 + 64;
+
+    ctx.textAlign = 'left';
+
+    function sectionLabel(text){
+      ctx.font = '600 24px "IBM Plex Mono"';
+      if(draw){ ctx.fillStyle = '#9C93B5'; ctx.fillText(text, leftX, y); }
+      y += 44;
+    }
+
+    function bodyLines(list, font, color, lineHeight, gap){
+      ctx.font = font;
+      list.forEach(t => {
+        const lines = wrapLines(ctx, t, textW);
+        if(draw){
+          ctx.fillStyle = color;
+          lines.forEach((l, li) => ctx.fillText(l, leftX, y + li * lineHeight));
+        }
+        y += lines.length * lineHeight + gap;
+      });
+    }
+
+    sectionLabel('당신은 이런 사람입니다');
+    bodyLines(c.paragraphs, '400 26px "IBM Plex Sans KR"', '#221C3B', 38, 18);
+    y += 22;
+
+    sectionLabel('장점과 단점');
+    ctx.font = '700 24px "IBM Plex Sans KR"';
+    if(draw){ ctx.fillStyle = '#12B886'; ctx.fillText('장점', leftX, y); }
+    y += 40;
+    bodyLines(c.pros.map(t => '• ' + t), '400 24px "IBM Plex Sans KR"', '#221C3B', 34, 10);
+    y += 20;
+    ctx.font = '700 24px "IBM Plex Sans KR"';
+    if(draw){ ctx.fillStyle = '#F0553C'; ctx.fillText('단점', leftX, y); }
+    y += 40;
+    bodyLines(c.cons.map(t => '• ' + t), '400 24px "IBM Plex Sans KR"', '#221C3B', 34, 10);
+    y += 22;
+
+    sectionLabel('당신의 직장생활 지표');
+    c.metrics.forEach(([label, value]) => {
+      ctx.font = '500 22px "IBM Plex Mono"';
+      if(draw){
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#6B6285';
+        ctx.fillText(label, leftX, y);
+        ctx.textAlign = 'right';
+        ctx.fillStyle = '#221C3B';
+        ctx.fillText(value + '%', leftX + textW, y);
+        ctx.textAlign = 'left';
+      }
+      y += 16;
+      if(draw){
+        ctx.fillStyle = '#EDE8FB';
+        roundRectPath(ctx, leftX, y, textW, 14, 7);
+        ctx.fill();
+        ctx.fillStyle = '#7C5CFC';
+        roundRectPath(ctx, leftX, y, Math.max(textW * value / 100, 14), 14, 7);
+        ctx.fill();
+      }
+      y += 14 + 30;
+    });
+    y += 8;
+
+    sectionLabel('주변 사람들의 속마음');
+    const quoteText = '“' + c.quote + '”';
+    ctx.font = 'italic 500 26px "IBM Plex Sans KR"';
+    const quoteBoxPad = 24;
+    const quoteLines = wrapLines(ctx, quoteText, textW - quoteBoxPad * 2 + 24);
+    const quoteBoxH = quoteLines.length * 36 + 48;
+    if(draw){
+      ctx.fillStyle = '#F5F2FE';
+      roundRectPath(ctx, cardX + innerPad - quoteBoxPad, y, cardW - (innerPad - quoteBoxPad) * 2, quoteBoxH, 16);
+      ctx.fill();
+      ctx.fillStyle = '#221C3B';
+      quoteLines.forEach((l, li) => ctx.fillText(l, leftX, y + 40 + li * 36));
+    }
+    y += quoteBoxH + 44;
+
+    ctx.textAlign = 'center';
+    ctx.font = '400 30px "Black Han Sans"';
+    const punchLines = wrapLines(ctx, c.punch, cardW - 160);
+    const boxH = punchLines.length * 38 + 100;
+    if(draw){
+      const boxGrad = ctx.createLinearGradient(cardX + 40, y, cardX + cardW - 40, y);
+      boxGrad.addColorStop(0, '#7C5CFC');
+      boxGrad.addColorStop(1, '#FF6F91');
+      ctx.fillStyle = boxGrad;
+      roundRectPath(ctx, cardX + 40, y, cardW - 80, boxH, 24);
+      ctx.fill();
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = '600 20px "IBM Plex Mono"';
+      ctx.fillText('한마디', W / 2, y + 42);
+      ctx.font = '400 30px "Black Han Sans"';
+      drawWrapped(ctx, c.punch, W / 2, y + 90, cardW - 160, 38);
+    }
+    y += boxH + 54;
+
+    ctx.textAlign = 'left';
+    sectionLabel('팀원 안심 지수');
+    ctx.font = '700 44px "IBM Plex Mono"';
+    if(draw){
+      ctx.textAlign = 'right';
+      ctx.fillStyle = '#FF6F91';
+      ctx.fillText(c.improve[0] + '%', leftX + textW, y);
+      ctx.textAlign = 'left';
+    }
+    y += 12;
+    if(draw){
+      ctx.fillStyle = '#EDE8FB';
+      roundRectPath(ctx, leftX, y, textW, 14, 7);
+      ctx.fill();
+      ctx.fillStyle = '#7C5CFC';
+      roundRectPath(ctx, leftX, y, Math.max(textW * c.improve[0] / 100, 14), 14, 7);
+      ctx.fill();
+    }
+    y += 14 + 30;
+    bodyLines([c.improve[1]], '400 24px "IBM Plex Sans KR"', '#6B6285', 34, 0);
+    y += 46;
+
+    sectionLabel('같이 일한다면?');
+    function matchRow(label, color, text){
+      ctx.font = '700 20px "IBM Plex Mono"';
+      const lw = ctx.measureText(label).width + 28;
+      if(draw){
+        ctx.fillStyle = color;
+        roundRectPath(ctx, leftX, y, lw, 34, 17);
+        ctx.fill();
+        ctx.fillStyle = '#FFFFFF';
+        ctx.textAlign = 'center';
+        ctx.fillText(label, leftX + lw / 2, y + 24);
+        ctx.textAlign = 'left';
+      }
+      y += 34 + 14;
+      ctx.font = '400 24px "IBM Plex Sans KR"';
+      const lines = wrapLines(ctx, text, textW);
+      if(draw){
+        ctx.fillStyle = '#221C3B';
+        lines.forEach((l, li) => ctx.fillText(l, leftX, y + li * 34));
+      }
+      y += lines.length * 34 + 28;
+    }
+    matchRow('잘 맞음', '#12B886', c.matchGood);
+    matchRow('피곤함', '#F0553C', c.matchBad);
+    y += 8;
+
+    ctx.textAlign = 'center';
+    ctx.font = '500 22px "IBM Plex Mono"';
+    if(draw){ ctx.fillStyle = '#9C93B5'; ctx.fillText(location.host, W / 2, y); }
+    y += 40;
+
+    return y;
+  }
+
+  const scratch = document.createElement('canvas');
+  scratch.width = W;
+  scratch.height = 8000;
+  const sctx = scratch.getContext('2d');
+  const contentBottom = layout(sctx, false);
+
+  const H = contentBottom + pad;
   const canvas = document.createElement('canvas');
   canvas.width = W;
   canvas.height = H;
@@ -1615,62 +1843,12 @@ async function generateCard(){
   ctx.beginPath(); ctx.arc(W - 90, H - 150, 210, 0, Math.PI * 2); ctx.fill();
   ctx.globalAlpha = 1;
 
-  const pad = 56, cardY = 140;
-  const cardX = pad, cardW = W - pad * 2, cardH = H - cardY - pad;
+  const cardH = contentBottom - cardY;
   ctx.fillStyle = '#FFFFFF';
   roundRectPath(ctx, cardX, cardY, cardW, cardH, 40);
   ctx.fill();
 
-  ctx.fillStyle = '#9C93B5';
-  ctx.font = '600 26px "IBM Plex Sans KR"';
-  ctx.textAlign = 'center';
-  ctx.fillText('직장인 캐릭터 테스트', W / 2, cardY + 66);
-
-  try{
-    const img = await loadImageEl('workplace-images/' + currentResultId + '.webp');
-    const imgSize = 300, imgY = cardY + 96;
-    ctx.save();
-    ctx.beginPath();
-    ctx.arc(W / 2, imgY + imgSize / 2, imgSize / 2, 0, Math.PI * 2);
-    ctx.closePath();
-    ctx.clip();
-    ctx.drawImage(img, W / 2 - imgSize / 2, imgY, imgSize, imgSize);
-    ctx.restore();
-    ctx.strokeStyle = '#F5F2FE';
-    ctx.lineWidth = 8;
-    ctx.beginPath();
-    ctx.arc(W / 2, imgY + imgSize / 2, imgSize / 2, 0, Math.PI * 2);
-    ctx.stroke();
-  }catch(e){ /* image unavailable, continue without it */ }
-
-  let cursorY = cardY + 96 + 300 + 78;
-  ctx.fillStyle = '#221C3B';
-  ctx.font = '400 50px "Black Han Sans"';
-  const nameLines = drawWrapped(ctx, c.name, W / 2, cursorY, cardW - 100, 58);
-  cursorY += nameLines * 58 + 18;
-
-  ctx.fillStyle = '#6B6285';
-  ctx.font = '400 28px "IBM Plex Sans KR"';
-  drawWrapped(ctx, c.tagline, W / 2, cursorY, cardW - 160, 38);
-
-  const boxH = 168;
-  const boxY = cardY + cardH - boxH - 44;
-  const boxGrad = ctx.createLinearGradient(cardX + 40, boxY, cardX + cardW - 40, boxY);
-  boxGrad.addColorStop(0, '#7C5CFC');
-  boxGrad.addColorStop(1, '#FF6F91');
-  ctx.fillStyle = boxGrad;
-  roundRectPath(ctx, cardX + 40, boxY, cardW - 80, boxH, 24);
-  ctx.fill();
-
-  ctx.fillStyle = '#FFFFFF';
-  ctx.font = '600 20px "IBM Plex Mono"';
-  ctx.fillText('한마디', W / 2, boxY + 42);
-  ctx.font = '400 30px "Black Han Sans"';
-  drawWrapped(ctx, c.punch, W / 2, boxY + 90, cardW - 160, 38);
-
-  ctx.fillStyle = '#9C93B5';
-  ctx.font = '500 22px "IBM Plex Mono"';
-  ctx.fillText(location.host, W / 2, cardY + cardH - 26);
+  layout(ctx, true);
 
   return canvas;
 }
